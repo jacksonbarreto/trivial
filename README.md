@@ -5,12 +5,13 @@
 
 ## Authors:
 **Jackson Barreto Costa Júnior**
-*[Linkedin](https://www.linkedin.com/in/jacksonbarreto/)
-*[Twitter](https://twitter.com/JacksonBJunior)
-*[Medium](https://medium.com/@jackson.barreto)
-*[Instagram](https://www.instagram.com/jacksonbarretojr/)
-*[Facebook](https://www.facebook.com/jacksonbarretojunior)
+* [Linkedin](https://www.linkedin.com/in/jacksonbarreto/)
+* [Twitter](https://twitter.com/JacksonBJunior)
+* [Medium](https://medium.com/@jackson.barreto)
+* [Instagram](https://www.instagram.com/jacksonbarretojr/)
+* [Facebook](https://www.facebook.com/jacksonbarretojunior)
+
 **Leonardo Mariz Martinez Lopez**
-*[Linkedin](https://www.linkedin.com/in/leonardo-lopez-45858b117/)
+* [Linkedin](https://www.linkedin.com/in/leonardo-lopez-45858b117/)
 
 ## Project description
