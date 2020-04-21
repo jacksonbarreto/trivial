@@ -1,6 +1,6 @@
 #ifndef __SHUTDOWN_H__
 	#define __SHUTDOWN_H__
-	#include "confih.h"
+	#include "config.h"
 	
 	void turnOff();
 	static void saveTopList(USER * topPlayers);

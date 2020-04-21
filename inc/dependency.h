@@ -15,3 +15,7 @@
 #ifdef __GAME_LOGIC_H__
 	#include "sort.h"
 #endif
+
+#ifdef __SHUTDOWN_H__
+	#include "crud.h"
+#endif
