@@ -1,0 +1,118 @@
+#include "../inc/helpers.h"
+
+char * getString(const char *question,const CONTROLINT responseSize, char *answer)
+{
+	char inputFilter[12];
+	
+	sprintf(inputFilter," \%%%hu[^\n]s",responseSize);	
+	printf(question);
+	scanf(inputFilter,answer);
+	clearBuffer();
+	
+	return answer;
+}
+
+CONTROLINT getShortInteger(const char *question)
+{
+	CONTROLINT integer;
+	
+	printf(question);
+	scanf(" %hu",&integer);
+	clearBuffer();
+	return integer;
+}
+
+void clearBuffer(void)
+{
+	char garbageCollector;
+	while((garbageCollector = getchar()) != '\n' && garbageCollector != EOF);	
+}
+
+void clearScreen(void)
+{
+	system("clear || cls");
+}
+
+CONTROLINT inRange(const int number, const int inferiorLimit, const int upperLimit, const CONTROLINT rangeType)
+{	
+	switch(rangeType)
+	{
+		case CLOSED_RANGE:
+			return (number >= inferiorLimit && number <= upperLimit);
+			break;							
+		case OPEN_RANGE:
+			return (number > inferiorLimit && number < upperLimit);		
+			break;
+		default:
+			return FALSE;
+	}
+}
+
+CONTROLINT randomNumber(const int start, int end)
+{
+	static CONTROLINT initialized=FALSE;
+	if (start >= end)
+		return FALSE;
+		
+    if(initialized == FALSE)
+	{
+        srand((unsigned int) time(NULL));
+        initialized = TRUE;
+    }
+    end = (end - start)+1;
+	
+	return (start + rand() % end);
+}
+
+void swapString(char *stringA, char *stringB)
+{
+	char * auxiliaryString = (char *) malloc(strlen(stringA)+1);
+	
+	strcpy(auxiliaryString,stringA);
+	strcpy(stringA,stringB);
+	strcpy(stringB,auxiliaryString);
+	
+	free(auxiliaryString);
+}
+
+void shuffleString(char array[][MAX_ANSWER_SIZE], const CONTROLINT size)
+{
+	CONTROLINT i;
+	for(i=size-1; i>0 ; i--)
+		swapString(array[i],array[randomNumber(0,i)]);
+	
+}
+
+static struct tm * currentDateTime(void)
+{
+	time_t now;	
+	time(&now);
+	return localtime(&now);
+}
+
+char * formattedDateTime(void)
+{
+	static char formattedDate[22];
+	struct tm d;
+	d = *currentDateTime();
+	
+	sprintf(formattedDate,"%d/%2d/%d - %2d:%2d:%2d",d.tm_mday,d.tm_mon+1,d.tm_year+1900,d.tm_hour, d.tm_min,d.tm_sec);
+	
+	return formattedDate;
+}
+
+void * allocateMemory(const int quantity, const int dataSize)
+{
+	void * pointer = calloc(quantity, dataSize);
+	if(pointer == NULL)
+		eventsHandling(CRITICAL_FAILURE);
+	return pointer;
+}
+
+void * reAllocateMemory(USER * oldPointer, const int newSize)
+{
+	void * pointer = realloc(oldPointer,newSize);
+	if(pointer == NULL)
+		eventsHandling(CRITICAL_FAILURE);
+	return pointer;
+}

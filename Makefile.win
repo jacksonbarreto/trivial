@@ -1,0 +1,49 @@
+# Project: trivial
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = trivial.o src/helpers.o src/gameLogic.o src/crud.o src/error.o src/boot.o src/login.o src/sort.o
+LINKOBJ  = trivial.o src/helpers.o src/gameLogic.o src/crud.o src/error.o src/boot.o src/login.o src/sort.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = trivial.exe
+CXXFLAGS = $(CXXINCS) -ansi -std=c99 -g3
+CFLAGS   = $(INCS) -ansi -std=c99 -g3
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+trivial.o: trivial.c
+	$(CC) -c trivial.c -o trivial.o $(CFLAGS)
+
+src/helpers.o: src/helpers.c
+	$(CC) -c src/helpers.c -o src/helpers.o $(CFLAGS)
+
+src/gameLogic.o: src/gameLogic.c
+	$(CC) -c src/gameLogic.c -o src/gameLogic.o $(CFLAGS)
+
+src/crud.o: src/crud.c
+	$(CC) -c src/crud.c -o src/crud.o $(CFLAGS)
+
+src/error.o: src/error.c
+	$(CC) -c src/error.c -o src/error.o $(CFLAGS)
+
+src/boot.o: src/boot.c
+	$(CC) -c src/boot.c -o src/boot.o $(CFLAGS)
+
+src/login.o: src/login.c
+	$(CC) -c src/login.c -o src/login.o $(CFLAGS)
+
+src/sort.o: src/sort.c
+	$(CC) -c src/sort.c -o src/sort.o $(CFLAGS)
