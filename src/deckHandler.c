@@ -35,12 +35,16 @@ static void loadDeck(CARD ** deck, const CONTROLINT themeId, long int * lastAces
 	
 	fseek(file,*lastAcess,SEEK_SET);	
 	for(i=0;i<deckSize;i++)
-	{		
-		readData(&question,sizeof(QUESTION),1,file);
-		areaShuffles[i] = question; //corrigir para ler direto no vetor
+	{	
+		do
+		{
+			readData(&question,sizeof(QUESTION),1,file);
+			areaShuffles[i] = question; //corrigir para ler direto no vetor
+			if (feof(file))
+				fseek(file,sizeof(THEMEFILEINF),SEEK_SET);
+		}
+		while(question.id == 0);		
 		
-		if (feof(file))
-			fseek(file,sizeof(THEMEFILEINF),SEEK_SET);
 	}
 	*lastAcess = ftell(file);		
 	fclose(file);
