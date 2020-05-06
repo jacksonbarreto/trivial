@@ -95,5 +95,25 @@ CONTROLINT defineDeckSize(const CONTROLINT gameMode, const CONTROLINT totalPlaye
 	return deckSize;
 }
 
+float averageWrongAnswersRound(USER * players, const CONTROLINT totalPlayers)
+{
+	float average;
+	CONTROLINT i, wrongAnswers;
+	
+	for(i=0,wrongAnswers=0;i<totalPlayers;i++)
+	{
+		wrongAnswers += (players[i].totalAnswered - players[i].currentScore);
+	}
+	average = wrongAnswers / (float) totalPlayers;
+	
+	return average;
+}
 
-
+float averageWrongAnswersGlobal(float currentGlobalAverage, float roundAverage, CONTROLINT totalRounds)
+{
+	float newGlobalAverage;
+	
+	newGlobalAverage = ((currentGlobalAverage * totalRounds) + roundAverage)/ ++totalRounds;
+	
+	return newGlobalAverage;
+}
