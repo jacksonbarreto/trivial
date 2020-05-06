@@ -25,6 +25,12 @@ void eventsHandling(CONTROLINT event)
 		case INCOMPLETE_READING:
 			fprintf(logs,"%s - Falha em [readData()]. Nem todos os registros foram lidos.\n", formattedDateTime());
 			break;
+		case REMOVAL_STACK_EMPTY:
+			fprintf(logs,"%s - Falha em [removeCard()]. Tentativa de remoção em pilha vazia.\n", formattedDateTime());
+			break;
+		case GAME_STATUS_UNIDENTIFIED:
+			fprintf(logs,"%s - Falha em [deckControl()]. Status do jogo não identificado.\n", formattedDateTime());
+			break;	
 		default:
 			fprintf(logs,"%s - Evento desconhecido\n", formattedDateTime());
 	}

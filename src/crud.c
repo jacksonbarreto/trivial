@@ -9,31 +9,113 @@ FILE * openFile(const char * fileName, const char * openingMode)
 	return pointer;
 }
 
-CONTROLINT writeData(const void * data, const int dataSize, const int quantity, const FILE * file)
+CONTROLINT writeData(void * data, int dataSize, int quantity, FILE * file)
 {	
-	if(fwrite(data,dataSize,quantity,file) != quantity)
+	if( fwrite(data,dataSize,quantity,file) != quantity)
 		eventsHandling(INCOMPLETE_RECORD);
 	return SUCCESS;
 }
 
-CONTROLINT readData(const void * destiny, const int dataSize, const int quantity, const FILE * file)
+CONTROLINT readData(void * destiny, int dataSize, int quantity, FILE * file)
 {	
 	if(fread(destiny,dataSize,quantity,file) != quantity)
 		eventsHandling(INCOMPLETE_READING);
 	return SUCCESS;
 }
 
-CONTROLINT createUserId()
+CONTROLINT createUserId(void)
 {
-	return settings.totalUsers+1;
+	CONTROLINT id;
+	USER user;
+	do
+	{
+		id = randomNumber(MINIMUM_ID,USHRT_MAX);
+		user = userIdExists(id);
+	}
+	while(user.id != 0);
+	
+	return id;
 }
 
-CONTROLINT createThemeId()
+CONTROLINT createThemeId(void)
 {
-	return settings.totalThemes+1;
+	CONTROLINT id;
+	THEME theme;
+	do
+	{
+		id = randomNumber(1,USHRT_MAX);
+		theme = themeExist(id);
+	}
+	while(theme.id != 0);
+	return id;
 }
 
-void insertUser(const USER user)
+THEME themeExist(const CONTROLINT themeId)
+{
+	THEME theme;
+	FILE * file;
+	char * fileName = (char *) allocateMemory(strlen(QUESTION_PREFIX)+QUESTION_SUFIX_SIZE,sizeof(char));
+	
+	sprintf(fileName,"%s%d.dat",QUESTION_PREFIX,themeId);
+	file = openFile(fileName,BINARY_READING);
+	
+	fseek(file,sizeof(THEMEFILEINF),SEEK_SET);
+	do
+	{
+		readData(&theme,sizeof(THEME),1,file);
+		if(theme.id == themeId);
+			return theme;
+	}
+	while(feof(file));
+	theme = createNullTheme();
+	free(fileName);
+	return theme;
+}
+
+THEME createNullTheme(void)
+{
+	THEME theme;
+	
+	theme.id = 0;
+	theme.totalQuestions = 0;
+	theme.lastAcess = 0L;
+	strcpy(theme.themeName,"NULL");
+	
+	return theme;
+}
+
+USER userIdExists(const CONTROLINT id)
+{
+	FILE * file = openFile(USERS_FILE_NAME,BINARY_READING);
+	USER user;
+	fseek(file,sizeof(CONTROLINT),SEEK_SET);
+	do
+	{
+		readData(&user,sizeof(USER),1,file);
+		if(user.id == id)
+			return user;
+	}
+	while(feof(file));
+	user = createNullUser();
+	return user;
+}
+USER createNullUser(void)
+{
+	USER user;
+	
+	user.id = 0;
+	user.currentScore = 0;
+	user.percentageCorrect = 0.0;
+	user.totalAnswered = 0;
+	user.userType = PLAYER_USER;
+	strcpy(user.name,"NULL");
+	strcpy(user.password,"");
+	strcpy(user.username,"NULL");
+	
+	return user;
+}
+
+void insertUser(USER user)
 {
 	FILE * file = openFile(USERS_FILE_NAME,BINARY_APPEND);
 	settings.totalUsers++;
@@ -44,17 +126,18 @@ void insertUser(const USER user)
 	fclose(file);
 }
 
-void insertQuestion(const QUESTION question, const CONTROLINT themeId)
+void insertQuestion(QUESTION question, const CONTROLINT themeId)
 {
 	FILE * file;
-	char * fileName = (char *) allocateMemory(strlen(QUESTION_PREFIX)+8,sizeof(char));
+	char * fileName = (char *) allocateMemory(strlen(QUESTION_PREFIX)+QUESTION_SUFIX_SIZE,sizeof(char));
 	
 	sprintf(fileName,"%s%d.dat",QUESTION_PREFIX,themeId);
 	file = openFile(fileName,BINARY_APPEND);
 	writeData(&question,sizeof(QUESTION),1,file);	
 	fclose(file);
+	free(fileName);
 }
-void insertTheme(const THEME theme)
+void insertTheme( THEME theme)
 {
 	FILE * file = openFile(THEMES_FILE_NAME,BINARY_APPEND);
 	settings.totalThemes++;
@@ -64,3 +147,5 @@ void insertTheme(const THEME theme)
 	writeData(&theme,sizeof(THEME),1,file);
 	fclose(file);
 }
+
+

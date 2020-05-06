@@ -9,13 +9,33 @@
 #endif
 
 #ifdef __HELPERS_H__
-
+	#include "error.h"
 #endif
 
 #ifdef __GAME_LOGIC_H__
+	#include "helpers.h"
 	#include "sort.h"
 #endif
 
 #ifdef __SHUTDOWN_H__
 	#include "crud.h"
 #endif
+
+#ifdef __BOOT_H__
+	#include "deckHandler.h"
+	#include "crud.h"
+#endif
+
+#ifdef __CRUD_H__
+	#include "helpers.h"
+#endif
+
+#ifdef __ERROR_H__
+	#include "helpers.h"
+#endif
+
+#ifdef __DECK_HANDLER__
+	#include "crud.h"
+	#include "error.h"
+#endif
+

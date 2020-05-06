@@ -3,7 +3,7 @@
 	#include "config.h"
 	
 	CONTROLINT isAdministrator(USER * user);
-	CONTROLINT userExists(USER * user, const char * username);
+	CONTROLINT usernameExists(USER * user, const char * username);
 	static CONTROLINT validPassword(USER * user,  const char * password);
 	
 #endif

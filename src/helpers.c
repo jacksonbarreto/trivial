@@ -83,6 +83,21 @@ void shuffleString(char array[][MAX_ANSWER_SIZE], const CONTROLINT size)
 	
 }
 
+void swapQuestion(QUESTION * questionA, QUESTION * questionB)
+{
+	QUESTION auxiliaryQuestion;
+	auxiliaryQuestion = *questionA;
+	*questionA = *questionB;
+	*questionB = auxiliaryQuestion;
+}
+
+void shuffleQuestions(QUESTION * listQuestion, const CONTROLINT size)
+{
+	CONTROLINT i;
+	for(i=size-1; i>0 ; i--)
+		swapQuestion(&listQuestion[i],&listQuestion[randomNumber(0,i)]);
+}
+
 static struct tm * currentDateTime(void)
 {
 	time_t now;	
@@ -115,4 +130,16 @@ void * reAllocateMemory(USER * oldPointer, const int newSize)
 	if(pointer == NULL)
 		eventsHandling(CRITICAL_FAILURE);
 	return pointer;
+}
+
+long int roundInteger(double number)
+{
+	long int roundNumber;
+	
+	roundNumber = (int) number;
+	number -= roundNumber;
+	if(number > 0.5)
+		roundNumber++;
+	
+	return roundNumber;
 }

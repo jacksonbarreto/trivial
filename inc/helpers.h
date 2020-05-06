@@ -14,5 +14,7 @@
 	char * formattedDateTime(void);
 	void * allocateMemory(const int quantity, const int dataSize);
 	void * reAllocateMemory(USER * oldPointer, const int newSize);
-	
+	long int roundInteger(double number);
+	void shuffleQuestions(QUESTION * listQuestion, const CONTROLINT size);
+	void swapQuestion(QUESTION * questionA, QUESTION * questionB);
 #endif

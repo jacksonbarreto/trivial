@@ -30,8 +30,9 @@
 	#define CLOSED_RANGE 1
 	
 	/*login settings*/
-	#define INVALID_PASSWORD 71
+	#define INVALID_PASSWORD 1
 	#define INVALID_USER 0
+	#define MINIMUM_ID 2
 	
 	/*user type definition*/
 	#define ADMIN_USER 1
@@ -47,6 +48,7 @@
 	#define USERS_FILE_NAME "db/users.dat"
 	#define THEMES_FILE_NAME "db/themes.dat"
 	#define QUESTION_PREFIX "db/theme"
+	#define QUESTION_SUFIX_SIZE 12
 	#define TOP_LIST_FILE_NAME "db/top.dat"
 	#define HISTORY_FILE_NAME "db/history.dat"
 	
@@ -55,6 +57,8 @@
 	#define CRITICAL_FAILURE 2222
 	#define INCOMPLETE_RECORD 4444
 	#define INCOMPLETE_READING 5555
+	#define REMOVAL_STACK_EMPTY 6666
+	#define GAME_STATUS_UNIDENTIFIED 7777
 
 	
 	
@@ -68,6 +72,8 @@
 	#define MEDIUM_MODE_QUESTIONS 8
 	#define LARGE_MODE_QUESTIONS 16
 	#define START_ROUND 0
+	#define GAME_STARTED 1
+	#define GAME_FINISHED 2
 	#define START 0
 	#define MAX_PLAYERS 6
 	#define MIN_PLAYERS 2
@@ -93,11 +99,11 @@
 		/*round management*/
 		
 		GAMEPLAY gameRound;
-		// playersList criada dinamicamente com totalplayers
-		LISTTHEMES * listTheme;
+		
+		THEME * listTheme;
 		/*configuration variables*/
 		SETTINGS settings;
-		float errorRate;
+		
 		
 		USER * topPlayers;
 		USER * historyPlayers;

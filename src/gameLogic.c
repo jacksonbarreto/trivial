@@ -84,3 +84,16 @@ void insertHistory(USER player)
 	historyPlayers[settings.historySize-1] = player;	
 	bubbleSort(historyPlayers,settings.historySize,INCREASING,STRING_DATA);
 }
+
+CONTROLINT defineDeckSize(const CONTROLINT gameMode, const CONTROLINT totalPlayers, const float averageErrorAnswer, const CONTROLINT totalThemes)
+{
+	CONTROLINT deckSize;
+	CONTROLINT averageErrorInt = (CONTROLINT) roundInteger(averageErrorAnswer);
+	
+	deckSize = (gameMode * totalPlayers * averageErrorInt)/totalThemes;
+	
+	return deckSize;
+}
+
+
+

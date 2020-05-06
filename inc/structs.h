@@ -26,36 +26,53 @@
 	}
 	QUESTION;
 	
+	typedef struct _card
+	{
+		QUESTION question;
+		struct _card * next;
+	}
+	CARD;
+	
 	typedef struct _theme
 	{
 		CONTROLINT id;
 		CONTROLINT totalQuestions;
-		char themeName[MAX_THEME_SIZE];		
+		long int lastAcess;
+		char themeName[MAX_THEME_SIZE];
+		CARD ** deck;	
 	}
 	THEME;
 	
-	typedef struct _listHead
+	typedef struct _themefileinf
 	{
-		CONTROLINT listSize;
-		CONTROLINT listRound;
-		CONTROLINT validQuestions;
-		QUESTION * listQuestions;
+		CONTROLINT size;
+		CONTROLINT trash;
+		long int lastAcess;
 	}
-	LISTHEAD;
+	THEMEFILEINF;
 	
+	typedef struct _fileinf
+	{
+		CONTROLINT size;
+		CONTROLINT trash;
+	}
+	FILEINF;
+	/*
 	typedef struct _listTheme
 	{
 		THEME theme;
-		LISTHEAD * questionListHead;
+		CARD ** deck;
 	}
 	LISTTHEMES;
-	
+	*/
 	typedef struct _settings
 	{
 		CONTROLINT topSize;
 		CONTROLINT historySize;
 		CONTROLINT totalThemes;
 		CONTROLINT totalUsers;
+		float averageErrorAnswer;
+		float defragRate;
 	}
 	SETTINGS;
 

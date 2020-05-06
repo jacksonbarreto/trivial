@@ -24,12 +24,12 @@ static void loadUsers()
 	if(pointer == NULL)
 	{
 		pointer = openFile(USERS_FILE_NAME,BINARY_WRITING);		
-		writeData(&total,sizeof(CONTROLINT),pointer);
-		writeData(&sudo,sizeof(USER),pointer);
+		writeData(&total,sizeof(CONTROLINT),1,pointer);
+		writeData(&sudo,sizeof(USER),1,pointer);
 		settings.totalUsers=total;
 	} 
 	else
-	{
+	{ 
 		fread(&settings.totalUsers,sizeof(CONTROLINT),1,pointer);
 	}
 	
@@ -60,7 +60,7 @@ static void loadTopList()
 	if(pointer == NULL)
 	{
 		pointer = openFile(TOP_LIST_FILE_NAME,BINARY_WRITING);		
-		writeData(&total,sizeof(CONTROLINT),pointer);		
+		writeData(&total,sizeof(CONTROLINT),1,pointer);		
 		settings.topSize=total;
 	} 
 	else
@@ -83,7 +83,7 @@ static void loadHistoryList()
 	if(pointer == NULL)
 	{
 		pointer = openFile(HISTORY_FILE_NAME,BINARY_WRITING);		
-		writeData(&total,sizeof(CONTROLINT),pointer);		
+		writeData(&total,sizeof(CONTROLINT),1,pointer);		
 		settings.historySize=total;
 	} 
 	else
@@ -106,7 +106,7 @@ static void loadThemes()
 	if(pointer == NULL)
 	{
 		pointer = openFile(THEMES_FILE_NAME,BINARY_WRITING);		
-		writeData(&total,sizeof(CONTROLINT),pointer);		
+		writeData(&total,sizeof(CONTROLINT),1,pointer);		
 		settings.totalThemes=total;
 	} 
 	else
@@ -115,11 +115,11 @@ static void loadThemes()
 	}
 	if(settings.totalThemes != 0)
 	{
-		listTheme = (LISTTHEMES *) allocateMemory(settings.totalThemes, sizeof(LISTTHEMES));
+		listTheme = (THEME *) allocateMemory(settings.totalThemes, sizeof(THEME));
 		for(i=0;i<settings.totalThemes;i++)
 		{
-			readData(&listTheme[i].theme,sizeof(THEME),1,pointer);
-			listTheme[i].questionListHead=NULL;
+			readData(&listTheme[i],sizeof(THEME),1,pointer);
+			listTheme[i].deck = createDeck();
 		}
 	}
 	else
