@@ -115,6 +115,7 @@ static void loadThemes()
 	}
 	if(settings.totalThemes != 0)
 	{
+		//cortar isso aqui depois, os temas vão ser instanciado dentro do módulo jogando
 		listTheme = (THEME *) allocateMemory(settings.totalThemes, sizeof(THEME));
 		for(i=0;i<settings.totalThemes;i++)
 		{

@@ -6,7 +6,7 @@ void eventsHandling(CONTROLINT event)
 	
 	if(logs == NULL)
 	{	
-		fprintf(stderr,RED"\nOCORREU UM ERRO\nNão foi possível abrir o arquivo de log.\nErro cod. %d : %s\n"RESET,errno,strerror(errno));		
+		fprintf(stderr,RED"\nOCORREU UM ERRO\nNão foi possível abrir o arquivo de log.\nErro cod. %d : %s\n"RESET_COLORS,errno,strerror(errno));		
 		system("pause");
 	}
 	

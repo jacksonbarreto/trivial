@@ -66,17 +66,17 @@
 	
 	/*color setting*/
 	#define RED "\033[1;91m"
-	#define RESET "\033[0;0m"
+	#define RESET_COLORS "\033[0;0m"
 	
 	/*game logic*/
 	#define CORRECT_ANSWER 0
 	#define SMALL_MODE_QUESTIONS 4
 	#define MEDIUM_MODE_QUESTIONS 8
 	#define LARGE_MODE_QUESTIONS 16
-	#define START_ROUND 0
+	#define REPEAT 1
 	#define GAME_STARTED 1
 	#define GAME_FINISHED 2
-	#define START 0
+	#define RESET 0
 	#define MAX_PLAYERS 6
 	#define MIN_PLAYERS 2
 	#define MAX_RESPONSE_OPTIONS 4

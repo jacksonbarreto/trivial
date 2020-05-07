@@ -75,7 +75,7 @@ void swapString(char *stringA, char *stringB)
 	free(auxiliaryString);
 }
 
-void shuffleString(char array[][MAX_ANSWER_SIZE], const CONTROLINT size)
+void shufflesAnswers(char array[][MAX_ANSWER_SIZE], const CONTROLINT size)
 {
 	CONTROLINT i;
 	for(i=size-1; i>0 ; i--)

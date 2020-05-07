@@ -14,6 +14,7 @@
 
 #ifdef __GAME_LOGIC_H__
 	#include "helpers.h"
+	#include "deckHandler.h"
 	#include "sort.h"
 #endif
 

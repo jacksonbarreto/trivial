@@ -9,7 +9,7 @@
 	CONTROLINT inRange(const int number, const int inferiorLimit, const int upperLimit, const CONTROLINT rangeType);
 	CONTROLINT randomNumber(const int start, int end);
 	void swapString(char *stringA, char *stringB);
-	void shuffleString(char array[][MAX_ANSWER_SIZE], const CONTROLINT size);
+	void shufflesAnswers(char array[][MAX_ANSWER_SIZE], const CONTROLINT size);
 	static struct tm * currentDateTime(void);
 	char * formattedDateTime(void);
 	void * allocateMemory(const int quantity, const int dataSize);
