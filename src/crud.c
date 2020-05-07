@@ -99,6 +99,23 @@ USER userIdExists(const CONTROLINT id)
 	user = createNullUser();
 	return user;
 }
+
+USER findUserByUsername(const char * username)
+{
+	FILE * file = openFile(USERS_FILE_NAME,BINARY_READING);
+	USER user;
+	fseek(file,sizeof(FILEINF),SEEK_SET);
+	do
+	{
+		readData(&user,sizeof(USER),1,file);
+		if(user.id != 0 && strcmp(user.username,username))
+			return user;
+	}
+	while(feof(file));
+	user = createNullUser();
+	return user;
+}
+
 USER createNullUser(void)
 {
 	USER user;

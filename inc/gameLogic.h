@@ -14,6 +14,7 @@
 	void insertTop(USER player);
 	void insertHistory(USER player);
 	CONTROLINT defineDeckSize(const CONTROLINT gameMode, const CONTROLINT totalPlayers, const float averageErrorAnswer, const CONTROLINT totalThemes);
-	float averageWrongAnswersRound(USER * players, const CONTROLINT totalPlayers);
-	float averageWrongAnswersGlobal(float currentGlobalAverage, float roundAverage, CONTROLINT totalRounds);
+	static float averageWrongAnswersRound(USER * players, const CONTROLINT totalPlayers);
+	static float averageWrongAnswersGlobal(float currentGlobalAverage, float roundAverage, CONTROLINT totalRounds);
+	void increasesGlobalRound(USER * players, const CONTROLINT totalPlayers, SETTINGS * settings);
 #endif

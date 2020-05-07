@@ -33,6 +33,8 @@
 	#define INVALID_PASSWORD 1
 	#define INVALID_USER 0
 	#define MINIMUM_ID 2
+	#define MAXIMUM_LOGIN_ATTEMPTS 3
+	#define REGISTER_USER 1
 	
 	/*user type definition*/
 	#define ADMIN_USER 1

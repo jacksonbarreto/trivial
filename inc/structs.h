@@ -71,7 +71,8 @@
 		CONTROLINT historySize;
 		CONTROLINT totalThemes;
 		CONTROLINT totalUsers;
-		float averageErrorAnswer;
+		CONTROLINT totalRoundsGlobal;
+		float averageGlobalErrorAnswer;
 		float defragRate;
 	}
 	SETTINGS;

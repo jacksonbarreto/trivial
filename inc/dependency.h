@@ -26,6 +26,11 @@
 	#include "crud.h"
 #endif
 
+#ifdef __LOGIN_H__
+	#include "helpers.h"
+	#include "crud.h"
+#endif
+
 #ifdef __CRUD_H__
 	#include "helpers.h"
 #endif

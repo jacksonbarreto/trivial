@@ -95,7 +95,7 @@ CONTROLINT defineDeckSize(const CONTROLINT gameMode, const CONTROLINT totalPlaye
 	return deckSize;
 }
 
-float averageWrongAnswersRound(USER * players, const CONTROLINT totalPlayers)
+static float averageWrongAnswersRound(USER * players, const CONTROLINT totalPlayers)
 {
 	float average;
 	CONTROLINT i, wrongAnswers;
@@ -109,11 +109,17 @@ float averageWrongAnswersRound(USER * players, const CONTROLINT totalPlayers)
 	return average;
 }
 
-float averageWrongAnswersGlobal(float currentGlobalAverage, float roundAverage, CONTROLINT totalRounds)
+static float averageWrongAnswersGlobal(float currentGlobalAverage, float roundAverage, CONTROLINT totalRounds)
 {
 	float newGlobalAverage;
 	
 	newGlobalAverage = ((currentGlobalAverage * totalRounds) + roundAverage)/ ++totalRounds;
 	
 	return newGlobalAverage;
+}
+
+void increasesGlobalRound(USER * players, const CONTROLINT totalPlayers, SETTINGS * settings)
+{
+	float roundAverage = averageWrongAnswersRound(players,totalPlayers);
+	settings->averageGlobalErrorAnswer = averageWrongAnswersGlobal(settings->averageGlobalErrorAnswer,roundAverage,settings->totalRoundsGlobal);
 }

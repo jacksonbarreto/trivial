@@ -9,6 +9,7 @@
 	THEME createNullTheme(void);
 	THEME themeExist(const CONTROLINT themeId);
 	THEME themeExist(const CONTROLINT themeId);
+	USER findUserByUsername(const char * username);
 	USER createNullUser(void);
 	USER userIdExists(const CONTROLINT id);
 	void insertUser(USER user);

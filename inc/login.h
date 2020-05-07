@@ -2,8 +2,10 @@
 	#define __LOGIN_H__
 	#include "config.h"
 	
+	USER * login(const CONTROLINT totLogin);
+	USER registerUser(void);
 	CONTROLINT isAdministrator(USER * user);
-	CONTROLINT usernameExists(USER * user, const char * username);
-	static CONTROLINT validPassword(USER * user,  const char * password);
+	static char * getUsername(void);
+	static char * getPassword(void);
 	
 #endif
