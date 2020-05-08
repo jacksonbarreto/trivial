@@ -72,6 +72,9 @@
 		CONTROLINT totalThemes;
 		CONTROLINT totalUsers;
 		CONTROLINT totalRoundsGlobal;
+		CONTROLINT lastIdUsedForUser;
+		CONTROLINT lastIdUsedForThema;
+		CONTROLINT lastIdUsedForQuestion;
 		float averageGlobalErrorAnswer;
 		float defragRate;
 	}

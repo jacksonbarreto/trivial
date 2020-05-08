@@ -6,12 +6,13 @@
 	CONTROLINT readData(void * destiny, int dataSize, int quantity, FILE * file);
 	CONTROLINT createUserId(void);
 	CONTROLINT createThemeId(void);
+	CONTROLINT createQuestionId(void);
 	THEME createNullTheme(void);
 	THEME themeExist(const CONTROLINT themeId);
 	THEME themeExist(const CONTROLINT themeId);
 	USER findUserByUsername(const char * username);
 	USER createNullUser(void);
-	USER userIdExists(const CONTROLINT id);
+	USER userIdExists(const CONTROLINT id); //apagar
 	void insertUser(USER user);
 	void insertQuestion(QUESTION question, const CONTROLINT themeId);
 	void insertTheme(THEME theme);

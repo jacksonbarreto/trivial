@@ -25,29 +25,20 @@ CONTROLINT readData(void * destiny, int dataSize, int quantity, FILE * file)
 
 CONTROLINT createUserId(void)
 {
-	CONTROLINT id;
-	USER user;
-	do
-	{
-		id = randomNumber(MINIMUM_ID,USHRT_MAX);
-		user = userIdExists(id);
-	}
-	while(user.id != 0);
-	
-	return id;
+	settings.lastIdUsedForUser++;
+	return settings.lastIdUsedForUser;
 }
 
 CONTROLINT createThemeId(void)
 {
-	CONTROLINT id;
-	THEME theme;
-	do
-	{
-		id = randomNumber(1,USHRT_MAX);
-		theme = themeExist(id);
-	}
-	while(theme.id != 0);
-	return id;
+	settings.lastIdUsedForThema++;
+	return settings.lastIdUsedForThema;
+}
+
+CONTROLINT createQuestionId(void)
+{
+	settings.lastIdUsedForQuestion++;
+	return settings.lastIdUsedForQuestion;
 }
 
 THEME themeExist(const CONTROLINT themeId)
@@ -83,7 +74,7 @@ THEME createNullTheme(void)
 	
 	return theme;
 }
-
+/*
 USER userIdExists(const CONTROLINT id)
 {
 	FILE * file = openFile(USERS_FILE_NAME,BINARY_READING);
@@ -99,7 +90,7 @@ USER userIdExists(const CONTROLINT id)
 	user = createNullUser();
 	return user;
 }
-
+*/
 USER findUserByUsername(const char * username)
 {
 	FILE * file = openFile(USERS_FILE_NAME,BINARY_READING);
