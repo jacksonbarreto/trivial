@@ -47,6 +47,7 @@
 	#define USER_DATA 1
 	#define QUESTION_DATA 2
 	#define LOG_FILE_NAME "logs/logs.txt"
+	#define SETTING_FILE_NAME "db/settings.dat"
 	#define USERS_FILE_NAME "db/users.dat"
 	#define THEMES_FILE_NAME "db/themes.dat"
 	#define QUESTION_PREFIX "db/theme"

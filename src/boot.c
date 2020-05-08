@@ -1,6 +1,6 @@
 #include "../inc/boot.h"
 
-void boot()
+void boot(void)
 {
 	
 	#ifdef _WIN32
@@ -14,9 +14,14 @@ void boot()
 	loadTopList();
 	loadHistoryList();
 	loadThemes();
+	
+	
+	//última sempre
+	loadSettings();
 }
 
-static void loadUsers()
+
+static void loadUsers(void)
 {
 	CONTROLINT total=1;
 	USER sudo = createSUDO();
@@ -27,6 +32,7 @@ static void loadUsers()
 		writeData(&total,sizeof(CONTROLINT),1,pointer);
 		writeData(&sudo,sizeof(USER),1,pointer);
 		settings.totalUsers=total;
+		settings.lastIdUsedForUser=1;
 	} 
 	else
 	{ 
@@ -36,7 +42,7 @@ static void loadUsers()
 	fclose(pointer);
 }
 
-static USER createSUDO()
+static USER createSUDO(void)
 {
 	USER sudo;	
 	
@@ -52,7 +58,7 @@ static USER createSUDO()
 	return sudo;
 }
 
-static void loadTopList()
+static void loadTopList(void)
 {
 	CONTROLINT total=0;
 	
@@ -75,7 +81,7 @@ static void loadTopList()
 	fclose(pointer);
 }
 
-static void loadHistoryList()
+static void loadHistoryList(void)
 {
 	CONTROLINT total=0;
 	
@@ -85,6 +91,7 @@ static void loadHistoryList()
 		pointer = openFile(HISTORY_FILE_NAME,BINARY_WRITING);		
 		writeData(&total,sizeof(CONTROLINT),1,pointer);		
 		settings.historySize=total;
+		settings.lastIdUsedForThema=total;
 	} 
 	else
 	{
@@ -98,7 +105,7 @@ static void loadHistoryList()
 	fclose(pointer);
 }
 
-static void loadThemes()
+static void loadThemes(void)
 {
 	CONTROLINT i, total=0;
 	
@@ -108,6 +115,7 @@ static void loadThemes()
 		pointer = openFile(THEMES_FILE_NAME,BINARY_WRITING);		
 		writeData(&total,sizeof(CONTROLINT),1,pointer);		
 		settings.totalThemes=total;
+		settings.lastIdUsedForQuestion=total;
 	} 
 	else
 	{
@@ -128,3 +136,32 @@ static void loadThemes()
 		
 	fclose(pointer);
 }
+
+
+
+static void loadSettings(void)  //deve ser a última a carregar.
+{
+	SETTINGS setts;
+	FILE * file = fopen(SETTING_FILE_NAME, BINARY_READING);
+	if(file == NULL)
+	{
+		file = fopen(SETTING_FILE_NAME, BINARY_WRITING);	
+	
+		settings.totalRoundsGlobal=0;		
+		settings.averageGlobalErrorAnswer=0.0;
+		settings.defragRate=0.5;		
+		writeData(&settings,sizeof(SETTINGS),1,file);
+	}
+	else
+	{
+		readData(&setts,sizeof(SETTINGS),1,file);
+		settings.totalRoundsGlobal= setts.totalRoundsGlobal;		
+		settings.averageGlobalErrorAnswer=setts.averageGlobalErrorAnswer;
+		settings.defragRate=setts.defragRate;
+	}
+	fclose(file);
+}
+
+
+
+

@@ -193,11 +193,11 @@ static float averageWrongAnswersRound(USER * players, const CONTROLINT totalPlay
 	return average;
 }
 
-static float averageWrongAnswersGlobal(float currentGlobalAverage, float roundAverage, CONTROLINT totalRounds)
+static float averageWrongAnswersGlobal(float currentGlobalAverage, float roundAverage, CONTROLINT * totalRounds)
 {
 	float newGlobalAverage;
 	
-	newGlobalAverage = ((currentGlobalAverage * totalRounds) + roundAverage)/ ++totalRounds;
+	newGlobalAverage = ((currentGlobalAverage * (*totalRounds)) + roundAverage)/ ++(*totalRounds);
 	
 	return newGlobalAverage;
 }
@@ -205,5 +205,5 @@ static float averageWrongAnswersGlobal(float currentGlobalAverage, float roundAv
 static void increasesGlobalRound(USER * players, const CONTROLINT totalPlayers, SETTINGS * settings)
 {
 	float roundAverage = averageWrongAnswersRound(players,totalPlayers);
-	settings->averageGlobalErrorAnswer = averageWrongAnswersGlobal(settings->averageGlobalErrorAnswer,roundAverage,settings->totalRoundsGlobal);
+	settings->averageGlobalErrorAnswer = averageWrongAnswersGlobal(settings->averageGlobalErrorAnswer,roundAverage,&settings->totalRoundsGlobal);
 }

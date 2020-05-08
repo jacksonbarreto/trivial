@@ -2,10 +2,12 @@
 	 #define __BOOT_H__
 	 #include "config.h"
 	 
-	 void boot();
-	 static void loadUsers();
-	 static USER createSUDO();
-	 static void loadTopList();
-	 static void loadHistoryList();
-	 static void loadThemes();
+	 void boot(void);	 
+	 static void loadUsers(void);
+	 static USER createSUDO(void);
+	 static void loadTopList(void);
+	 static void loadHistoryList(void);
+	 static void loadThemes(void);
+	 
+	 static void loadSettings(void);
 #endif
