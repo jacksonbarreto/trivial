@@ -10,17 +10,37 @@ void bubbleSort(USER * list, int listSize, int sortType, int dataType)
 	
 	if(sortType == DECREASING)
 	{
-		if(dataType == STRING_DATA)
-			sortingMethod = sortDecreasingString;
-		else
-			sortingMethod = sortDecreasingNumber;	
+		switch(dataType)
+		{
+			case STRING_DATA:
+				sortingMethod = sortDecreasingString;
+				break;
+			case NUMBER_DATA:
+				sortingMethod = sortDecreasingNumber;
+				break;
+			case ID_DATA:
+				sortingMethod = sortDecreasingById;
+				break;
+			default:
+				eventsHandling(DATA_TYPE_UNIDENTIFIED);
+		}	
 	}
 	else
 	{
-		if(dataType == STRING_DATA)
-			sortingMethod = sortIncreasingString;
-		else
-			sortingMethod = sortIncreasingNumber;
+		switch(dataType)
+		{
+			case STRING_DATA:
+				sortingMethod = sortIncreasingString;
+				break;
+			case NUMBER_DATA:
+				sortingMethod = sortIncreasingNumber;
+				break;
+			case ID_DATA:
+				sortingMethod = sortIcreasingById;
+				break;
+			default:
+				eventsHandling(DATA_TYPE_UNIDENTIFIED);
+		}		
 	}
 			
 	for(i=0;i<listSize-1;i++)
@@ -62,6 +82,16 @@ static int sortIncreasingNumber(USER *list, int index)
 	return DONTCHANGED;
 }
 
+static int sortIcreasingById(USER *list, int index)
+{
+	if(list[index].id > list[index+1].id)
+	{
+		switchPosition(list, index);
+		return CHANGED;
+	}
+	return DONTCHANGED;
+}
+
 static int sortDecreasingString(USER *list, int index)
 {	
 	if(strcmp(list[index].name,list[index+1].name) < 0)
@@ -75,6 +105,16 @@ static int sortDecreasingString(USER *list, int index)
 static int sortDecreasingNumber(USER *list, int index)
 {	
 	if(list[index].percentageCorrect < list[index+1].percentageCorrect){
+		switchPosition(list, index);
+		return CHANGED;
+	}
+	return DONTCHANGED;
+}
+
+static int sortDecreasingById(USER *list, int index)
+{
+	if(list[index].id > list[index+1].id)
+	{
 		switchPosition(list, index);
 		return CHANGED;
 	}

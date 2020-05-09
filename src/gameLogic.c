@@ -1,17 +1,51 @@
 #include "../inc/gameLogic.h"
 
-CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const CONTROLINT gameMode)
+CONTROLINT startGame(void)
+{
+	CONTROLINT gameMode, totalPlayers;
+	USER * players;
+	
+	gameMode = getGameMode();
+	totalPlayers = getTotalPlayers();
+	players = login(totalPlayers);
+	playRound(players,totalPlayers,gameMode);
+	
+	return SUCCESS;
+}
+
+static CONTROLINT getGameMode(void)
+{
+	CONTROLINT gameMode;
+	
+	//chama a função design que cria tela e captura o numero
+	
+	return gameMode;	
+}
+
+static CONTROLINT getTotalPlayers(void)
+{
+	CONTROLINT totalPlayers;
+	
+	//chama a função design que cria tela e captura o numero
+	
+	return totalPlayers;
+}
+
+static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const CONTROLINT gameMode)
 {
 	CONTROLINT i, currentPlayer, deckSize, chosenTheme, choice, result;
 	float averageRound;
 	QUESTION originalQuestion, mountedQuestion;
 	THEME * listThemes;
 	
+	listThemes = instantiateThemes();
+	bubbleSort(players, totalPlayers, INCREASING, ID_DATA);
+	
 	for(i=0; i < totalPlayers; i++)
 		bootPlayer(&players[i]);
 	
 	deckSize = defineDeckSize(gameMode,totalPlayers,settings.averageGlobalErrorAnswer,settings.totalThemes);
-	listThemes = instantiateThemes();
+	
 	currentPlayer=0;
 	do
 	{
@@ -31,7 +65,7 @@ CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const CONTROL
 			
 			result = isAnswerCorrect(choice,correctOption(originalQuestion,mountedQuestion));
 			
-			//Imprime resultado
+			//função de design que imprime resultado enviado
 			
 			if(result)
 			{
@@ -40,12 +74,17 @@ CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const CONTROL
 				if(isEndGame(players,currentPlayer,gameMode))
 				{
 					if(isTop(players[currentPlayer]))
+					{
 						insertTop(players[currentPlayer]);
+						//Imprime parabens vc é um top 10.
+					}
+						
 					
-					//insertHistory(players); corrigir a funsão insertHistory
+					//insertHistory(players); corrigir a função insertHistory
 					deckControl(listThemes,settings.totalThemes,deckSize,GAME_FINISHED);
 					increasesGlobalRound(players,totalPlayers,&settings);
 					free(listThemes);
+					//imprime vítoria do jogador
 					return 1; //termina tudo			
 				}	
 			}
@@ -56,9 +95,20 @@ CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const CONTROL
 
 static CONTROLINT getAnswer(const QUESTION mountedQuestion)
 {
-	CONTROLINT choice;
+	CONTROLINT choice, status=SUCCESS;
 	//chama função que imprime a pergunta.
 	//chama função que pega a resposta.
+	do
+	{
+		if(status == FAILURE)
+		{
+			//imprime tela de escolha fora do intervalo aceitável. systen pause
+			status = SUCCESS;
+		}
+		
+		if(!inRange(choice,1,MAX_RESPONSE_OPTIONS,CLOSED_RANGE))
+			status = FAILURE;
+	}while(!inRange(choice,1,MAX_RESPONSE_OPTIONS,CLOSED_RANGE));
 	return choice-1; //retorna o indice do vetor onde está a resposta.
 }
 

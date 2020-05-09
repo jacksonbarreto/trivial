@@ -2,7 +2,10 @@
 	#define __GAME_LOGIC_H__
 	#include "config.h"
 	
-	CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const CONTROLINT gameMode);
+	CONTROLINT startGame(void);
+	static CONTROLINT getGameMode(void);
+	static CONTROLINT getTotalPlayers(void);
+	static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const CONTROLINT gameMode);
 	static THEME * instantiateThemes(void);
 	static CONTROLINT correctOption(const QUESTION originalQuestion, const QUESTION questionChanged);
 	static CONTROLINT isAnswerCorrect(const CONTROLINT choice, const CONTROLINT correctOption);

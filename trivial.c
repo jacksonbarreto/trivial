@@ -12,6 +12,7 @@ int main(void)
 		switch(choice)
 		{
 			case PLAY:
+				startGame();
 				break;
 			case NEW_USER:
 				break;

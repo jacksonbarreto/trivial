@@ -30,6 +30,9 @@ void eventsHandling(CONTROLINT event)
 			break;
 		case GAME_STATUS_UNIDENTIFIED:
 			fprintf(logs,"%s - Falha em [deckControl()]. Status do jogo não identificado.\n", formattedDateTime());
+			break;
+		case DATA_TYPE_UNIDENTIFIED:
+			fprintf(logs,"%s - Falha em [bubbleSort()]. DataType não suportado, não ocorreu ordenação.\n", formattedDateTime());
 			break;	
 		default:
 			fprintf(logs,"%s - Evento desconhecido\n", formattedDateTime());

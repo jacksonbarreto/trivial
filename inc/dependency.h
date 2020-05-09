@@ -5,6 +5,7 @@
 #ifdef __MAIN__
 	#include "helpers.h"
 	#include "boot.h"
+	#include "gameLogic.h"
 	
 #endif
 
@@ -15,6 +16,7 @@
 #ifdef __GAME_LOGIC_H__
 	#include "helpers.h"
 	#include "deckHandler.h"
+	#include "login.h"
 	#include "sort.h"
 #endif
 
@@ -38,6 +40,10 @@
 
 #ifdef __ERROR_H__
 	#include "helpers.h"
+#endif
+
+#ifdef __SORT_H__
+	#include "error.h"
 #endif
 
 #ifdef __DECK_HANDLER__
