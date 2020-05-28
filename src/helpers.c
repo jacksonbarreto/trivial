@@ -24,8 +24,9 @@ CONTROLINT getShortInteger(const char *question)
 
 void clearBuffer(void)
 {
-	char garbageCollector;
-	while((garbageCollector = getchar()) != '\n' && garbageCollector != EOF);	
+	setbuf(stdin, keyboard);
+	//char garbageCollector;
+	//while((garbageCollector = getchar()) != '\n' && garbageCollector != EOF);	
 }
 
 void clearScreen(void)

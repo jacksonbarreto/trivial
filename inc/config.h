@@ -109,7 +109,7 @@
 		/*configuration variables*/
 		SETTINGS settings;
 		
-		
+		char keyboard[BUFSIZ];
 		USER * topPlayers;
 		USER * historyPlayers;
 	
