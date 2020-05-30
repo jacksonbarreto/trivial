@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=10000000a0000000001000000
-UnitCount=22
+UnitCount=24
 
 [VersionInfo]
 Major=1
@@ -264,6 +264,26 @@ BuildCmd=
 FileName=inc\deckHandler.h
 CompileCpp=0
 Folder=inc
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit23]
+FileName=inc\design.h
+CompileCpp=0
+Folder=inc
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit24]
+FileName=src\design.c
+CompileCpp=0
+Folder=src
 Compile=1
 Link=1
 Priority=1000

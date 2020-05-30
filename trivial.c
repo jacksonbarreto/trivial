@@ -9,6 +9,7 @@ int main(void)
 	
 	do
 	{
+		choice = rendersMainMenu();
 		switch(choice)
 		{
 			case PLAY:

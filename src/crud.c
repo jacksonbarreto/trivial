@@ -112,7 +112,10 @@ USER createNullUser(void)
 	USER user;
 	
 	user.id = 0;
-	user.currentScore = 0;
+	user.currentScore[0] = 0;
+	user.currentScore[1] = 0;
+	user.currentScore[2] = 0;
+	user.currentScore[3] = 0; //gambiarra corrigir
 	user.percentageCorrect = 0.0;
 	user.totalAnswered = 0;
 	user.userType = PLAYER_USER;

@@ -17,7 +17,7 @@ static CONTROLINT getGameMode(void)
 {
 	CONTROLINT gameMode;
 	
-	//chama a função design que cria tela e captura o numero
+	gameMode = rendersGetGameMode();
 	
 	return gameMode;	
 }
@@ -26,7 +26,7 @@ static CONTROLINT getTotalPlayers(void)
 {
 	CONTROLINT totalPlayers;
 	
-	//chama a função design que cria tela e captura o numero
+	totalPlayers = rendersGetTotalPlayers();
 	
 	return totalPlayers;
 }
@@ -65,11 +65,11 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 			
 			result = isAnswerCorrect(choice,correctOption(originalQuestion,mountedQuestion));
 			
-			//função de design que imprime resultado enviado
+			rendersResultQuestion(mountedQuestion, choice, correctOption(originalQuestion,mountedQuestion));
 			
 			if(result)
 			{
-				punctuatePlayer(&players[currentPlayer]);
+				punctuatePlayer(&players[currentPlayer],chosenTheme); //corrigir tem que mandar o tema para pontuar corretamente
 				players[currentPlayer].percentageCorrect = getPercentageCorrectAnswers(&players[currentPlayer],gameMode);
 				if(isEndGame(players,currentPlayer,gameMode))
 				{
@@ -93,30 +93,21 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 	}while(REPEAT);
 }
 
-static CONTROLINT getAnswer(const QUESTION mountedQuestion)
+static CONTROLINT getAnswer(QUESTION mountedQuestion)
 {
-	CONTROLINT choice, status=SUCCESS;
-	//chama função que imprime a pergunta.
-	//chama função que pega a resposta.
-	do
-	{
-		if(status == FAILURE)
-		{
-			//imprime tela de escolha fora do intervalo aceitável. systen pause
-			status = SUCCESS;
-		}
-		
-		if(!inRange(choice,1,MAX_RESPONSE_OPTIONS,CLOSED_RANGE))
-			status = FAILURE;
-	}while(!inRange(choice,1,MAX_RESPONSE_OPTIONS,CLOSED_RANGE));
+	CONTROLINT choice;
+	
+	choice = rendersGetAnswer(mountedQuestion);
+	
 	return choice-1; //retorna o indice do vetor onde está a resposta.
 }
 
 static CONTROLINT getTheme(THEME * themes)
 {
 	CONTROLINT choice;
+	char themesName[4][MAX_THEME_SIZE]; //corrigir não esta sendo usada
 	
-	//chama função que imprime tela com os temas e retorna com a escolha que é o index do tema no vetor
+	choice = rendersGetTheme(themesName,4);
 	
 	return choice-1; //é o índice do vetor	
 }
@@ -150,14 +141,21 @@ static CONTROLINT isAnswerCorrect(const CONTROLINT choice, const CONTROLINT corr
 	return (choice == correctOption);
 }
 
-void punctuatePlayer(USER * player)
+void punctuatePlayer(USER * player, CONTROLINT chosenTheme)
 {
-	player->currentScore++;
+	player->currentScore[chosenTheme]++;
 }
 
 static CONTROLINT isEndGame(const USER * playersList, const CONTROLINT currentPlayer, const CONTROLINT gameMode)
 {
-	return (playersList[currentPlayer].currentScore == gameMode);
+	CONTROLINT i, status;
+	
+	for(i=0, status=0;i<TOTAL_THEMES;i++)
+	{
+		if(playersList[currentPlayer].currentScore[1] >= gameMode)
+			status++;
+	}
+	return (status == TOTAL_THEMES);
 }
 
 static CONTROLINT isEndRound(const CONTROLINT currentPlayer, const CONTROLINT totalPlayers)
@@ -183,7 +181,10 @@ static float getPercentageCorrectAnswers(const USER * player, const CONTROLINT g
 static void bootPlayer(USER * player)
 {
 	player->totalAnswered = RESET;
-	player->currentScore = RESET;
+	player->currentScore[0] = RESET;
+	player->currentScore[1] = RESET;
+	player->currentScore[2] = RESET;
+	player->currentScore[3] = RESET;
 	player->percentageCorrect = RESET;
 }
 
@@ -236,7 +237,7 @@ static float averageWrongAnswersRound(USER * players, const CONTROLINT totalPlay
 	
 	for(i=0,wrongAnswers=0;i<totalPlayers;i++)
 	{
-		wrongAnswers += (players[i].totalAnswered - players[i].currentScore);
+		//wrongAnswers += (players[i].totalAnswered - players[i].currentScore); //corrigir tem que pegar o escore de cada tema
 	}
 	average = wrongAnswers / (float) totalPlayers;
 	

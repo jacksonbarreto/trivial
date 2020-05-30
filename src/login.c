@@ -5,6 +5,8 @@ USER * login(const CONTROLINT totLogin)
 	CONTROLINT i, choice, attempts;
 	USER * players;
 	USER temporaryUser;
+	char username[MAX_USER_NAME_SIZE];
+	char password[MAX_PASSWD_SIZE];
 	
 	players = (USER *) allocateMemory(totLogin,sizeof(USER));
 	
@@ -17,21 +19,18 @@ USER * login(const CONTROLINT totLogin)
 			attempts++;
 			if(attempts > MAXIMUM_LOGIN_ATTEMPTS)
 			{
-				//ALERTA: Atingiu o límite de tentativas. pressione qualquer tecla para retornar ao menu principal
+				rendersMaxAttempts();
 				free(players);
 				return NULL;
 			}
-				
-			temporaryUser =	findUserByUsername(getUsername());
+			getUsername(username);
+			temporaryUser =	findUserByUsername(username);
 			
 			if(temporaryUser.id == 0)
 			{
-				//Mensagem de erro: Username inválido.
-				//Tentativa X de MAXIMUM_LOGIN_ATTEMPTS
-				//Deseja se cadastrar ou tentar novamente - menu que retorna int
+				choice = rendersInvalidUsername(attempts);
 				if(choice == REGISTER_USER)
-					temporaryUser = registerUser();  // registerUser é o módulo de cadastro e deve retornar um USER
-				
+					temporaryUser = registerUser();  // registerUser é o módulo de cadastro e deve retornar um USER				
 			}
 			
 		}while(temporaryUser.id == 0);
@@ -50,13 +49,15 @@ USER * login(const CONTROLINT totLogin)
 			attempts++;
 			if(attempts > MAXIMUM_LOGIN_ATTEMPTS)
 			{
-				//ALERTA: Atingiu o límite de tentativas. pressione qualquer tecla para retornar ao menu principal
+				rendersMaxAttempts();
 				free(players);
 				return NULL;
 			}
 			if(attempts > 1)
-				;//exibe mensagem: Senha inválida tente novamente.  Tentativa X de MAXIMUM_LOGIN_ATTEMPTS
-		}while(! strcmp(temporaryUser.password,getPassword()) );
+				rendersInvalidPassword(attempts);
+				
+			getPassword(password);
+		}while(! strcmp(temporaryUser.password,password) );
 	
 		players[i] = temporaryUser;	
 	}
@@ -69,15 +70,15 @@ USER registerUser(void)
 	
 }
 
-static char * getUsername(void)
+static void getUsername(char * username)
 {
 	
-	//chama tela para capturar o username, retorna uma string com o username
+	rendersGetUsername(username);
 }
 
-static char * getPassword(void)
+static void getPassword(char * password)
 {
-	//chama tela para capturar a pssword, retorna uma string com a password
+	rendersGetPassword(password);
 }
 
 

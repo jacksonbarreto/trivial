@@ -1,15 +1,12 @@
 #include "../inc/helpers.h"
 
-char * getString(const char *question,const CONTROLINT responseSize, char *answer)
+void getString(const CONTROLINT responseSize, char *answer)
 {
 	char inputFilter[12];
 	
-	sprintf(inputFilter," \%%%hu[^\n]s",responseSize);	
-	printf(question);
-	scanf(inputFilter,answer);
 	clearBuffer();
-	
-	return answer;
+	sprintf(inputFilter," \%%%hu[^\n]s",responseSize);	
+	scanf(inputFilter,answer);
 }
 
 CONTROLINT getShortInteger(const char *question)
@@ -20,6 +17,21 @@ CONTROLINT getShortInteger(const char *question)
 	scanf(" %hu",&integer);
 	clearBuffer();
 	return integer;
+}
+
+CONTROLINT getChoiceMenu(void)
+{
+	char choice;
+	CONTROLINT number;
+	
+	do
+	{
+		choice = getch();				
+	}
+	while(!(choice >= 48 && choice <= 57));
+	
+	number = (CONTROLINT) choice - '0';
+	return number;
 }
 
 void clearBuffer(void)
@@ -143,4 +155,10 @@ long int roundInteger(double number)
 		roundNumber++;
 	
 	return roundNumber;
+}
+
+void wait(void)
+{
+	clearBuffer();
+	getch();
 }

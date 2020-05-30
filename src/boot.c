@@ -47,7 +47,10 @@ static USER createSUDO(void)
 	USER sudo;	
 	
 	sudo.id=1;
-	sudo.currentScore=0;
+	sudo.currentScore[0] = 0;
+	sudo.currentScore[1] = 0;
+	sudo.currentScore[2] = 0;
+	sudo.currentScore[3] = 0; //gambiarra corrigir
 	sudo.percentageCorrect = 0.0;
 	sudo.userType = ADMIN_USER;
 	sudo.totalAnswered = 0;

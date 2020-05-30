@@ -11,6 +11,8 @@
 	
 	/*size and limit settings*/
 	#define MAX_NAME_SIZE 50
+	#define MAX_OPTION_MENU_SIZE 50
+	#define TOTAL_OPTION_MAIN_MENU 6
 	#define MAX_USER_NAME_SIZE 50
 	#define MAX_PASSWD_SIZE 10
 	#define MAX_TITLE_SIZE 50
@@ -19,6 +21,7 @@
 	#define MAX_NICKNAME_SIZE 5
 	#define MAX_TOP_LIST 10
 	#define MAX_HISTORY_LIST 15
+	#define TOTAL_THEMES 4
 	
 	/*definition of controllers*/
 	#define SUCCESS 1
@@ -100,6 +103,9 @@
 	#include "structs.h"
 	
 	/*global variables*/
+	
+		
+	
 	
 		/*round management*/
 		

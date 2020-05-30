@@ -6,11 +6,13 @@
 	#include "helpers.h"
 	#include "boot.h"
 	#include "gameLogic.h"
+	#include "view.h"
 	
 #endif
 
 #ifdef __HELPERS_H__
 	#include "error.h"
+	#include <conio.h>
 #endif
 
 #ifdef __GAME_LOGIC_H__
@@ -18,6 +20,7 @@
 	#include "deckHandler.h"
 	#include "login.h"
 	#include "sort.h"
+	#include "view.h"
 #endif
 
 #ifdef __SHUTDOWN_H__
@@ -32,6 +35,7 @@
 #ifdef __LOGIN_H__
 	#include "helpers.h"
 	#include "crud.h"
+	#include "view.h"
 #endif
 
 #ifdef __CRUD_H__
@@ -51,3 +55,12 @@
 	#include "error.h"
 #endif
 
+#ifdef __DESIGN_H__
+	#include <conio.h>
+	#include "helpers.h"
+#endif
+
+#ifdef __VIEW_H__
+	#include "design.h"
+	#include "helpers.h"
+#endif

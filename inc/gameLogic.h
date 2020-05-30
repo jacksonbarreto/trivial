@@ -9,11 +9,11 @@
 	static THEME * instantiateThemes(void);
 	static CONTROLINT correctOption(const QUESTION originalQuestion, const QUESTION questionChanged);
 	static CONTROLINT isAnswerCorrect(const CONTROLINT choice, const CONTROLINT correctOption);
- 	static void punctuatePlayer(USER * player);
+ 	static void punctuatePlayer(USER * player, CONTROLINT chosenTheme);
 	static CONTROLINT isEndGame(const USER * playersList, const CONTROLINT currentPlayer, const CONTROLINT gameMode);
 	static CONTROLINT isEndRound(const CONTROLINT currentPlayer, const CONTROLINT totalPlayers);
 	static void restartRound(CONTROLINT * currentPlayer);
-	static CONTROLINT getAnswer(const QUESTION mountedQuestion);
+	static CONTROLINT getAnswer(QUESTION mountedQuestion);
 	static CONTROLINT getTheme(THEME * themes);
 	static void advanceRound(CONTROLINT * currentPlayer);
 	static float getPercentageCorrectAnswers(const USER * player, const CONTROLINT gameMode);

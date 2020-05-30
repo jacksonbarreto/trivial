@@ -5,7 +5,7 @@
 	USER * login(const CONTROLINT totLogin);
 	USER registerUser(void);
 	CONTROLINT isAdministrator(USER * user);
-	static char * getUsername(void);
-	static char * getPassword(void);
+	static void getUsername(char * username);
+	static void getPassword(char * password);
 	
 #endif

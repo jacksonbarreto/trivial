@@ -7,7 +7,7 @@
 	typedef struct _user
 	{
 		CONTROLINT id;
-		CONTROLINT currentScore;		
+		CONTROLINT currentScore[TOTAL_THEMES];		
 		CONTROLINT totalAnswered;
 		CONTROLINT userType;
 		float percentageCorrect;
@@ -21,7 +21,7 @@
 	typedef struct _question
 	{
 		CONTROLINT id;
-		CONTROLINT used;
+		//CONTROLINT used; //apagar
 		char title[MAX_TITLE_SIZE];		
 		char answers[MAX_RESPONSE_OPTIONS][MAX_ANSWER_SIZE];		
 	}

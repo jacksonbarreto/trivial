@@ -2,7 +2,7 @@
 	#define __HELPERS_H__
 	#include "config.h"
 	
-	char * getString(const char *question,const CONTROLINT responseSize, char *answer);
+	void getString(const CONTROLINT responseSize, char *answer);
 	CONTROLINT getShortInteger(const char *question);
 	void clearBuffer(void);
 	void clearScreen(void);
@@ -17,4 +17,6 @@
 	long int roundInteger(double number);
 	void shuffleQuestions(QUESTION * listQuestion, const CONTROLINT size);
 	void swapQuestion(QUESTION * questionA, QUESTION * questionB);
+	void wait(void);
+	CONTROLINT getChoiceMenu(void);
 #endif
