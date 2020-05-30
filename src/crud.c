@@ -57,7 +57,7 @@ THEME themeExist(const CONTROLINT themeId)
 		if(theme.id == themeId);
 			return theme;
 	}
-	while(feof(file));
+	while(!feof(file));
 	theme = createNullTheme();
 	free(fileName);
 	fclose(file);
@@ -87,7 +87,7 @@ USER userIdExists(const CONTROLINT id)
 		if(user.id == id)
 			return user;
 	}
-	while(feof(file));
+	while(!feof(file));
 	user = createNullUser();
 	return user;
 }
@@ -100,10 +100,10 @@ USER findUserByUsername(const char * username)
 	do
 	{
 		readData(&user,sizeof(USER),1,file);
-		if(user.id != 0 && strcmp(user.username,username))
+		if(user.id != 0 && strcmp(user.username,username) == 0)
 			return user;
 	}
-	while(feof(file));
+	while(!feof(file));
 	user = createNullUser();
 	fclose(file);
 	return user;
