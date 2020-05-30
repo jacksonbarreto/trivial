@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=10000000a0000000001000000
-UnitCount=24
+UnitCount=26
 
 [VersionInfo]
 Major=1
@@ -282,6 +282,26 @@ BuildCmd=
 
 [Unit24]
 FileName=src\design.c
+CompileCpp=0
+Folder=src
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit26]
+FileName=inc\view.h
+CompileCpp=0
+Folder=inc
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit25]
+FileName=src\view.c
 CompileCpp=0
 Folder=src
 Compile=1
