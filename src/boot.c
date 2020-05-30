@@ -11,10 +11,10 @@ void boot(void)
 	system("color");
 	
 	loadUsers();
-	loadTopList();
-	loadHistoryList();
+	loadTopList();	
+	loadHistoryList();	
 	loadThemes();
-	
+		
 	
 	//última sempre
 	loadSettings();
@@ -24,6 +24,7 @@ static void startFileInf(FILEINF info)
 {
 	info.size=0;
 	info.trash=0;
+	info.lastAcess= 0L;
 }
 
 static void loadUsers(void)

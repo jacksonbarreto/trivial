@@ -28,7 +28,7 @@ int main(void)
 	while(choice != EXIT);
 	
 	
-	
+	turnOff();
 	system("pause");	
 	return EXIT_SUCCESS;
 }

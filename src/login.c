@@ -57,7 +57,7 @@ USER * login(const CONTROLINT totLogin)
 				rendersInvalidPassword(attempts);
 				
 			getPassword(password);
-		}while(! strcmp(temporaryUser.password,password) );
+		}while(strcmp(temporaryUser.password,password) != 0);
 	
 		players[i] = temporaryUser;	
 	}

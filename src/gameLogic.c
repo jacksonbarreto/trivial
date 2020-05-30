@@ -119,7 +119,8 @@ static THEME * instantiateThemes(void)
 	CONTROLINT i;
 	
 	listThemes = (THEME *) allocateMemory(settings.totalThemes, sizeof(THEME));
-	for(i=0;i<settings.totalThemes;i++)
+	fseek(file,sizeof(FILEINF),SEEK_SET);
+	for(i=0;i<settings.totalThemes;i++) //pode ler direto de uma vez sem for
 	{
 		readData(&listThemes[i],sizeof(THEME),1,file);
 		listThemes[i].deck = createDeck();

@@ -7,6 +7,7 @@
 	#include "boot.h"
 	#include "gameLogic.h"
 	#include "view.h"
+	#include "shutdown.h"
 	
 #endif
 
@@ -25,6 +26,7 @@
 
 #ifdef __SHUTDOWN_H__
 	#include "crud.h"
+	
 #endif
 
 #ifdef __BOOT_H__

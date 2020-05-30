@@ -41,7 +41,7 @@ static void loadDeck(CARD ** deck, const CONTROLINT themeId, long int * lastAces
 			readData(&question,sizeof(QUESTION),1,file);
 			areaShuffles[i] = question; //corrigir para ler direto no vetor
 			if (feof(file))
-				fseek(file,sizeof(THEMEFILEINF),SEEK_SET);
+				fseek(file,sizeof(FILEINF),SEEK_SET);
 		}
 		while(question.id == 0);		
 		
