@@ -295,3 +295,23 @@ void placarBox(char * playerNickname, CONTROLINT gameMode)
 	alignmentPadding(PLACAR_BOX_SIZE,ALIGN_CENTER);
 	emptyLine(' ',PLACAR_BOX_SIZE,textColor, backgroundColor);
 }
+
+void progressBar(const CONTROLINT lineSize, const CONTROLINT totalSteps, const CONTROLINT currentStep, char * completedStepColor, char * stepColorNotCompleted)
+{
+	CONTROLINT i,j, k, printings = lineSize/totalSteps;
+	
+	if(currentStep<=totalSteps)
+	{
+		for(i=1;i<=totalSteps;i++)
+		{
+			if(i<=currentStep)
+				printf(completedStepColor);
+			else
+				printf(stepColorNotCompleted);
+			for(j=0;j<printings;j++)
+				putchar(' ');		
+		}
+		applyColor(RESET_COLOR);
+		putchar('\n');
+	}	
+}

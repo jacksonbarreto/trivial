@@ -39,6 +39,8 @@
 	#define BAKGROUND_SUCCESS "\x1B[48;2;222;240;214m" 
 	#define BAKGROUND_ATTENTION "\x1B[48;2;253;248;228m" 
 	#define BAKGROUND_STANDARD "\x1B[48;2;217;237;246m" 
+	#define BAKGROUND_COMPLETED "\x1B[48;2;39;174;96m"  
+	#define BAKGROUND_NOT_COMPLETED "\x1B[48;2;189;195;199m" 
 	
 	#define TEXT_STANDARD "\x1B[38;2;63;100;116m" 
 	#define TEXT_ERROR "\x1B[38;2;138;79;85m"  
@@ -52,6 +54,7 @@
 	void menuBox(char * title, char  options[][MAX_OPTION_MENU_SIZE], CONTROLINT totalOptions);
 	void placarBox(char * playerNickname, CONTROLINT gameMode);
 	void positionCursor(CONTROLINT linesUp, CONTROLINT movementsToRight, CONTROLINT boxStyle);
+	void progressBar(const CONTROLINT lineSize, const CONTROLINT totalSteps, const CONTROLINT currentStep, char * completedStepColor, char * stepColorNotCompleted);
 	
 	void catchPassword(char * password, const CONTROLINT passwordSize);
 	
