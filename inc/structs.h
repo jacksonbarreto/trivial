@@ -50,12 +50,13 @@
 		CONTROLINT trash;
 		long int lastAcess;
 	}
-	THEMEFILEINF;
+	THEMEFILEINF; //apagar
 	
 	typedef struct _fileinf
 	{
 		CONTROLINT size;
 		CONTROLINT trash;
+		long int lastAcess;
 	}
 	FILEINF;
 	/*
@@ -74,7 +75,7 @@
 		CONTROLINT totalUsers;
 		CONTROLINT totalRoundsGlobal;
 		CONTROLINT lastIdUsedForUser;
-		CONTROLINT lastIdUsedForThema;
+		CONTROLINT lastIdUsedForThema; //apagar
 		CONTROLINT lastIdUsedForQuestion;
 		float averageGlobalErrorAnswer;
 		float defragRate;

@@ -111,7 +111,7 @@
 		
 		GAMEPLAY gameRound;
 		
-		THEME * listTheme;
+		//THEME * listTheme; //apagar pois listhema é instanciada dentro do jogar
 		/*configuration variables*/
 		SETTINGS settings;
 		

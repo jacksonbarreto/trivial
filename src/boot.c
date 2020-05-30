@@ -20,23 +20,32 @@ void boot(void)
 	loadSettings();
 }
 
+static void startFileInf(FILEINF info)
+{
+	info.size=0;
+	info.trash=0;
+}
 
 static void loadUsers(void)
 {
-	CONTROLINT total=1;
+	FILEINF info;
+	startFileInf(info);
+	info.size=1;
+	
 	USER sudo = createSUDO();
 	FILE * pointer = fopen(USERS_FILE_NAME, BINARY_READING);
 	if(pointer == NULL)
 	{
 		pointer = openFile(USERS_FILE_NAME,BINARY_WRITING);		
-		writeData(&total,sizeof(CONTROLINT),1,pointer);
+		writeData(&info,sizeof(FILEINF),1,pointer);
 		writeData(&sudo,sizeof(USER),1,pointer);
-		settings.totalUsers=total;
+		settings.totalUsers=info.size;
 		settings.lastIdUsedForUser=1;
 	} 
 	else
 	{ 
-		fread(&settings.totalUsers,sizeof(CONTROLINT),1,pointer);
+		fread(&info,sizeof(FILEINF),1,pointer);
+		settings.totalUsers = info.size;		
 	}
 	
 	fclose(pointer);
@@ -63,18 +72,20 @@ static USER createSUDO(void)
 
 static void loadTopList(void)
 {
-	CONTROLINT total=0;
+	FILEINF info;
+	startFileInf(info);
 	
 	FILE * pointer = fopen(TOP_LIST_FILE_NAME, BINARY_READING);
 	if(pointer == NULL)
 	{
 		pointer = openFile(TOP_LIST_FILE_NAME,BINARY_WRITING);		
-		writeData(&total,sizeof(CONTROLINT),1,pointer);		
-		settings.topSize=total;
+		writeData(&info,sizeof(FILEINF),1,pointer);		
+		settings.topSize=info.size;
 	} 
 	else
 	{
-		fread(&settings.topSize,sizeof(CONTROLINT),1,pointer);		
+		fread(&info,sizeof(FILEINF),1,pointer);
+		settings.topSize = info.size;	
 	}
 	if(settings.topSize != 0)
 		topPlayers = (USER *) allocateMemory(settings.topSize,sizeof(USER));
@@ -86,19 +97,21 @@ static void loadTopList(void)
 
 static void loadHistoryList(void)
 {
-	CONTROLINT total=0;
+	FILEINF info;
+	startFileInf(info);
 	
 	FILE * pointer = fopen(HISTORY_FILE_NAME, BINARY_READING);
 	if(pointer == NULL)
 	{
 		pointer = openFile(HISTORY_FILE_NAME,BINARY_WRITING);		
-		writeData(&total,sizeof(CONTROLINT),1,pointer);		
-		settings.historySize=total;
-		settings.lastIdUsedForThema=total;
+		writeData(&info,sizeof(FILEINF),1,pointer);		
+		settings.historySize=info.size;
+		//settings.lastIdUsedForThema=total; //apagar
 	} 
 	else
 	{
-		fread(&settings.historySize,sizeof(CONTROLINT),1,pointer);		
+		fread(&info,sizeof(FILEINF),1,pointer);		
+		settings.historySize = info.size;
 	}
 	if(settings.historySize != 0)
 		historyPlayers = (USER *) allocateMemory(settings.historySize,sizeof(USER));
@@ -110,33 +123,22 @@ static void loadHistoryList(void)
 
 static void loadThemes(void)
 {
-	CONTROLINT i, total=0;
+	FILEINF info;
+	startFileInf(info);
 	
 	FILE * pointer = fopen(THEMES_FILE_NAME, BINARY_READING);
 	if(pointer == NULL)
 	{
 		pointer = openFile(THEMES_FILE_NAME,BINARY_WRITING);		
-		writeData(&total,sizeof(CONTROLINT),1,pointer);		
-		settings.totalThemes=total;
-		settings.lastIdUsedForQuestion=total;
+		writeData(&info,sizeof(FILEINF),1,pointer);		
+		settings.totalThemes=info.size;
 	} 
 	else
 	{
-		readData(&settings.totalThemes,sizeof(CONTROLINT),1,pointer);		
+		readData(&info,sizeof(FILEINF),1,pointer);
+		settings.totalThemes = info.size;
 	}
-	if(settings.totalThemes != 0)
-	{
-		//cortar isso aqui depois, os temas vão ser instanciado dentro do módulo jogando
-		listTheme = (THEME *) allocateMemory(settings.totalThemes, sizeof(THEME));
-		for(i=0;i<settings.totalThemes;i++)
-		{
-			readData(&listTheme[i],sizeof(THEME),1,pointer);
-			listTheme[i].deck = createDeck();
-		}
-	}
-	else
-		listTheme = NULL;
-		
+			
 	fclose(pointer);
 }
 

@@ -8,6 +8,6 @@
 	 static void loadTopList(void);
 	 static void loadHistoryList(void);
 	 static void loadThemes(void);
-	 
+	 static void startFileInf(FILEINF info);
 	 static void loadSettings(void);
 #endif

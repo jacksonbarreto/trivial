@@ -100,6 +100,9 @@ USER findUserByUsername(const char * username)
 	do
 	{
 		readData(&user,sizeof(USER),1,file);
+		printf("\nrecebido: %s", username);
+		printf("\nnome: %s",user.username);
+		system("pause");
 		if(user.id != 0 && strcmp(user.username,username) == 0)
 			return user;
 	}
