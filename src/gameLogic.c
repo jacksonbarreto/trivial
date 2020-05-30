@@ -124,6 +124,7 @@ static THEME * instantiateThemes(void)
 		readData(&listThemes[i],sizeof(THEME),1,file);
 		listThemes[i].deck = createDeck();
 	}
+	fclose(file);
 	return listThemes;
 }
 

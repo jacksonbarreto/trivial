@@ -60,6 +60,7 @@ THEME themeExist(const CONTROLINT themeId)
 	while(feof(file));
 	theme = createNullTheme();
 	free(fileName);
+	fclose(file);
 	return theme;
 }
 
@@ -104,6 +105,7 @@ USER findUserByUsername(const char * username)
 	}
 	while(feof(file));
 	user = createNullUser();
+	fclose(file);
 	return user;
 }
 

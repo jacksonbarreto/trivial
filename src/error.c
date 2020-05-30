@@ -37,4 +37,5 @@ void eventsHandling(CONTROLINT event)
 		default:
 			fprintf(logs,"%s - Evento desconhecido\n", formattedDateTime());
 	}
+	fclose(logs);
 }
