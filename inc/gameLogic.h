@@ -18,6 +18,7 @@
 	static void advanceRound(CONTROLINT * currentPlayer);
 	static float getPercentageCorrectAnswers(const USER * player, const CONTROLINT gameMode);
 	static void bootPlayer(USER * player);
+	void resetCurrentScore(USER * user);
 	static CONTROLINT isTop(USER player);
 	static void insertTop(USER player);
 	static void insertHistory(USER player);

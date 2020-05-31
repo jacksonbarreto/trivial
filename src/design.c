@@ -135,6 +135,12 @@ static CONTROLINT numberImpressions(const CONTROLINT screenWidth, const CONTROLI
 	return impressions;		
 }
 
+void clearScreen(void)
+{
+	applyColor(RESET_COLOR);
+	system("clear || cls");
+}
+
 void catchPassword(char * password, const CONTROLINT passwordSize)
 {
 	CONTROLINT i=0;
@@ -171,7 +177,7 @@ void instructionBox(char * title, char * message, char * instruction, CONTROLINT
 	CONTROLINT alignment = ALIGN_CENTER;
 	
 	setColor(textColor,backgroundColor,boxStyle);
-	
+	applyColor(RESET_COLOR);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	emptyLine(' ',STANDARD_BOX_SIZE,textColor, backgroundColor);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
@@ -198,6 +204,7 @@ void instructionBox(char * title, char * message, char * instruction, CONTROLINT
 	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,alignment,instruction, textColor, backgroundColor);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	emptyLine(' ',STANDARD_BOX_SIZE,textColor, backgroundColor);
+	applyColor(RESET_COLOR);
 	//bottomLine(' ',' ',STANDARD_BOX_SIZE, textColor, backgroundColor);	
 }
 

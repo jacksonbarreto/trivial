@@ -16,6 +16,7 @@ int main(void)
 				startGame();
 				break;
 			case NEW_USER:
+				registerNewUser();
 				break;
 			case TOP_10:
 				break;
@@ -29,6 +30,6 @@ int main(void)
 	
 	
 	turnOff();
-	system("pause");	
+		
 	return EXIT_SUCCESS;
 }

@@ -55,6 +55,7 @@
 	void placarBox(char * playerNickname, CONTROLINT gameMode);
 	void positionCursor(CONTROLINT linesUp, CONTROLINT movementsToRight, CONTROLINT boxStyle);
 	void progressBar(const CONTROLINT lineSize, const CONTROLINT totalSteps, const CONTROLINT currentStep, char * completedStepColor, char * stepColorNotCompleted);
+	void clearScreen(void);
 	
 	void catchPassword(char * password, const CONTROLINT passwordSize);
 	

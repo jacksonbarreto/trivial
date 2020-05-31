@@ -41,10 +41,7 @@ void clearBuffer(void)
 	//while((garbageCollector = getchar()) != '\n' && garbageCollector != EOF);	
 }
 
-void clearScreen(void)
-{
-	system("clear || cls");
-}
+
 
 CONTROLINT inRange(const int number, const int inferiorLimit, const int upperLimit, const CONTROLINT rangeType)
 {	

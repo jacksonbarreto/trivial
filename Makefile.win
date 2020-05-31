@@ -4,8 +4,8 @@
 CPP      = g++.exe -D__DEBUG__
 CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
-OBJ      = trivial.o src/helpers.o src/gameLogic.o src/crud.o src/error.o src/boot.o src/login.o src/sort.o src/shutdown.o src/deckHandler.o src/design.o src/view.o
-LINKOBJ  = trivial.o src/helpers.o src/gameLogic.o src/crud.o src/error.o src/boot.o src/login.o src/sort.o src/shutdown.o src/deckHandler.o src/design.o src/view.o
+OBJ      = trivial.o src/helpers.o src/gameLogic.o src/crud.o src/error.o src/boot.o src/login.o src/sort.o src/shutdown.o src/deckHandler.o src/design.o src/view.o src/register.o
+LINKOBJ  = trivial.o src/helpers.o src/gameLogic.o src/crud.o src/error.o src/boot.o src/login.o src/sort.o src/shutdown.o src/deckHandler.o src/design.o src/view.o src/register.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -59,3 +59,6 @@ src/design.o: src/design.c
 
 src/view.o: src/view.c
 	$(CC) -c src/view.c -o src/view.o $(CFLAGS)
+
+src/register.o: src/register.c
+	$(CC) -c src/register.c -o src/register.o $(CFLAGS)

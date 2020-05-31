@@ -42,15 +42,7 @@
 		char themeName[MAX_THEME_SIZE];
 		CARD ** deck;	
 	}
-	THEME;
-	
-	typedef struct _themefileinf
-	{
-		CONTROLINT size;
-		CONTROLINT trash;
-		long int lastAcess;
-	}
-	THEMEFILEINF; //apagar
+	THEME;	
 	
 	typedef struct _fileinf
 	{

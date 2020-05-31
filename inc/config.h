@@ -40,6 +40,10 @@
 	#define MAXIMUM_LOGIN_ATTEMPTS 3
 	#define REGISTER_USER 1
 	
+	/*register settings*/
+	#define GET_PASSWORD 1
+	#define PASSWORD_CONFIRMATION 2
+	
 	/*user type definition*/
 	#define ADMIN_USER 1
 	#define PLAYER_USER 2
@@ -48,6 +52,7 @@
 	#define BINARY_READING "rb"
 	#define BINARY_WRITING "wb"
 	#define BINARY_APPEND "ab"
+	#define BINARY_APPEND_PLUS "ab+"
 	#define USER_DATA 1
 	#define QUESTION_DATA 2
 	#define LOG_FILE_NAME "logs/logs.txt"

@@ -1,5 +1,6 @@
 #include "../inc/view.h"
 
+	/*Player*/
 CONTROLINT rendersMainMenu(void)
 {
 	CONTROLINT choice;
@@ -90,7 +91,7 @@ void rendersGetUsername(char * username)
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	instructionBox("LOGIN","Informe o seu nome de usuário.","Username:",STANDARD_BOX,QUESTION_BOX);
-	positionCursor(2,34,STANDARD_BOX);
+	positionCursor(2,28,STANDARD_BOX);
 	getString(MAX_USER_NAME_SIZE,username);
 }
 
@@ -152,3 +153,132 @@ void rendersResultQuestion(QUESTION mountedQuestion, CONTROLINT choice, CONTROLI
 	wait();
 	
 }
+
+/*Register*/
+void rendersGetNameForRegister(char * name)
+{
+	char message[100];
+	sprintf(message,"Informe o seu nome com até %d letras.",MAX_NAME_SIZE);
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	progressBar(STANDARD_BOX_SIZE,5,1,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
+	instructionBox("CADASTRO DE USUÁRIO",message,"Nome:",STANDARD_BOX,QUESTION_BOX);
+	positionCursor(2,29,STANDARD_BOX);
+	getString(MAX_NAME_SIZE,name);	
+}
+
+void rendersGetUsernameForRegister(char * username)
+{
+	char message[150];
+	sprintf(message,"Informe o seu 'username' com até %d letras. Ele deve ser único e sera usado para se logar no sistema.",MAX_USER_NAME_SIZE);
+	clearScreen();	
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	progressBar(STANDARD_BOX_SIZE,5,2,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
+	instructionBox("CADASTRO DE USUÁRIO",message,"Username:",STANDARD_BOX,QUESTION_BOX);
+	positionCursor(2,34,STANDARD_BOX);
+	getString(MAX_USER_NAME_SIZE,username);	
+}
+
+void rendersGetNickname(char * nickname)
+{
+	char message[150];
+	sprintf(message,"Informe o seu 'nickname' com até %d letras. Ele deve ser único. É através dele que você será reconhecido por todos.",MAX_NICKNAME_SIZE);
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	progressBar(STANDARD_BOX_SIZE,5,3,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
+	instructionBox("CADASTRO DE USUÁRIO",message,"Nickname:",STANDARD_BOX,QUESTION_BOX);
+	positionCursor(2,34,STANDARD_BOX);
+	getString(MAX_NICKNAME_SIZE,nickname);	
+}
+
+void rendersGetPasswordForRegister(char * password, CONTROLINT attempt)
+{
+	char message[150];
+
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	progressBar(STANDARD_BOX_SIZE,5,4,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
+	if(attempt == GET_PASSWORD)
+	{
+		sprintf(message,"Informe a sua 'password'. Ela deve ter exatamente %d caracteres. São aceitos letras, números e caracteres especiais.",MAX_PASSWD_SIZE-1);		
+	}
+	else
+	{
+		strcpy(message,"Digite novamente a sua 'password' para que possamos ter a certeza que a digitou corretamente.");		
+	}
+	instructionBox("CADASTRO DE USUÁRIO",message,"Password:",STANDARD_BOX,QUESTION_BOX);
+	positionCursor(2,34,STANDARD_BOX);
+	catchPassword(password,MAX_PASSWD_SIZE);
+}
+
+CONTROLINT rendersFullRegister(USER temporaryUser)
+{
+	CONTROLINT choice;
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	progressBar(STANDARD_BOX,5,5,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
+	//Imprime os dados do usuário
+	instructionBox("CADASTRO DE USUÁRIO","Verifique se todos os dados estão corretos.","Pressione [1] para reiniciar o cadastro ou [2] para confirmar.",STANDARD_BOX,INSTRUCTION_BOX);	
+	do
+	{
+		choice = getChoiceMenu();
+	}
+	while(!inRange(choice,1,2,CLOSED_RANGE) );
+	
+	return choice;
+}
+
+CONTROLINT rendersPasswordsDoNotMatch(void)
+{
+	CONTROLINT choice;
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("PASSWORD NÃO COINCIDE","As passwords informadas não são iguais. Você pode tentar redigitá-las ou simplesmente desistir do seu cadastro.","Pressione [1] para tentar novamente ou [2] para desistir.",ERROR_BOX,INSTRUCTION_BOX);
+	do
+	{
+		choice = getChoiceMenu();
+	}
+	while(!inRange(choice,REGISTER_USER,2,CLOSED_RANGE));
+	
+	return choice;	
+}
+
+CONTROLINT rendersInvalidNickname(void)
+{
+	CONTROLINT choice;
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("NICKNAME NÃO DISPONÍVEL","O 'nickname' informado já está sendo utilizado por outro usuário. Escolha outro apelido para lhe representar.","Pressione [1] para tentar novamente ou [2] para desistir.",ERROR_BOX,INSTRUCTION_BOX);
+	do
+	{
+		choice = getChoiceMenu();
+	}
+	while(!inRange(choice,REGISTER_USER,2,CLOSED_RANGE));
+	
+	return choice;
+}
+
+CONTROLINT rendersUsernameAlreadyExists(void)
+{
+	CONTROLINT choice;
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("USERNAME NÃO DISPONÍVEL","O 'username' informado já está sendo utilizado por outro usuário. Escolha outro nome de acesso ao sistema.","Pressione [1] para tentar novamente ou [2] para desistir.",ERROR_BOX,INSTRUCTION_BOX);
+	do
+	{
+		choice = getChoiceMenu();
+	}
+	while(!inRange(choice,REGISTER_USER,2,CLOSED_RANGE));
+	
+	return choice;
+}
+

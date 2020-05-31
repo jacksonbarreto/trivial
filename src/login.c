@@ -30,12 +30,12 @@ USER * login(const CONTROLINT totLogin)
 			{
 				choice = rendersInvalidUsername(attempts);
 				if(choice == REGISTER_USER)
-					temporaryUser = registerUser();  // registerUser é o módulo de cadastro e deve retornar um USER				
+					temporaryUser = registerNewUserDuringTheGame(); 				
 			}
 			
 		}while(temporaryUser.id == 0);
 		
-		if(choice == REGISTER_USER)
+		if(choice == REGISTER_USER) // isso podia passar lá para dentro. do pegar username
 		{
 			//Inclui o usuário no players sem pedir senha	
 			players[i] = temporaryUser;
@@ -57,7 +57,8 @@ USER * login(const CONTROLINT totLogin)
 				rendersInvalidPassword(attempts);
 				
 			getPassword(password);
-		}while(strcmp(temporaryUser.password,password) != 0);
+		}
+		while(strcmp(temporaryUser.password,password) != 0);
 	
 		players[i] = temporaryUser;	
 	}
@@ -65,10 +66,6 @@ USER * login(const CONTROLINT totLogin)
 	return players;
 }
 
-USER registerUser(void)
-{
-	
-}
 
 static void getUsername(char * username)
 {

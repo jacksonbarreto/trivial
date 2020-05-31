@@ -8,6 +8,7 @@
 	#include "gameLogic.h"
 	#include "view.h"
 	#include "shutdown.h"
+	#include "register.h"
 	
 #endif
 
@@ -38,6 +39,7 @@
 	#include "helpers.h"
 	#include "crud.h"
 	#include "view.h"
+	#include "register.h"
 #endif
 
 #ifdef __CRUD_H__
@@ -65,4 +67,10 @@
 #ifdef __VIEW_H__
 	#include "design.h"
 	#include "helpers.h"
+#endif
+
+#ifdef __REGISTER_H__
+	#include "crud.h"
+	#include "error.h"
+	#include "view.h"
 #endif

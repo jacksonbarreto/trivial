@@ -182,11 +182,7 @@ static float getPercentageCorrectAnswers(const USER * player, const CONTROLINT g
 
 static void bootPlayer(USER * player)
 {
-	player->totalAnswered = RESET;
-	player->currentScore[0] = RESET;
-	player->currentScore[1] = RESET;
-	player->currentScore[2] = RESET;
-	player->currentScore[3] = RESET;
+	resetCurrentScore(player);
 	player->percentageCorrect = RESET;
 }
 
@@ -259,4 +255,12 @@ static void increasesGlobalRound(USER * players, const CONTROLINT totalPlayers, 
 {
 	float roundAverage = averageWrongAnswersRound(players,totalPlayers);
 	settings->averageGlobalErrorAnswer = averageWrongAnswersGlobal(settings->averageGlobalErrorAnswer,roundAverage,&settings->totalRoundsGlobal);
+}
+
+void resetCurrentScore(USER * user)
+{
+	CONTROLINT i;
+	
+	for(i=0;i<TOTAL_THEMES;i++)
+		user->currentScore[i] = RESET;
 }

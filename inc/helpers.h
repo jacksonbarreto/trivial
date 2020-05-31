@@ -5,7 +5,7 @@
 	void getString(const CONTROLINT responseSize, char *answer);
 	CONTROLINT getShortInteger(const char *question);
 	void clearBuffer(void);
-	void clearScreen(void);
+
 	CONTROLINT inRange(const int number, const int inferiorLimit, const int upperLimit, const CONTROLINT rangeType);
 	CONTROLINT randomNumber(const int start, int end);
 	void swapString(char *stringA, char *stringB);

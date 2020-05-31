@@ -19,7 +19,8 @@ CONTROLINT writeData(void * data, int dataSize, int quantity, FILE * file)
 CONTROLINT readData(void * destiny, int dataSize, int quantity, FILE * file)
 {	
 	if(fread(destiny,dataSize,quantity,file) != quantity)
-		eventsHandling(INCOMPLETE_READING);
+		//eventsHandling(INCOMPLETE_READING); // não tem sentido pois quando é para ler quem não existe da erro
+		//usar o fread diretamente onde existe possibilidade de nao encontrar o que deve ler
 	return SUCCESS;
 }
 
@@ -27,6 +28,11 @@ CONTROLINT createUserId(void)
 {
 	settings.lastIdUsedForUser++;
 	return settings.lastIdUsedForUser;
+}
+
+void reverseCreatedID(void)
+{
+	settings.lastIdUsedForUser--;
 }
 
 CONTROLINT createThemeId(void)
@@ -50,7 +56,7 @@ THEME themeExist(const CONTROLINT themeId)
 	sprintf(fileName,"%s%d.dat",QUESTION_PREFIX,themeId);
 	file = openFile(fileName,BINARY_READING);
 	
-	fseek(file,sizeof(THEMEFILEINF),SEEK_SET);
+	fseek(file,sizeof(FILEINF),SEEK_SET); // verificar a logica aqui
 	do
 	{
 		readData(&theme,sizeof(THEME),1,file);
@@ -109,15 +115,54 @@ USER findUserByUsername(const char * username)
 	return user;
 }
 
+CONTROLINT nicknameExists(char * nickname)
+{
+	FILE * file = openFile(USERS_FILE_NAME,BINARY_READING);
+	USER user;
+	
+	fseek(file,sizeof(FILEINF),SEEK_SET);
+	do
+	{
+		readData(&user,sizeof(USER),1,file);
+		if(user.id != 0 && strcmp(user.nickname,nickname) == 0)
+		{
+			fclose(file);
+			return SUCCESS;
+		}
+	}
+	while(!feof(file));
+	
+	fclose(file);
+	return FAILURE;
+}
+
+CONTROLINT usernameExists(char * username)
+{
+	FILE * file = openFile(USERS_FILE_NAME,BINARY_READING);
+	USER user;
+	
+	fseek(file,sizeof(FILEINF),SEEK_SET);
+	do
+	{
+		readData(&user,sizeof(USER),1,file);
+		if(user.id != 0 && strcmp(user.username,username) == 0)
+		{
+			fclose(file);
+			return SUCCESS;
+		}
+	}
+	while(!feof(file));
+	
+	fclose(file);
+	return FAILURE;
+}
+
 USER createNullUser(void)
 {
 	USER user;
 	
 	user.id = 0;
-	user.currentScore[0] = 0;
-	user.currentScore[1] = 0;
-	user.currentScore[2] = 0;
-	user.currentScore[3] = 0; //gambiarra corrigir
+	resetCurrentScore(&user);
 	user.percentageCorrect = 0.0;
 	user.totalAnswered = 0;
 	user.userType = PLAYER_USER;
@@ -130,12 +175,15 @@ USER createNullUser(void)
 
 void insertUser(USER user)
 {
-	FILE * file = openFile(USERS_FILE_NAME,BINARY_APPEND);
-	settings.totalUsers++;
-	rewind(file);
-	writeData(&settings.totalUsers,sizeof(CONTROLINT),1,file);
-	fseek(file,0L,SEEK_END);
+	FILEINF info;
+	FILE * file = openFile(USERS_FILE_NAME,BINARY_APPEND_PLUS);
 	writeData(&user,sizeof(USER),1,file);
+	rewind(file);
+	readData(&info,sizeof(FILEINF),1,file);
+	info.size++;
+	rewind(file);
+	writeData(&info,sizeof(FILEINF),1,file);
+	settings.totalUsers++;
 	fclose(file);
 }
 

@@ -55,15 +55,9 @@ static void loadUsers(void)
 static USER createSUDO(void)
 {
 	USER sudo;	
-	
+	sudo = createNullUser();
 	sudo.id=1;
-	sudo.currentScore[0] = 0;
-	sudo.currentScore[1] = 0;
-	sudo.currentScore[2] = 0;
-	sudo.currentScore[3] = 0; //gambiarra corrigir
-	sudo.percentageCorrect = 0.0;
 	sudo.userType = ADMIN_USER;
-	sudo.totalAnswered = 0;
 	strcpy(sudo.password,"admin");
 	strcpy(sudo.username,"admin");
 	strcpy(sudo.name,"SUDO");	
