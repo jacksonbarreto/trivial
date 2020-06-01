@@ -33,6 +33,9 @@
 	#define OPEN_RANGE 0
 	#define CLOSED_RANGE 1
 	
+	/*Adm settings*/
+	#define RECORD_QUESTION 2
+	
 	/*login settings*/
 	#define INVALID_PASSWORD 1
 	#define INVALID_USER 0

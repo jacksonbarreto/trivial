@@ -29,17 +29,17 @@ static void loadFileSystem(void)
 	_mkdir(DATA_DIRECTORY);
 }
 
-static void startFileInf(FILEINF info)
+static void startFileInf(FILEINF * info)
 {
-	info.size=0;
-	info.trash=0;
-	info.lastAcess= 0L;
+	info->size=0;
+	info->trash=0;
+	info->lastAcess= 0L;
 }
 
 static void loadUsers(void)
 {
 	FILEINF info;
-	startFileInf(info);
+	startFileInf(&info);
 	info.size=1;
 	
 	USER sudo = createSUDO();
@@ -77,7 +77,7 @@ static USER createSUDO(void)
 static void loadTopList(void)
 {
 	FILEINF info;
-	startFileInf(info);
+	startFileInf(&info);
 	
 	FILE * pointer = fopen(TOP_LIST_FILE_NAME, BINARY_READING);
 	if(pointer == NULL)
@@ -102,7 +102,7 @@ static void loadTopList(void)
 static void loadHistoryList(void)
 {
 	FILEINF info;
-	startFileInf(info);
+	startFileInf(&info);
 	
 	FILE * pointer = fopen(HISTORY_FILE_NAME, BINARY_READING);
 	if(pointer == NULL)
@@ -120,8 +120,8 @@ static void loadHistoryList(void)
 	if(settings.historySize != 0)
 		historyPlayers = (USER *) allocateMemory(settings.historySize,sizeof(USER));
 	else
-		historyPlayers = NULL;
-		
+		historyPlayers = NULL; //ta liberando essa memória no shootdow?
+	
 	fclose(pointer);
 }
 
@@ -143,7 +143,7 @@ static void createDefaultThemes(THEME theme[TOTAL_THEMES])
 static void loadThemes(void)
 {
 	FILEINF info;
-	startFileInf(info);
+	startFileInf(&info);
 	THEME theme[TOTAL_THEMES];
 	
 	FILE * pointer = fopen(THEMES_FILE_NAME, BINARY_READING);
@@ -178,9 +178,11 @@ static void createQuestionFile(void)
 	{
 		sprintf(fileName,"%s%d.dat",QUESTION_PREFIX,i+1);
 		file = fopen(fileName,BINARY_WRITING);
-		startFileInf(info);
+		startFileInf(&info);
 		writeData(&info,sizeof(FILEINF),1,file);
-	}
+		fclose(file);
+	}	
+	free(fileName);
 }
 
 static void loadSettings(void)  //deve ser a última a carregar.

@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=10000000a0000000001000000
-UnitCount=28
+UnitCount=30
 
 [VersionInfo]
 Major=1
@@ -322,6 +322,26 @@ BuildCmd=
 
 [Unit28]
 FileName=src\register.c
+CompileCpp=0
+Folder=src
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit29]
+FileName=inc\adm.h
+CompileCpp=0
+Folder=inc
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit30]
+FileName=src\adm.c
 CompileCpp=0
 Folder=src
 Compile=1

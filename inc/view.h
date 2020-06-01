@@ -27,6 +27,10 @@
 	
 	/*Adm*/
 	
+	void rendersGetQuestionTitle(char * title);
+	void rendersGetQuestionRightAnswer(char * correctAnswer);
+	void rendersGetQuestionAnswer(char * answer, CONTROLINT progressBarPosition);
+	CONTROLINT rendersConfirmationQuestion(QUESTION question);
 	
 	
 #endif

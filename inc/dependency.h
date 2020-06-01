@@ -9,6 +9,8 @@
 	#include "view.h"
 	#include "shutdown.h"
 	#include "register.h"
+	#include "adm.h"
+	#include "design.h" //apagar debug
 	
 #endif
 
@@ -45,6 +47,7 @@
 
 #ifdef __CRUD_H__
 	#include "helpers.h"
+		#include "design.h" //apagar debug
 #endif
 
 #ifdef __ERROR_H__

@@ -288,4 +288,60 @@ CONTROLINT rendersUsernameAlreadyExists(void)
 
 /* ADM */
 
+void rendersGetQuestionTitle(char * title)
+{		
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	progressBar(STANDARD_BOX_SIZE,6,1,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
+	instructionBox("CADASTRO DE PERGUNTA","Informe o título da pergunta, ou seja, a pergunta propriamente dita.","Título:",STANDARD_BOX,QUESTION_BOX);
+	positionCursor(2,32,STANDARD_BOX);
+	getString(MAX_TITLE_SIZE,title);	
+}
 
+void rendersGetQuestionRightAnswer(char * correctAnswer)
+{		
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	progressBar(STANDARD_BOX_SIZE,6,2,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
+	instructionBox("CADASTRO DE PERGUNTA","Informe a resposta CORRETA para a questão anteriormente inserida.","Resposta CORRETA:",STANDARD_BOX,QUESTION_BOX);
+	positionCursor(2,42,STANDARD_BOX);
+	getString(MAX_TITLE_SIZE,correctAnswer);	
+}
+
+void rendersGetQuestionAnswer(char * answer, CONTROLINT progressBarPosition)
+{		
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	progressBar(STANDARD_BOX_SIZE,6,progressBarPosition,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
+	instructionBox("CADASTRO DE PERGUNTA","Informe outra opção de resposta para a questão anteriormente inserida.","Resposta:",STANDARD_BOX,QUESTION_BOX);
+	positionCursor(2,34,STANDARD_BOX);
+	getString(MAX_TITLE_SIZE,answer);	
+}
+
+CONTROLINT rendersConfirmationQuestion(QUESTION question)
+{
+	CONTROLINT i, choice;
+	
+	char listaQuestion[MAX_RESPONSE_OPTIONS][MAX_ANSWER_SIZE];
+	
+	for(i=0;i<MAX_RESPONSE_OPTIONS;i++)
+		sprintf(listaQuestion[i],"%d - %s",i+1,question.answers[i]);
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	progressBar(STANDARD_BOX,6,6,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
+	menuBox(question.title,listaQuestion,MAX_RESPONSE_OPTIONS);
+	putchar('\n');
+	instructionBox("CADASTRO DE PERGUNTA","Verifique se todos os dados estão corretos.","Pressione [1] para reiniciar o cadastro ou [2] para confirmar.",STANDARD_BOX,INSTRUCTION_BOX);	
+	do
+	{
+		choice = getChoiceMenu();
+	}
+	while(!inRange(choice,1,RECORD_QUESTION,CLOSED_RANGE) );
+	
+	return choice;
+}
