@@ -125,16 +125,35 @@ static void loadHistoryList(void)
 	fclose(pointer);
 }
 
+static void createDefaultThemes(THEME theme[TOTAL_THEMES])
+{
+	char names[TOTAL_THEMES][MAX_THEME_SIZE] = {"HISTÓRIA", "BIOLOGIA E GEOGRAFIA", "ARTES E LETRAS", "TRIVIALIDADES"};
+	CONTROLINT i;
+	
+	for(i=0;i<TOTAL_THEMES;i++)
+	{
+		theme[i] = createNullTheme();
+		theme[i].id = i+1;
+		strcpy(theme[i].themeName,names[i]);
+	}
+
+}
+
+
 static void loadThemes(void)
 {
 	FILEINF info;
 	startFileInf(info);
+	THEME theme[TOTAL_THEMES];
 	
 	FILE * pointer = fopen(THEMES_FILE_NAME, BINARY_READING);
 	if(pointer == NULL)
 	{
-		pointer = openFile(THEMES_FILE_NAME,BINARY_WRITING);		
-		writeData(&info,sizeof(FILEINF),1,pointer);		
+		pointer = openFile(THEMES_FILE_NAME,BINARY_WRITING);
+		info.size = TOTAL_THEMES;		
+		writeData(&info,sizeof(FILEINF),1,pointer);
+		createDefaultThemes(theme);
+		writeData(&theme,sizeof(THEME),TOTAL_THEMES,pointer);
 		settings.totalThemes=info.size;
 	} 
 	else

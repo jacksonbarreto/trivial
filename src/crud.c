@@ -74,11 +74,13 @@ THEME createNullTheme(void)
 {
 	THEME theme;
 	
-	theme.id = 0;
-	theme.totalQuestions = 0;
+	theme.deck = NULL;
+	theme.id = RESET;
+	theme.totalQuestions = RESET;
 	theme.lastAcess = 0L;
 	strcpy(theme.themeName,"NULL");
 	
+		
 	return theme;
 }
 /*
