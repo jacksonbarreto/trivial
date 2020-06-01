@@ -104,10 +104,13 @@ void rendersGetPassword(char * password)
 	catchPassword(password,MAX_PASSWD_SIZE);
 }
 
-CONTROLINT rendersGetTheme(char themesName[][MAX_THEME_SIZE],CONTROLINT totalThemes)
+CONTROLINT rendersGetTheme(char themesName[][MAX_SIZE_THEME_NAME],CONTROLINT totalThemes)
 {
-	CONTROLINT choice;
-	char listaThemes[][MAX_OPTION_MENU_SIZE]={"1 - HISTÓRIA", "2 - BIOLOGIA E GEOGRAFIA", "3 - ARTES E LETRAS", "4 - TRIVIALIDADES"};
+	CONTROLINT i, choice;
+	char listaThemes[totalThemes][MAX_OPTION_MENU_SIZE];
+	
+	for(i=0;i<settings.totalThemes;i++)
+		sprintf(listaThemes[i],"%d - %s",i+1,themesName[i]);
 	
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
@@ -116,7 +119,7 @@ CONTROLINT rendersGetTheme(char themesName[][MAX_THEME_SIZE],CONTROLINT totalThe
 	{
 		choice = getChoiceMenu();
 	}
-	while(!inRange(choice,1,4,CLOSED_RANGE));
+	while(!inRange(choice,1,totalThemes,CLOSED_RANGE));
 	
 	
 	return choice;
@@ -281,4 +284,8 @@ CONTROLINT rendersUsernameAlreadyExists(void)
 	
 	return choice;
 }
+
+
+/* ADM */
+
 

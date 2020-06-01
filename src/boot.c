@@ -127,7 +127,7 @@ static void loadHistoryList(void)
 
 static void createDefaultThemes(THEME theme[TOTAL_THEMES])
 {
-	char names[TOTAL_THEMES][MAX_THEME_SIZE] = {"HISTÓRIA", "BIOLOGIA E GEOGRAFIA", "ARTES E LETRAS", "TRIVIALIDADES"};
+	char names[TOTAL_THEMES][MAX_SIZE_THEME_NAME] = {"HISTÓRIA", "BIOLOGIA E GEOGRAFIA", "ARTES E LETRAS", "TRIVIALIDADES"};
 	CONTROLINT i;
 	
 	for(i=0;i<TOTAL_THEMES;i++)

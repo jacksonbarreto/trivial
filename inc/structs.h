@@ -39,7 +39,7 @@
 		CONTROLINT id;
 		CONTROLINT totalQuestions;
 		long int lastAcess;
-		char themeName[MAX_THEME_SIZE];
+		char themeName[MAX_SIZE_THEME_NAME];
 		CARD ** deck;	
 	}
 	THEME;	

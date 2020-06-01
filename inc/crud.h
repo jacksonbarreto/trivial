@@ -17,8 +17,9 @@
 	USER createNullUser(void);
 	USER userIdExists(const CONTROLINT id); //apagar
 	void insertUser(USER user);
-	void insertQuestion(QUESTION question, const CONTROLINT themeId);
+	void recordQuestion(QUESTION question, const CONTROLINT themeId);
 	void insertTheme(THEME theme);
 	void resetCurrentScore(USER * user);
+	void getThemesName(char ThemesName[][MAX_SIZE_THEME_NAME]);
 	
 #endif

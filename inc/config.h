@@ -17,7 +17,7 @@
 	#define MAX_PASSWD_SIZE 6
 	#define MAX_TITLE_SIZE 50
 	#define MAX_ANSWER_SIZE 50
-	#define MAX_THEME_SIZE 50
+	#define MAX_SIZE_THEME_NAME 50
 	#define MAX_NICKNAME_SIZE 5
 	#define MAX_TOP_LIST 10
 	#define MAX_HISTORY_LIST 15

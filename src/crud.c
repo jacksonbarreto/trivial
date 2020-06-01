@@ -189,7 +189,7 @@ void insertUser(USER user)
 	fclose(file);
 }
 
-void insertQuestion(QUESTION question, const CONTROLINT themeId)
+void recordQuestion(QUESTION question, const CONTROLINT themeId)
 {
 	FILE * file;
 	FILEINF info;
@@ -210,6 +210,21 @@ void insertQuestion(QUESTION question, const CONTROLINT themeId)
 	fclose(file);
 	free(fileName);
 }
+
+void getThemesName(char ThemesName[][MAX_SIZE_THEME_NAME])
+{
+	CONTROLINT i;
+	THEME temporaryTheme[settings.totalThemes];
+	FILE * file = openFile(THEMES_FILE_NAME,BINARY_READING);
+	
+	fseek(file,sizeof(FILEINF),SEEK_SET);
+	readData(temporaryTheme,sizeof(THEME),settings.totalThemes,file);
+	for(i=0;i<settings.totalThemes;i++)
+		strcpy(ThemesName[i],temporaryTheme[i].themeName);
+		
+	fclose(file);
+}
+
 void insertTheme(THEME theme)
 {
 	FILE * file = openFile(THEMES_FILE_NAME,BINARY_APPEND);

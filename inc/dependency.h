@@ -75,3 +75,9 @@
 	#include "error.h"
 	#include "view.h"
 #endif
+
+#ifdef __ADM_H__
+	#include "view.h"
+	#include "view.h"
+	#include "crud.h"
+#endif

@@ -14,7 +14,7 @@
 	static CONTROLINT isEndRound(const CONTROLINT currentPlayer, const CONTROLINT totalPlayers);
 	static void restartRound(CONTROLINT * currentPlayer);
 	static CONTROLINT getAnswer(QUESTION mountedQuestion);
-	static CONTROLINT getTheme(THEME * themes);
+	static CONTROLINT getTheme(void);
 	static void advanceRound(CONTROLINT * currentPlayer);
 	static float getPercentageCorrectAnswers(const USER * player, const CONTROLINT gameMode);
 	static void bootPlayer(USER * player);
