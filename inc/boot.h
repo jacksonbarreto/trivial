@@ -10,4 +10,5 @@
 	 static void loadThemes(void);
 	 static void startFileInf(FILEINF info);
 	 static void loadSettings(void);
+	 static void loadFileSystem(void);
 #endif

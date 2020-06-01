@@ -33,6 +33,7 @@
 #ifdef __BOOT_H__
 	#include "deckHandler.h"
 	#include "crud.h"
+	#include <direct.h>
 #endif
 
 #ifdef __LOGIN_H__

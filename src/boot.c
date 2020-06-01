@@ -10,6 +10,9 @@ void boot(void)
 	setlocale(LC_ALL,"");
 	system("color");
 	
+	loadFileSystem();
+	
+	
 	loadUsers();
 	loadTopList();	
 	loadHistoryList();	
@@ -18,6 +21,12 @@ void boot(void)
 	
 	//última sempre
 	loadSettings();
+}
+
+static void loadFileSystem(void)
+{
+	_mkdir(LOG_DIRECTORY);
+	_mkdir(DATA_DIRECTORY);
 }
 
 static void startFileInf(FILEINF info)

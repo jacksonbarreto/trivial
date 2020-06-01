@@ -55,6 +55,8 @@
 	#define BINARY_APPEND_PLUS "ab+"
 	#define USER_DATA 1
 	#define QUESTION_DATA 2
+	#define LOG_DIRECTORY "logs"
+	#define DATA_DIRECTORY "db"
 	#define LOG_FILE_NAME "logs/logs.txt"
 	#define SETTING_FILE_NAME "db/settings.dat"
 	#define USERS_FILE_NAME "db/users.dat"
