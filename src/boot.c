@@ -155,6 +155,8 @@ static void loadThemes(void)
 		createDefaultThemes(theme);
 		writeData(&theme,sizeof(THEME),TOTAL_THEMES,pointer);
 		settings.totalThemes=info.size;
+		settings.lastIdUsedForThema = TOTAL_THEMES;
+		createQuestionFile();
 	} 
 	else
 	{
@@ -165,7 +167,21 @@ static void loadThemes(void)
 	fclose(pointer);
 }
 
-
+static void createQuestionFile(void)
+{
+	FILE * file;
+	FILEINF info;
+	CONTROLINT i;	
+	char * fileName = (char *) allocateMemory(strlen(QUESTION_PREFIX)+QUESTION_SUFIX_SIZE,sizeof(char));
+		
+	for(i=0;i<TOTAL_THEMES;i++)
+	{
+		sprintf(fileName,"%s%d.dat",QUESTION_PREFIX,i+1);
+		file = fopen(fileName,BINARY_WRITING);
+		startFileInf(info);
+		writeData(&info,sizeof(FILEINF),1,file);
+	}
+}
 
 static void loadSettings(void)  //deve ser a última a carregar.
 {

@@ -12,5 +12,6 @@
 	 static void loadSettings(void);
 	 static void loadFileSystem(void);
 	 static void createDefaultThemes(THEME theme[TOTAL_THEMES]);
+	 static void createQuestionFile(void);
 	 
 #endif

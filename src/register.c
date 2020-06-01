@@ -70,7 +70,7 @@ static USER registerUser(void)
 				if(choice != REGISTER_USER)
 				{
 					temporaryUser = createNullUser();
-					reverseCreatedID();
+					reverseCreatedIDForUsers();
 					return temporaryUser;
 				}				 
 			}
@@ -94,7 +94,7 @@ static USER registerUser(void)
 				if(choice != REGISTER_USER)
 				{
 					temporaryUser = createNullUser();
-					reverseCreatedID();
+					reverseCreatedIDForUsers();
 					return temporaryUser;
 				}	
 			}
@@ -109,7 +109,7 @@ static USER registerUser(void)
 		else
 		{
 			status = FAILURE;
-			reverseCreatedID();
+			reverseCreatedIDForUsers();
 		}	
 	}
 	while(status != SUCCESS);

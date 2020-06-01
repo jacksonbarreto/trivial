@@ -30,7 +30,7 @@ CONTROLINT createUserId(void)
 	return settings.lastIdUsedForUser;
 }
 
-void reverseCreatedID(void)
+void reverseCreatedIDForUsers(void)
 {
 	settings.lastIdUsedForUser--;
 }
@@ -192,11 +192,21 @@ void insertUser(USER user)
 void insertQuestion(QUESTION question, const CONTROLINT themeId)
 {
 	FILE * file;
+	FILEINF info;
 	char * fileName = (char *) allocateMemory(strlen(QUESTION_PREFIX)+QUESTION_SUFIX_SIZE,sizeof(char));
 	
 	sprintf(fileName,"%s%d.dat",QUESTION_PREFIX,themeId);
 	file = openFile(fileName,BINARY_APPEND);
-	writeData(&question,sizeof(QUESTION),1,file);	
+
+	if(writeData(&question,sizeof(QUESTION),1,file))
+	{
+		rewind(file);
+		readData(&info,sizeof(FILEINF),1,file);
+		info.size++;
+		rewind(file);
+		writeData(&info,sizeof(FILEINF),1,file);	
+	}	
+	
 	fclose(file);
 	free(fileName);
 }

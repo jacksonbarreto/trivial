@@ -61,7 +61,7 @@
 	#define SETTING_FILE_NAME "db/settings.dat"
 	#define USERS_FILE_NAME "db/users.dat"
 	#define THEMES_FILE_NAME "db/themes.dat"
-	#define QUESTION_PREFIX "db/theme"
+	#define QUESTION_PREFIX "db/themeQuestions"
 	#define QUESTION_SUFIX_SIZE 12
 	#define TOP_LIST_FILE_NAME "db/top.dat"
 	#define HISTORY_FILE_NAME "db/history.dat"

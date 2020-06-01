@@ -5,7 +5,7 @@
 	CONTROLINT writeData(void * data, int dataSize, int quantity, FILE * file);
 	CONTROLINT readData(void * destiny, int dataSize, int quantity, FILE * file);
 	CONTROLINT createUserId(void);
-	void reverseCreatedID(void);
+	void reverseCreatedIDForUsers(void);
 	CONTROLINT createThemeId(void);
 	CONTROLINT createQuestionId(void);
 	THEME createNullTheme(void);
