@@ -91,7 +91,7 @@ void rendersGetUsername(char * username)
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	instructionBox("LOGIN","Informe o seu nome de usuário.","Username:",STANDARD_BOX,QUESTION_BOX);
-	positionCursor(2,28,STANDARD_BOX);
+	positionCursor(2,34,STANDARD_BOX);
 	getString(MAX_USER_NAME_SIZE,username);
 }
 

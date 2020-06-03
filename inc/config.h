@@ -55,7 +55,7 @@
 	#define BINARY_READING "rb"
 	#define BINARY_WRITING "wb"
 	#define BINARY_APPEND "ab"
-	#define BINARY_APPEND_PLUS "ab+"
+	#define BINARY_READING_PLUS "r+b"
 	#define USER_DATA 1
 	#define QUESTION_DATA 2
 	#define LOG_DIRECTORY "logs"
@@ -121,7 +121,6 @@
 		
 		GAMEPLAY gameRound;
 		
-		//THEME * listTheme; //apagar pois listhema é instanciada dentro do jogar
 		/*configuration variables*/
 		SETTINGS settings;
 		

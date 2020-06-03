@@ -88,7 +88,7 @@ USER userIdExists(const CONTROLINT id)
 {
 	FILE * file = openFile(USERS_FILE_NAME,BINARY_READING);
 	USER user;
-	fseek(file,sizeof(CONTROLINT),SEEK_SET);
+	fseek(file,sizeof(FILEINF),SEEK_SET);
 	do
 	{
 		readData(&user,sizeof(USER),1,file);
@@ -178,7 +178,8 @@ USER createNullUser(void)
 void insertUser(USER user)
 {
 	FILEINF info;
-	FILE * file = openFile(USERS_FILE_NAME,BINARY_APPEND_PLUS);
+	FILE * file = openFile(USERS_FILE_NAME,BINARY_READING_PLUS);
+	fseek(file,0L,SEEK_END);
 	writeData(&user,sizeof(USER),1,file);
 	rewind(file);
 	readData(&info,sizeof(FILEINF),1,file);
@@ -198,28 +199,17 @@ void recordQuestion(QUESTION question, const CONTROLINT themeId)
 	
 	sprintf(fileName,"%s%d.dat",QUESTION_PREFIX,themeId);
 
-	file = openFile(fileName,BINARY_APPEND_PLUS);
+	file = openFile(fileName,BINARY_READING_PLUS);	
+	fseek(file,0L,SEEK_END);
 	
-	menuBox(question.title,question.answers,MAX_RESPONSE_OPTIONS); //debug
-	system("pause"); //apagar debug
-	
-	writeData(&question,sizeof(QUESTION),1,file);
-	
-	
-		
+	if(writeData(&question,sizeof(QUESTION),1,file) == SUCCESS)
+	{
 		rewind(file);
 		readData(&info,sizeof(FILEINF),1,file);
-		printf("\nSize pós leitura: %d\n", info.size); //apagar debug
-		system("pause"); //apagar debug
 		info.size++;
-		
-		printf("\nSize pós incremento: %d\n", info.size); //apagar debug
-		system("pause"); //apagar debug
-		
 		rewind(file);
-		writeData(&info,sizeof(FILEINF),1,file);	
-	
-	
+		writeData(&info,sizeof(FILEINF),1,file);
+	}	
 	fclose(file);
 	free(fileName);
 }
@@ -238,12 +228,18 @@ void getThemesName(char ThemesName[][MAX_SIZE_THEME_NAME])
 	fclose(file);
 }
 
+/*
+Não vai mais inserir tema 
+*/
 void insertTheme(THEME theme)
 {
-	FILE * file = openFile(THEMES_FILE_NAME,BINARY_APPEND);
+	FILE * file = openFile(THEMES_FILE_NAME,BINARY_READING_PLUS);
+	FILEINF info;
 	settings.totalThemes++;
+	readData(&info,sizeof(FILEINF),1,file);
+	info.size++;
 	rewind(file);
-	writeData(&settings.totalThemes,sizeof(CONTROLINT),1,file);
+	writeData(&info,sizeof(FILEINF),1,file);
 	fseek(file,0L,SEEK_END);
 	writeData(&theme,sizeof(THEME),1,file);
 	fclose(file);

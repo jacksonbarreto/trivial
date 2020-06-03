@@ -7,14 +7,10 @@ void insertQuestion(void)
 	CONTROLINT chosenTheme;
 	QUESTION question;
 	
-	getThemesName(themesName);
-	
-	chosenTheme = rendersGetTheme(themesName,settings.totalThemes);
-	
-	question = getQuestion();
-	
-	recordQuestion(question,chosenTheme);
-	
+	getThemesName(themesName);	
+	chosenTheme = rendersGetTheme(themesName,settings.totalThemes);	
+	question = getQuestion();	
+	recordQuestion(question,chosenTheme);	
 }
 
 static QUESTION getQuestion(void)

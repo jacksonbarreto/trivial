@@ -120,7 +120,7 @@ static void loadHistoryList(void)
 	if(settings.historySize != 0)
 		historyPlayers = (USER *) allocateMemory(settings.historySize,sizeof(USER));
 	else
-		historyPlayers = NULL; //ta liberando essa memória no shootdow?
+		historyPlayers = NULL; //ta liberando essa memória no shootdow? //Ta porra! 
 	
 	fclose(pointer);
 }
