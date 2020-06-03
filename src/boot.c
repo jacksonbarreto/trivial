@@ -102,25 +102,36 @@ static void loadTopList(void)
 static void loadHistoryList(void)
 {
 	FILEINF info;
+	USER player;
 	startFileInf(&info);
 	
+	historyPlayers = newqueue();
 	FILE * pointer = fopen(HISTORY_FILE_NAME, BINARY_READING);
 	if(pointer == NULL)
 	{
 		pointer = openFile(HISTORY_FILE_NAME,BINARY_WRITING);		
 		writeData(&info,sizeof(FILEINF),1,pointer);		
 		settings.historySize=info.size;
-		//settings.lastIdUsedForThema=total; //apagar
+		historyPlayers = NULL;
 	} 
 	else
 	{
 		fread(&info,sizeof(FILEINF),1,pointer);		
 		settings.historySize = info.size;
+		
+		if(info.size > 0)
+		{
+			do
+			{
+				readData(&player,sizeof(USER),1,pointer);
+				equeue(historyPlayers,player);
+			}
+			while(!feof(pointer));
+		}
+		else
+			historyPlayers = NULL;
+		
 	}
-	if(settings.historySize != 0)
-		historyPlayers = (USER *) allocateMemory(settings.historySize,sizeof(USER));
-	else
-		historyPlayers = NULL; //ta liberando essa memória no shootdow? //Ta porra! 
 	
 	fclose(pointer);
 }

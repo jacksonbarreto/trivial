@@ -70,14 +70,16 @@
 	#define HISTORY_FILE_NAME "db/history.dat"
 	
 	/*event and error settings*/
-	#define STANDARD_EVENT 1111
-	#define CRITICAL_FAILURE 2222
-	#define INCOMPLETE_RECORD 4444
-	#define INCOMPLETE_READING 5555
-	#define REMOVAL_STACK_EMPTY 6666
-	#define GAME_STATUS_UNIDENTIFIED 7777
-	#define DATA_TYPE_UNIDENTIFIED 8888
-
+	#define STANDARD_EVENT 11
+	#define CRITICAL_FAILURE 22
+	#define INCOMPLETE_RECORD 33
+	#define INCOMPLETE_READING 44
+	#define REMOVAL_STACK_EMPTY 55
+	#define GAME_STATUS_UNIDENTIFIED 66
+	#define DATA_TYPE_UNIDENTIFIED 77
+	#define EMPTY_QUEUE 88
+	#define QUEUE_NOT_STARTED 99
+	
 	
 	
 	/*color setting*/
@@ -126,7 +128,7 @@
 		
 		char keyboard[BUFSIZ];
 		USER * topPlayers;
-		USER * historyPlayers;
+		NODE ** historyPlayers;
 	
 #endif
 

@@ -4,7 +4,7 @@ void turnOff()
 {
 	saveSettings();
 	saveTopList(topPlayers);
-	saveHistoryList(historyPlayers);
+	quitHistoryList();
 	free(topPlayers);  //conferir se é vetor ou lista
 	free(historyPlayers); //conferir se é vetor ou lista
 	
@@ -18,12 +18,9 @@ static void saveTopList(USER * topPlayers)
 	fclose(pointer);
 }
 
-static void saveHistoryList(USER * historyPlayers)
-{
-	FILE * pointer = fopen(HISTORY_FILE_NAME, BINARY_WRITING);
-	writeData(&settings.historySize,sizeof(CONTROLINT),1,pointer); // corrigir para file info
-	writeData(&historyPlayers,sizeof(USER),settings.historySize,pointer);
-	fclose(pointer);
+static void quitHistoryList(void)
+{	
+	deleteQueue(historyPlayers);
 }
 
 static void saveSettings(void)

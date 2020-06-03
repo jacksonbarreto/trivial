@@ -25,16 +25,18 @@
 	#include "login.h"
 	#include "sort.h"
 	#include "view.h"
+	#include "history.h"
 #endif
 
 #ifdef __SHUTDOWN_H__
 	#include "crud.h"
-	
+	#include "history.h"
 #endif
 
 #ifdef __BOOT_H__
 	#include "deckHandler.h"
 	#include "crud.h"
+	#include "history.h"
 	#include <direct.h>
 #endif
 
@@ -47,7 +49,6 @@
 
 #ifdef __CRUD_H__
 	#include "helpers.h"
-		#include "design.h" //apagar debug
 #endif
 
 #ifdef __ERROR_H__
@@ -83,4 +84,10 @@
 	#include "view.h"
 	#include "view.h"
 	#include "crud.h"
+#endif
+
+#ifdef __HISTORY_H__
+	#include "crud.h"
+	#include "helpers.h"
+	#include "sort.h"
 #endif

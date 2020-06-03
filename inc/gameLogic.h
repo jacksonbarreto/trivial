@@ -21,7 +21,7 @@
 	void resetCurrentScore(USER * user);
 	static CONTROLINT isTop(USER player);
 	static void insertTop(USER player);
-	static void insertHistory(USER player);
+	static void insertHistory(USER * playersList, const CONTROLINT totalPlayers);
 	static CONTROLINT defineDeckSize(const CONTROLINT gameMode, const CONTROLINT totalPlayers, const float averageErrorAnswer, const CONTROLINT totalThemes);
 	static float averageWrongAnswersRound(USER * players, const CONTROLINT totalPlayers);
 	static float averageWrongAnswersGlobal(float currentGlobalAverage, float roundAverage, CONTROLINT * totalRounds);

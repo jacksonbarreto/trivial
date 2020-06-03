@@ -69,7 +69,7 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 			
 			if(result)
 			{
-				punctuatePlayer(&players[currentPlayer],chosenTheme); //corrigir tem que mandar o tema para pontuar corretamente
+				punctuatePlayer(&players[currentPlayer],chosenTheme); //corrigir tem que mandar o tema para pontuar corretamente //Acho que corrigi
 				players[currentPlayer].percentageCorrect = getPercentageCorrectAnswers(&players[currentPlayer],gameMode);
 				if(isEndGame(players,currentPlayer,gameMode))
 				{
@@ -79,8 +79,7 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 						//Imprime parabens vc é um top 10.
 					}
 						
-					
-					//insertHistory(players); corrigir a função insertHistory
+					insertHistory(players,totalPlayers);
 					deckControl(listThemes,settings.totalThemes,deckSize,GAME_FINISHED);
 					increasesGlobalRound(players,totalPlayers,&settings);
 					free(listThemes);
@@ -155,7 +154,7 @@ static CONTROLINT isEndGame(const USER * playersList, const CONTROLINT currentPl
 	
 	for(i=0, status=0;i<TOTAL_THEMES;i++)
 	{
-		if(playersList[currentPlayer].currentScore[1] >= gameMode)
+		if(playersList[currentPlayer].currentScore[i] >= gameMode)
 			status++;
 	}
 	return (status == TOTAL_THEMES);
@@ -178,7 +177,7 @@ static void advanceRound(CONTROLINT * currentPlayer)
 
 static float getPercentageCorrectAnswers(const USER * player, const CONTROLINT gameMode)
 {
-	return ((float) gameMode * 100) / player->totalAnswered;
+	return ((float) gameMode * settings.totalThemes * 100) / player->totalAnswered;
 }
 
 static void bootPlayer(USER * player)
@@ -191,11 +190,11 @@ static CONTROLINT isTop(USER player)
 {
 	if(topPlayers == NULL)
 		return SUCCESS;
-	return (player.percentageCorrect > topPlayers[settings.topSize-1].percentageCorrect);
+	return (player.percentageCorrect > topPlayers[settings.topSize-1].percentageCorrect); //acho que não preciso desse -1 vou por lista
 	
 }
 
-static void insertTop(USER player)
+static void insertTop(USER player) //muda para lista
 {
 	if(topPlayers == NULL || settings.topSize < MAX_TOP_LIST)
 	{
@@ -207,16 +206,19 @@ static void insertTop(USER player)
 	bubbleSort(topPlayers,settings.topSize,DECREASING,NUMBER_DATA);	
 }
 
-static void insertHistory(USER player) //ta errado, tem que inserir todos que jogaram
+static void insertHistory(USER * playersList, const CONTROLINT totalPlayers) 
 {
-	if(historyPlayers == NULL || settings.historySize < MAX_HISTORY_LIST)
-	{
-		historyPlayers = (USER *) reAllocateMemory(historyPlayers,sizeof(USER)*(settings.historySize+1));
-		settings.historySize++;
-	} 
+	CONTROLINT i;
 	
-	historyPlayers[settings.historySize-1] = player;	
-	bubbleSort(historyPlayers,settings.historySize,INCREASING,STRING_DATA);
+	for(i=0;i<totalPlayers;i++)
+	{
+		if(settings.historySize >= MAX_HISTORY_LIST)
+			dqueue(historyPlayers);
+	
+		equeue(historyPlayers,playersList[i]);
+		settings.historySize++;
+	}
+	saveHistoryList(historyPlayers,settings.historySize);
 }
 
 static CONTROLINT defineDeckSize(const CONTROLINT gameMode, const CONTROLINT totalPlayers, const float averageErrorAnswer, const CONTROLINT totalThemes)

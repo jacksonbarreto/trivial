@@ -82,4 +82,11 @@
 	}
 	GAMEPLAY;
 	
+	typedef struct _node
+	{
+		USER info;
+		struct _node * next;
+	}
+	NODE;
+	
 #endif
