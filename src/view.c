@@ -221,11 +221,42 @@ void rendersGetPasswordForRegister(char * password, CONTROLINT attempt)
 CONTROLINT rendersFullRegister(USER temporaryUser)
 {
 	CONTROLINT choice;
+	char listaTempUser[3][100];
+	char title[100] = "Valide a informa??o do cadastro.";
 	
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	progressBar(STANDARD_BOX,5,5,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
+	//Imprime os dados do usu?rio	
+	
+	sprintf(listaTempUser[0],"Nome: %s",temporaryUser.name);
+	sprintf(listaTempUser[1],"Username: %s",temporaryUser.username);
+	sprintf(listaTempUser[2],"Nickname: %s",temporaryUser.nickname);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);	
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_CENTER,"DADOS DO CADASTRO", TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	bottomLine(' ','*',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);	
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_LEFT, listaTempUser[0], TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_LEFT,listaTempUser[1], TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_LEFT,listaTempUser[2], TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
+	putchar('\n');	
+
 	//Imprime os dados do usuário
 	instructionBox("CADASTRO DE USUÁRIO","Verifique se todos os dados estão corretos.","Pressione [1] para reiniciar o cadastro ou [2] para confirmar.",STANDARD_BOX,INSTRUCTION_BOX);	
 	do
