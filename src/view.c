@@ -222,7 +222,7 @@ CONTROLINT rendersFullRegister(USER temporaryUser)
 {
 	CONTROLINT choice;
 	char listaTempUser[3][100];
-	char title[100] = "Valide a informa??o do cadastro.";
+	char title[100] = "Valide a informação do cadastro.";
 	
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
