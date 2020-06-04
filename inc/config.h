@@ -10,15 +10,15 @@
 	
 	
 	/*size and limit settings*/
-	#define MAX_NAME_SIZE 50
+	#define MAX_NAME_SIZE 50+1
 	#define MAX_OPTION_MENU_SIZE 50
 	#define TOTAL_OPTION_MAIN_MENU 6
-	#define MAX_USER_NAME_SIZE 50
-	#define MAX_PASSWD_SIZE 6
-	#define MAX_TITLE_SIZE 50
-	#define MAX_ANSWER_SIZE 50
-	#define MAX_SIZE_THEME_NAME 50
-	#define MAX_NICKNAME_SIZE 5
+	#define MAX_USER_NAME_SIZE 25+1
+	#define MAX_PASSWD_SIZE 5+1
+	#define MAX_TITLE_SIZE 120+1
+	#define MAX_ANSWER_SIZE 80+1
+	#define MAX_SIZE_THEME_NAME 25+1
+	#define MAX_NICKNAME_SIZE 5+1
 	#define MAX_TOP_LIST 10
 	#define MAX_HISTORY_LIST 15
 	#define TOTAL_THEMES 4

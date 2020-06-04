@@ -131,7 +131,7 @@ CONTROLINT rendersGetAnswer(QUESTION mountedQuestion)
 	
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
-	menuBox(mountedQuestion.title,mountedQuestion.answers,MAX_RESPONSE_OPTIONS);
+	//menuBox(mountedQuestion.title,mountedQuestion.answers,MAX_RESPONSE_OPTIONS);
 	putchar('\n');
 	//emptyLine(' ',MENU_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
 	instructionBox(" "," ","Pressione o número da resposta correta.",STANDARD_BOX,INSTRUCTION_BOX);
@@ -150,7 +150,7 @@ void rendersResultQuestion(QUESTION mountedQuestion, CONTROLINT choice, CONTROLI
 	
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
-	menuBox(mountedQuestion.title,mountedQuestion.answers,MAX_RESPONSE_OPTIONS);
+	//menuBox(mountedQuestion.title,mountedQuestion.answers,MAX_RESPONSE_OPTIONS);
 	putchar('\n');
 	instructionBox(" ","Falta exibir a correta e a escolhida","Pressione qualquer tecla para continar..",STANDARD_BOX,INSTRUCTION_BOX);
 	wait();
@@ -365,7 +365,7 @@ CONTROLINT rendersConfirmationQuestion(QUESTION question)
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	progressBar(STANDARD_BOX,6,6,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
-	menuBox(question.title,listaQuestion,MAX_RESPONSE_OPTIONS);
+	//menuBox(question.title,listaQuestion,MAX_RESPONSE_OPTIONS);
 	putchar('\n');
 	instructionBox("CADASTRO DE PERGUNTA","Verifique se todos os dados estão corretos.","Pressione [1] para reiniciar o cadastro ou [2] para confirmar.",STANDARD_BOX,INSTRUCTION_BOX);	
 	do
