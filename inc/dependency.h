@@ -10,7 +10,7 @@
 	#include "shutdown.h"
 	#include "register.h"
 	#include "adm.h"
-	#include "design.h" //apagar debug
+	#include "history.h"
 	
 #endif
 
@@ -72,6 +72,7 @@
 #ifdef __VIEW_H__
 	#include "design.h"
 	#include "helpers.h"
+	#include "history.h"
 #endif
 
 #ifdef __REGISTER_H__
@@ -90,4 +91,5 @@
 	#include "crud.h"
 	#include "helpers.h"
 	#include "sort.h"
+	#include "view.h"
 #endif

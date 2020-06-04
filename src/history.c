@@ -1,5 +1,23 @@
 #include "../inc/history.h"
 
+
+
+void lastPlayers(void)
+{
+	
+	if(historyPlayers == NULL)
+	{
+		eventsHandling(QUEUE_NOT_STARTED);
+		redersHistoryError();
+	}
+	else
+	{
+		rendersHistory(historyPlayers); 
+	}	
+}
+
+
+
 NODE ** newqueue(void)
 {
 	return (NODE **) allocateMemory(1,sizeof(NODE));
@@ -67,20 +85,20 @@ void deleteQueue(NODE ** frontQueue)
 	}
 }
 
-void saveHistoryList(NODE ** historyPlayers, CONTROLINT historySize)
+void saveHistoryList(NODE ** history, CONTROLINT historySize)
 {
 	FILEINF info;
 	NODE * current;
 	FILE * file = fopen(HISTORY_FILE_NAME, BINARY_WRITING);
 	
-	if(historyPlayers == NULL) 
+	if(history == NULL) 
 		eventsHandling(QUEUE_NOT_STARTED);
 		
 	info.size = historySize;
 	
 	writeData(&info,sizeof(FILEINF),1,file); 
 	
-	current = *historyPlayers; 
+	current = *history; 
 	while(current != NULL)
 	{		
 		writeData(&current->info,sizeof(USER),1,file);
@@ -90,18 +108,51 @@ void saveHistoryList(NODE ** historyPlayers, CONTROLINT historySize)
 	fclose(file);
 }
 
-void historyForPrint(NODE ** historyPlayers, USER * players, CONTROLINT historySize)
+void historyForPrint(NODE ** history, USER * players, CONTROLINT historySize)
 {
-	if(historyPlayers == NULL) 
+	if(history == NULL) 
 		eventsHandling(QUEUE_NOT_STARTED);
 	
 	CONTROLINT i;	
-	NODE * aux = *historyPlayers;
+	NODE * aux = *history;
 	
-	for(i=0;i<historySize;i++)
+	if(historySize > 0)
 	{
-		players[i] = aux->info;
-		aux = aux->next;
+		for(i=0;i<historySize;i++)
+		{
+			players[i] = aux->info;
+			aux = aux->next;
+		}
+		bubbleSort(players,historySize,INCREASING,STRING_DATA);
 	}
-	bubbleSort(players,historySize,INCREASING,STRING_DATA);
+	else
+		eventsHandling(EMPTY_QUEUE); //acrescentar esta opção na fila vazia no manipulador de erro deste tipo
 }
+
+USER returnsLastPlayersOneByOne(NODE ** history) //caso não tenha ordenação alfabética, usa-se essa
+{
+	if(history == NULL) 
+		eventsHandling(QUEUE_NOT_STARTED);
+	
+	static NODE * aux = NULL;
+	USER temporaryUser;
+	
+	if(*history != NULL)	
+	{
+		if(aux == NULL)	
+			aux = *historyPlayers;
+	
+		temporaryUser = aux->info;
+		aux = aux->next;			
+	}
+	else
+	{
+		eventsHandling(EMPTY_QUEUE); //acrescentar esta opção na fila vazia no manipulador de erro deste tipo
+		temporaryUser = createNullUser(); 
+	}
+	
+	return temporaryUser;	
+}
+
+
+

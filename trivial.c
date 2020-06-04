@@ -20,6 +20,7 @@ int main(void)
 			case TOP_10:
 				break;
 			case LATEST_PLAYERS:
+				lastPlayers();
 				break;
 			case MY_ACCOUNT:
 				insertQuestion();

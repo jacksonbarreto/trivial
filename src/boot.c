@@ -112,7 +112,6 @@ static void loadHistoryList(void)
 		pointer = openFile(HISTORY_FILE_NAME,BINARY_WRITING);		
 		writeData(&info,sizeof(FILEINF),1,pointer);		
 		settings.historySize=info.size;
-		historyPlayers = NULL;
 	} 
 	else
 	{
@@ -127,10 +126,7 @@ static void loadHistoryList(void)
 				equeue(historyPlayers,player);
 			}
 			while(!feof(pointer));
-		}
-		else
-			historyPlayers = NULL;
-		
+		}		
 	}
 	
 	fclose(pointer);

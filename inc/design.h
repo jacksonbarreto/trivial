@@ -60,7 +60,7 @@
 	void catchPassword(char * password, const CONTROLINT passwordSize);
 	
 	
-	void textFrame(const char limiter, const CONTROLINT internalPadding, const CONTROLINT frameWidth, const CONTROLINT internalAlignment, const CONTROLINT boxAlignment, const char * text, char * textColor, char * backgroundColor);
+	void textFrame(const char limiter, const CONTROLINT internalPadding, const CONTROLINT frameWidth, const CONTROLINT internalAlignment, const CONTROLINT boxAlignment, char * text, char * textColor, char * backgroundColor);
 	void alignmentPadding(const CONTROLINT lineSize, const CONTROLINT alignment);	
 	void emptyLine(const char limiter, const CONTROLINT lineSize, char * textColor, char * backgroundColor);
 	void bottomLine(const char limiter, const char fill, const CONTROLINT lineSize, char * textColor, char * backgroundColor);

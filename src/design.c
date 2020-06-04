@@ -1,7 +1,7 @@
 #include "../inc/design.h"
 
 
-void textFrame(const char limiter, const CONTROLINT internalPadding, const CONTROLINT frameWidth, const CONTROLINT internalAlignment, const CONTROLINT boxAlignment, const char * text, char * textColor, char * backgroundColor)
+void textFrame(const char limiter, const CONTROLINT internalPadding, const CONTROLINT frameWidth, const CONTROLINT internalAlignment, const CONTROLINT boxAlignment, char * text, char * textColor, char * backgroundColor)
 {
 	const char delimiter[] = " ";
 	const CONTROLINT stringTerminator=1;
@@ -51,7 +51,7 @@ void lineTitle(const char limiter, const char fill, const CONTROLINT lineSize, c
 
 void emptyLine(const char limiter, const CONTROLINT lineSize, char * textColor, char * backgroundColor)
 {
-	lineBuilder(limiter,' ',' ',PADDING_NULL,PADDING_NULL,lineSize,ALIGN_CENTER,"", textColor, backgroundColor);
+	lineBuilder(limiter,' ',' ',PADDING_NULL,PADDING_NULL,lineSize,ALIGN_CENTER," ", textColor, backgroundColor);
 }
 
 void lineBuilder(const char limiter, const char fill, const char charPaddingTitle, const CONTROLINT internalPadding, 
@@ -104,8 +104,7 @@ const CONTROLINT paddingTitleSize, const CONTROLINT lineSize, const CONTROLINT a
 			putchar(' ');
 		putchar(limiter);
 		applyColor(RESET_COLOR);
-		putchar('\n');
-		
+		putchar('\n');		
 	}	
 }
 

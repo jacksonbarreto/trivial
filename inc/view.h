@@ -25,12 +25,16 @@
 	CONTROLINT rendersInvalidNickname(void);
 	CONTROLINT rendersUsernameAlreadyExists(void);
 	
-	/*Adm*/
-	
+	/*Adm*/	
 	void rendersGetQuestionTitle(char * title);
 	void rendersGetQuestionRightAnswer(char * correctAnswer);
 	void rendersGetQuestionAnswer(char * answer, CONTROLINT progressBarPosition);
 	CONTROLINT rendersConfirmationQuestion(QUESTION question);
+	
+	/*History*/
+	void rendersHistory(NODE ** history);
+	void redersHistoryError(void);
+	
 	
 	
 #endif

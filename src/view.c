@@ -345,3 +345,76 @@ CONTROLINT rendersConfirmationQuestion(QUESTION question)
 	
 	return choice;
 }
+
+
+
+/*History*/
+
+void rendersHistory(NODE ** history)
+{
+	char messageEmptyList[] = "Infelizmente nenhum jogador ainda se aventurou no fantástico mundo do TRIVIAL. Que tal você começar esta proeza!?";
+	char * userLine = (char * ) allocateMemory(MAX_NICKNAME_SIZE+10,sizeof(char));
+	USER temporaryUser; //apagar casou use o vetor de users
+	//USER * playerList = (USER *) allocateMemory(settings.historySize,sizeof(USER));
+	CONTROLINT i;
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	
+	/*header*/
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_CENTER,"HISTÓRICO",TEXT_STANDARD,BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_CENTER,"| Listagem dos últimos 15 jogadores |",TEXT_STANDARD,BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	bottomLine(' ','-',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
+	
+	/*content*/
+	if(settings.historySize > 0)
+	{
+		
+		for(i=0;i<settings.historySize;i++)
+		{
+			/*
+			historyForPrint(historyPlayers,playerList,settings.historySize);
+			sprintf(userLine,"%d - %s",i+1,playerList[i].nickname);	
+			*/
+			temporaryUser = returnsLastPlayersOneByOne(historyPlayers);	
+			sprintf(userLine,"%d - %s",i+1,temporaryUser.nickname);				
+			alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+			lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_LEFT,userLine,TEXT_STANDARD,BAKGROUND_STANDARD);
+		}		
+	}
+	else
+	{
+		alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+		emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
+		textFrame(' ',PADDING_INTERNAL,STANDARD_BOX_SIZE,ALIGN_CENTER,ALIGN_CENTER, messageEmptyList,TEXT_STANDARD,BAKGROUND_STANDARD);
+	}
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
+			
+	/*footer*/
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	bottomLine(' ','-',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_CENTER,"Pressione qualquer tecla para retornar ao menu principal...",TEXT_STANDARD,BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
+	getch();
+}
+
+void redersHistoryError(void)
+
+{
+	char message[] = "Algo terrível aconteceu durante o carregamento do programa que impediu a inicialização do histórico de jogadores. Tente reinicializar o jogo, caso isto não funcione contate o suporte. Lamentamos este inconveniente.";
+	char instruction[] = "Pressione qualquer tecla para voltar ao menu principal...";
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("FALHA AO CARREGAR HISTÓRICO",message,instruction,ERROR_BOX,INSTRUCTION_BOX);
+	getch();
+}
