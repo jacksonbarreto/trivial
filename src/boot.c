@@ -77,59 +77,68 @@ static USER createSUDO(void)
 static void loadTopList(void)
 {
 	FILEINF info;
-	startFileInf(&info);
+	USER temporaryPlayer;
+	FILE * file = fopen(TOP_LIST_FILE_NAME, BINARY_READING);
 	
-	FILE * pointer = fopen(TOP_LIST_FILE_NAME, BINARY_READING);
-	if(pointer == NULL)
+	startFileInf(&info);
+	topPlayers = newList();
+	
+	if(file == NULL)
 	{
-		pointer = openFile(TOP_LIST_FILE_NAME,BINARY_WRITING);		
-		writeData(&info,sizeof(FILEINF),1,pointer);		
+		file = openFile(TOP_LIST_FILE_NAME,BINARY_WRITING);		
+		writeData(&info,sizeof(FILEINF),1,file);		
 		settings.topSize=info.size;
 	} 
 	else
 	{
-		fread(&info,sizeof(FILEINF),1,pointer);
-		settings.topSize = info.size;	
-	}
-	if(settings.topSize != 0)
-		topPlayers = (USER *) allocateMemory(settings.topSize,sizeof(USER));
-	else
-		topPlayers = NULL;
+		fread(&info,sizeof(FILEINF),1,file);
+		settings.topSize = info.size;
 		
-	fclose(pointer);
+		if(info.size > 0)
+		{
+			do
+			{
+				readData(&temporaryPlayer,sizeof(USER),1,file);
+				insertInOrder(topPlayers,temporaryPlayer);
+			}
+			while(!feof(file));
+		}	
+	}		
+	fclose(file);
 }
 
 static void loadHistoryList(void)
 {
 	FILEINF info;
-	USER player;
-	startFileInf(&info);
+	USER temporaryPlayer;
+	FILE * file = fopen(HISTORY_FILE_NAME, BINARY_READING);
 	
+	startFileInf(&info);	
 	historyPlayers = newqueue();
-	FILE * pointer = fopen(HISTORY_FILE_NAME, BINARY_READING);
-	if(pointer == NULL)
+	
+	if(file == NULL)
 	{
-		pointer = openFile(HISTORY_FILE_NAME,BINARY_WRITING);		
-		writeData(&info,sizeof(FILEINF),1,pointer);		
+		file = openFile(HISTORY_FILE_NAME,BINARY_WRITING);		
+		writeData(&info,sizeof(FILEINF),1,file);		
 		settings.historySize=info.size;
 	} 
 	else
 	{
-		fread(&info,sizeof(FILEINF),1,pointer);		
+		fread(&info,sizeof(FILEINF),1,file);		
 		settings.historySize = info.size;
 		
 		if(info.size > 0)
 		{
 			do
 			{
-				readData(&player,sizeof(USER),1,pointer);
-				equeue(historyPlayers,player);
+				readData(&temporaryPlayer,sizeof(USER),1,file);
+				equeue(historyPlayers,temporaryPlayer);
 			}
-			while(!feof(pointer));
+			while(!feof(file));
 		}		
 	}
 	
-	fclose(pointer);
+	fclose(file);
 }
 
 static void createDefaultThemes(THEME theme[TOTAL_THEMES])

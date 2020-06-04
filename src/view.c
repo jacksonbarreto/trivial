@@ -383,7 +383,7 @@ void rendersHistory(NODE ** history)
 			historyForPrint(historyPlayers,playerList,settings.historySize);
 			sprintf(userLine,"%d - %s",i+1,playerList[i].nickname);	
 			*/
-			temporaryUser = returnsLastPlayersOneByOne(historyPlayers);	
+			temporaryUser = returnsLastPlayersOneByOne(history);	
 			sprintf(userLine,"%d - %s",i+1,temporaryUser.nickname);				
 			alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 			lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_LEFT,userLine,TEXT_STANDARD,BAKGROUND_STANDARD);
@@ -408,13 +408,80 @@ void rendersHistory(NODE ** history)
 	getch();
 }
 
-void redersHistoryError(void)
+void redersHistoryFatalError(void)
 
 {
-	char message[] = "Algo terrível aconteceu durante o carregamento do programa que impediu a inicialização do histórico de jogadores. Tente reinicializar o jogo, caso isto não funcione contate o suporte. Lamentamos este inconveniente.";
-	char instruction[] = "Pressione qualquer tecla para voltar ao menu principal...";
+	char message[] = "Algo terrível aconteceu durante o carregamento do programa que impediu a inicialização do histórico de jogadores. Tente reinstalar o jogo, caso isto não funcione contate o suporte. O TRIVIAL precisa ser encerrado, lamentamos este inconveniente.";
+	char instruction[] = "Pressione qualquer tecla para finalizar o programa.";
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	instructionBox("FALHA AO CARREGAR HISTÓRICO",message,instruction,ERROR_BOX,INSTRUCTION_BOX);
+	getch();
+}
+
+/*Top 10*/
+	
+void redersTop10FatalError(void)
+{
+	char message[] = "Algo terrível aconteceu durante o carregamento do programa que impediu a inicialização da lista dos 10 melhores jogadores. Tente reinstalar o jogo, caso isto não funcione contate o suporte. O TRIVIAL precisa ser encerrado, lamentamos este inconveniente.";
+	char instruction[] = "Pressione qualquer tecla para finalizar o programa.";
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("FALHA AO CARREGAR HISTÓRICO",message,instruction,ERROR_BOX,INSTRUCTION_BOX);
+	getch();
+	
+}
+
+void rendersTopPlayers(NODE ** bestPlayers)
+{
+	char messageEmptyList[] = "Infelizmente nenhum jogador ainda se aventurou no fantástico mundo do TRIVIAL. Que tal você começar esta proeza!?";
+	char templates[] = "%dº - %s  com %2f \% de acertos";
+	char * userLine = (char * ) allocateMemory(MAX_NICKNAME_SIZE+strlen(templates)+2,sizeof(char));
+	USER temporaryUser;
+	CONTROLINT i;
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	
+	/*header*/
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_CENTER,"MELHORES JOGADORES",TEXT_STANDARD,BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_CENTER,"| Listagem dos 10 melhores jogadores de todos os tempos |",TEXT_STANDARD,BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	bottomLine(' ','-',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
+	
+	/*content*/
+	if(settings.topSize > 0)
+	{
+		
+		for(i=0;i<settings.historySize;i++)
+		{
+			temporaryUser = returnsTopPlayersOneByOne(bestPlayers);	
+			sprintf(userLine,templates,i+1,temporaryUser.nickname,temporaryUser.percentageCorrect);				
+			alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+			lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_LEFT,userLine,TEXT_STANDARD,BAKGROUND_STANDARD);
+		}		
+	}
+	else
+	{
+		alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+		emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
+		textFrame(' ',PADDING_INTERNAL,STANDARD_BOX_SIZE,ALIGN_CENTER,ALIGN_CENTER, messageEmptyList,TEXT_STANDARD,BAKGROUND_STANDARD);
+	}
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
+			
+	/*footer*/
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	bottomLine(' ','-',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_CENTER,"Pressione qualquer tecla para retornar ao menu principal...",TEXT_STANDARD,BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
 	getch();
 }

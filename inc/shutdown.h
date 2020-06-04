@@ -3,7 +3,7 @@
 	#include "config.h"
 	
 	void turnOff();
-	static void saveTopList(USER * topPlayers);
+	static void quitTopList(void);
 	static void quitHistoryList(void);
 	static void saveSettings(void);
 	

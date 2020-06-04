@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=10000000a0000000001000000
-UnitCount=32
+UnitCount=34
 
 [VersionInfo]
 Major=1
@@ -362,6 +362,26 @@ BuildCmd=
 
 [Unit32]
 FileName=src\history.c
+CompileCpp=0
+Folder=src
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit33]
+FileName=inc\top.h
+CompileCpp=0
+Folder=inc
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit34]
+FileName=src\top.c
 CompileCpp=0
 Folder=src
 Compile=1

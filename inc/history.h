@@ -3,7 +3,7 @@
 	#include "config.h"
 	
 	NODE ** newqueue(void);
-	int equeue(NODE ** frontQueue, USER player);
+	void equeue(NODE ** frontQueue, USER player);
 	void dqueue(NODE ** frontQueue);
 	void deleteQueue(NODE ** frontQueue);
 	void saveHistoryList(NODE ** historyPlayers, CONTROLINT historySize);

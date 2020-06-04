@@ -18,6 +18,7 @@ int main(void)
 				registerNewUser();
 				break;
 			case TOP_10:
+				listBestPlayers();
 				break;
 			case LATEST_PLAYERS:
 				lastPlayers();

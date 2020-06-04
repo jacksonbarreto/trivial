@@ -3,19 +3,16 @@
 void turnOff()
 {
 	saveSettings();
-	saveTopList(topPlayers);
+	quitTopList();
 	quitHistoryList();
 	free(topPlayers);  //conferir se é vetor ou lista
 	free(historyPlayers); //conferir se é vetor ou lista
 	
 }
 
-static void saveTopList(USER * topPlayers)
+static void quitTopList(void)
 {
-	FILE * pointer = fopen(TOP_LIST_FILE_NAME, BINARY_WRITING);
-	writeData(&settings.topSize,sizeof(CONTROLINT),1,pointer); // corrigir para file info
-	writeData(&topPlayers,sizeof(USER),settings.topSize,pointer);
-	fclose(pointer);
+	deleteList(topPlayers);
 }
 
 static void quitHistoryList(void)

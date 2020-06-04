@@ -39,6 +39,16 @@ void eventsHandling(CONTROLINT event)
 			break;
 		case QUEUE_NOT_STARTED:
 			fprintf(logs,"%s - Falha em [history.h]. Tentativa de uso de FILA não inicializada.\n", formattedDateTime());
+			redersHistoryFatalError();
+			exit(EXIT_FAILURE);
+			break;
+		case LIST_NOT_STARTED:
+			fprintf(logs,"%s - Falha em [top.h]. Tentativa de uso de LISTA não inicializada.\n", formattedDateTime());
+			redersTop10FatalError();
+			exit(EXIT_FAILURE);
+			break;
+		case LIST_QUEUE:
+			fprintf(logs,"%s - Falha em [top.h]. Tentativa de uso de LISTA vazia.\n", formattedDateTime());
 			break;
 		default:
 			fprintf(logs,"%s - Evento desconhecido\n", formattedDateTime());

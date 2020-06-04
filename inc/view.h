@@ -33,7 +33,11 @@
 	
 	/*History*/
 	void rendersHistory(NODE ** history);
-	void redersHistoryError(void);
+	void redersHistoryFatalError(void);
+	
+	/*Top 10*/
+	void rendersTopPlayers(NODE ** history);
+	void redersTop10FatalError(void);
 	
 	
 	
