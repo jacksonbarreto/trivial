@@ -131,30 +131,29 @@ CONTROLINT rendersGetAnswer(QUESTION mountedQuestion)
 	
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
-	//menuBox(mountedQuestion.title,mountedQuestion.answers,MAX_RESPONSE_OPTIONS);
+	cardFrame(mountedQuestion.title,mountedQuestion.answers);
 	putchar('\n');
-	//emptyLine(' ',MENU_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
-	instructionBox(" "," ","Pressione o número da resposta correta.",STANDARD_BOX,INSTRUCTION_BOX);
+	simpleInstructionBox("Pressione o número correspondente a resposta correta.",STANDARD_BOX);
+	
 	do
 	{
 		choice = getChoiceMenu();
 	}
 	while(!inRange(choice,1,4,CLOSED_RANGE) );
-
 	
 	return choice;
 }
 
 void rendersResultQuestion(QUESTION mountedQuestion, CONTROLINT choice, CONTROLINT correct)
 {
-	
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
-	//menuBox(mountedQuestion.title,mountedQuestion.answers,MAX_RESPONSE_OPTIONS);
-	putchar('\n');
-	instructionBox(" ","Falta exibir a correta e a escolhida","Pressione qualquer tecla para continar..",STANDARD_BOX,INSTRUCTION_BOX);
-	wait();
 	
+	cardFrameContrast(mountedQuestion.title,mountedQuestion.answers,correct,choice);
+	putchar('\n');
+	simpleInstructionBox("Pressione qualquer tecla para continar...",STANDARD_BOX);
+
+	wait();	
 }
 
 /*Register*/
@@ -354,19 +353,16 @@ void rendersGetQuestionAnswer(char * answer, CONTROLINT progressBarPosition)
 
 CONTROLINT rendersConfirmationQuestion(QUESTION question)
 {
-	CONTROLINT i, choice;
-	
-	char listaQuestion[MAX_RESPONSE_OPTIONS][MAX_ANSWER_SIZE];
-	
-	for(i=0;i<MAX_RESPONSE_OPTIONS;i++)
-		sprintf(listaQuestion[i],"%d - %s",i+1,question.answers[i]);
+	CONTROLINT choice;	
 	
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	progressBar(STANDARD_BOX,6,6,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
-	//menuBox(question.title,listaQuestion,MAX_RESPONSE_OPTIONS);
+	cardFrame(question.title,question.answers);
 	putchar('\n');
+	
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	progressBar(STANDARD_BOX_SIZE,6,6,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);	
+	
 	instructionBox("CADASTRO DE PERGUNTA","Verifique se todos os dados estão corretos.","Pressione [1] para reiniciar o cadastro ou [2] para confirmar.",STANDARD_BOX,INSTRUCTION_BOX);	
 	do
 	{

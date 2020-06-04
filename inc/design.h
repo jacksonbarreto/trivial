@@ -6,6 +6,7 @@
 	
 	#define STANDARD_SCREEN_WIDTH 120
 	#define STANDARD_BOX_SIZE 80
+	#define CARD_BOX_SIZE 50
 	#define PLACAR_BOX_SIZE 120
 	#define MENU_BOX_SIZE 50
 	#define PADDING_TITLE 2
@@ -30,7 +31,7 @@
 	/*TYPES OF BOX*/
 	#define QUESTION_BOX 1
 	#define INSTRUCTION_BOX 2
-		
+	
 	/*COLORS*/
 	
 	#define RESET_COLOR "\x1B[0m"
@@ -50,13 +51,15 @@
 	
 	
 	void instructionBox(char * title, char * message, char * instruction, CONTROLINT boxStyle, CONTROLINT typeBox);
+	void simpleInstructionBox(char * instruction, CONTROLINT boxStyle);
 	void verticalPadding(CONTROLINT lines);
 	void menuBox(char * title, char  options[][MAX_OPTION_MENU_SIZE], CONTROLINT totalOptions);
 	void placarBox(char * playerNickname, CONTROLINT gameMode);
 	void positionCursor(CONTROLINT linesUp, CONTROLINT movementsToRight, CONTROLINT boxStyle);
 	void progressBar(const CONTROLINT lineSize, const CONTROLINT totalSteps, const CONTROLINT currentStep, char * completedStepColor, char * stepColorNotCompleted);
 	void clearScreen(void);
-	
+	void cardFrame(char * questionTitle, char answers[MAX_RESPONSE_OPTIONS][MAX_ANSWER_SIZE]);
+	void cardFrameContrast(char * questionTitle, char answers[MAX_RESPONSE_OPTIONS][MAX_ANSWER_SIZE], CONTROLINT correctOption, CONTROLINT choice);
 	void catchPassword(char * password, const CONTROLINT passwordSize);
 	
 	

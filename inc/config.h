@@ -100,6 +100,7 @@
 	#define MAX_PLAYERS 6
 	#define MIN_PLAYERS 2
 	#define MAX_RESPONSE_OPTIONS 4
+	
 		
 	/*setting menus*/
 		/*main menu*/
