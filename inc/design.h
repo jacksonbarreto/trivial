@@ -54,7 +54,7 @@
 	void simpleInstructionBox(char * instruction, CONTROLINT boxStyle);
 	void verticalPadding(CONTROLINT lines);
 	void menuBox(char * title, char  options[][MAX_OPTION_MENU_SIZE], CONTROLINT totalOptions);
-	void placarBox(char * playerNickname, CONTROLINT gameMode);
+	void placarBox(USER player, CONTROLINT gameMode);
 	void positionCursor(CONTROLINT linesUp, CONTROLINT movementsToRight, CONTROLINT boxStyle);
 	void progressBar(const CONTROLINT lineSize, const CONTROLINT totalSteps, const CONTROLINT currentStep, char * completedStepColor, char * stepColorNotCompleted);
 	void clearScreen(void);

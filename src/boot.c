@@ -55,7 +55,7 @@ static void loadUsers(void)
 	else
 	{ 
 		fread(&info,sizeof(FILEINF),1,pointer);
-		settings.totalUsers = info.size;		
+		settings.totalUsers = info.size;	
 	}
 	
 	fclose(pointer);
@@ -170,8 +170,9 @@ static void loadThemes(void)
 		writeData(&info,sizeof(FILEINF),1,pointer);
 		createDefaultThemes(theme);
 		writeData(&theme,sizeof(THEME),TOTAL_THEMES,pointer);
-		settings.totalThemes=info.size;
+		settings.totalThemes = info.size;
 		settings.lastIdUsedForThema = TOTAL_THEMES;
+		settings.lastIdUsedForQuestion = 0;
 		createQuestionFile();
 	} 
 	else
@@ -210,7 +211,7 @@ static void loadSettings(void)  //deve ser a última a carregar.
 		file = fopen(SETTING_FILE_NAME, BINARY_WRITING);	
 	
 		settings.totalRoundsGlobal=0;		
-		settings.averageGlobalErrorAnswer=0.0;
+		settings.averageGlobalErrorAnswer=1;
 		settings.defragRate=0.5;		
 		writeData(&settings,sizeof(SETTINGS),1,file);
 	}
@@ -220,6 +221,9 @@ static void loadSettings(void)  //deve ser a última a carregar.
 		settings.totalRoundsGlobal= setts.totalRoundsGlobal;		
 		settings.averageGlobalErrorAnswer=setts.averageGlobalErrorAnswer;
 		settings.defragRate=setts.defragRate;
+		settings.lastIdUsedForUser = setts.lastIdUsedForUser;
+		settings.lastIdUsedForThema = setts.lastIdUsedForThema;
+		settings.lastIdUsedForQuestion = setts.lastIdUsedForQuestion;
 	}
 	fclose(file);
 }

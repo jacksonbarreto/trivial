@@ -104,7 +104,7 @@ void rendersGetPassword(char * password)
 	catchPassword(password,MAX_PASSWD_SIZE);
 }
 
-CONTROLINT rendersGetTheme(char themesName[][MAX_SIZE_THEME_NAME],CONTROLINT totalThemes)
+CONTROLINT rendersGetTheme(char themesName[][MAX_SIZE_THEME_NAME],const CONTROLINT totalThemes)
 {
 	CONTROLINT i, choice;
 	char listaThemes[totalThemes][MAX_OPTION_MENU_SIZE];
@@ -125,11 +125,12 @@ CONTROLINT rendersGetTheme(char themesName[][MAX_SIZE_THEME_NAME],CONTROLINT tot
 	return choice;
 }
 
-CONTROLINT rendersGetAnswer(QUESTION mountedQuestion)
+CONTROLINT rendersGetAnswer(QUESTION mountedQuestion, USER player, CONTROLINT gameMode)
 {
 	CONTROLINT choice;	
 	
 	clearScreen();
+	placarBox(player, gameMode);
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	cardFrame(mountedQuestion.title,mountedQuestion.answers);
 	putchar('\n');
@@ -167,7 +168,7 @@ void rendersGetNameForRegister(char * name)
 	progressBar(STANDARD_BOX_SIZE,5,1,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
 	instructionBox("CADASTRO DE USUÁRIO",message,"Nome:",STANDARD_BOX,QUESTION_BOX);
 	positionCursor(2,29,STANDARD_BOX);
-	getString(MAX_NAME_SIZE,name);	
+	getString(MAX_NAME_SIZE-1,name);	
 }
 
 void rendersGetUsernameForRegister(char * username)
@@ -180,7 +181,7 @@ void rendersGetUsernameForRegister(char * username)
 	progressBar(STANDARD_BOX_SIZE,5,2,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
 	instructionBox("CADASTRO DE USUÁRIO",message,"Username:",STANDARD_BOX,QUESTION_BOX);
 	positionCursor(2,34,STANDARD_BOX);
-	getString(MAX_USER_NAME_SIZE,username);	
+	getString(MAX_USER_NAME_SIZE-1,username);	
 }
 
 void rendersGetNickname(char * nickname)
@@ -193,7 +194,7 @@ void rendersGetNickname(char * nickname)
 	progressBar(STANDARD_BOX_SIZE,5,3,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
 	instructionBox("CADASTRO DE USUÁRIO",message,"Nickname:",STANDARD_BOX,QUESTION_BOX);
 	positionCursor(2,34,STANDARD_BOX);
-	getString(MAX_NICKNAME_SIZE,nickname);	
+	getString(MAX_NICKNAME_SIZE-1,nickname);	
 }
 
 void rendersGetPasswordForRegister(char * password, CONTROLINT attempt)
@@ -440,7 +441,7 @@ void rendersHistory(NODE ** history)
 	lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_CENTER,"Pressione qualquer tecla para retornar ao menu principal...",TEXT_STANDARD,BAKGROUND_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
-	getch();
+	wait();
 }
 
 void redersHistoryFatalError(void)
@@ -451,7 +452,7 @@ void redersHistoryFatalError(void)
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	instructionBox("FALHA AO CARREGAR HISTÓRICO",message,instruction,ERROR_BOX,INSTRUCTION_BOX);
-	getch();
+	wait();
 }
 
 /*Top 10*/
@@ -463,14 +464,14 @@ void redersTop10FatalError(void)
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	instructionBox("FALHA AO CARREGAR HISTÓRICO",message,instruction,ERROR_BOX,INSTRUCTION_BOX);
-	getch();
+	wait();
 	
 }
 
 void rendersTopPlayers(NODE ** bestPlayers)
 {
 	char messageEmptyList[] = "Infelizmente nenhum jogador ainda se aventurou no fantástico mundo do TRIVIAL. Que tal você começar esta proeza!?";
-	char templates[] = "%dº - %s  com %2f \% de acertos";
+	char templates[] = "%dº - %s  com %2.f %% de acertos";
 	char * userLine = (char * ) allocateMemory(MAX_NICKNAME_SIZE+strlen(templates)+2,sizeof(char));
 	USER temporaryUser;
 	CONTROLINT i;
@@ -518,5 +519,5 @@ void rendersTopPlayers(NODE ** bestPlayers)
 	lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_CENTER,"Pressione qualquer tecla para retornar ao menu principal...",TEXT_STANDARD,BAKGROUND_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
-	getch();
+	wait();
 }

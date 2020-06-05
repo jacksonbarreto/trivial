@@ -7,8 +7,8 @@
 	CONTROLINT rendersGetGameMode(void);
 	CONTROLINT rendersGetTotalPlayers(void);
 	CONTROLINT rendersInvalidUsername(CONTROLINT attempts);
-	CONTROLINT rendersGetTheme(char themesName[][MAX_SIZE_THEME_NAME],CONTROLINT totalThemes);
-	CONTROLINT rendersGetAnswer(QUESTION mountedQuestion);
+	CONTROLINT rendersGetTheme(char themesName[][MAX_SIZE_THEME_NAME],const CONTROLINT totalThemes);
+	CONTROLINT rendersGetAnswer(QUESTION mountedQuestion, USER player, CONTROLINT gameMode);
 	void rendersInvalidPassword(CONTROLINT attempts);
 	void rendersMaxAttempts(void);
 	void rendersGetUsername(char * username);

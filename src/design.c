@@ -257,7 +257,6 @@ void simpleInstructionBox(char * instruction, CONTROLINT boxStyle)
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	emptyLine(' ',STANDARD_BOX_SIZE,textColor, backgroundColor);
 		
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	textFrame(' ',PADDING_INTERNAL,STANDARD_BOX_SIZE,ALIGN_CENTER,ALIGN_CENTER,instruction,textColor, backgroundColor);
 	
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
@@ -374,16 +373,27 @@ void menuBox(char * title, char options[][MAX_OPTION_MENU_SIZE], CONTROLINT tota
 	emptyLine(' ',MENU_BOX_SIZE,textColor, backgroundColor);	
 }
 
-void placarBox(char * playerNickname, CONTROLINT gameMode)
+void placarBox(USER player, CONTROLINT gameMode)
 {
 	char textColor[STRING_COLOR_SIZE], backgroundColor[STRING_COLOR_SIZE];
 	char line1[]="JOGADOR                  HISTÓRIA        BIOLOGIA E GEOGRAFIA        ARTES E LETRAS        TRIVIALIDADES";
-	char score[]="                    11 / 3                11 / 3                   11 / 3                11 / 3";
-	char line2[100];
+	char line2[130];
+	char * name;
+	CONTROLINT i,j, difSize;
 	
-	setColor(textColor,backgroundColor,PLACAR_BOX);
-	strcpy(line2,playerNickname);
-	strcat(line2,score);
+	difSize = MAX_NICKNAME_SIZE - 1 - strlen(player.nickname);
+	name = (char *) allocateMemory(MAX_NICKNAME_SIZE,sizeof(char));
+	strcpy(name,player.nickname);
+	if(difSize != 0)
+	{		
+		for(i=0,j=strlen(player.nickname);i<difSize;i++,j++)
+			name[j] = ' ';
+		name[j] = '\0';
+	}
+	
+	sprintf(line2,"%s                    %d/%d                %d/%d                   %d/%d                %d/%d",name,player.currentScore[0],gameMode,player.currentScore[1],gameMode,player.currentScore[2],gameMode,player.currentScore[3],gameMode);
+	setColor(textColor,backgroundColor,PLACAR_BOX);	
+	
 	
 	alignmentPadding(PLACAR_BOX_SIZE,ALIGN_CENTER);
 	emptyLine(' ',PLACAR_BOX_SIZE,textColor, backgroundColor);

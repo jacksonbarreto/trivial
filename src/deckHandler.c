@@ -26,7 +26,7 @@ static void loadDeck(CARD ** deck, const CONTROLINT themeId, long int * lastAces
 {	
 	FILE * file;
 	CONTROLINT i;
-	QUESTION question;
+	//QUESTION question;
 	QUESTION * areaShuffles = (QUESTION *) allocateMemory(deckSize,sizeof(QUESTION));
 	char * fileName = (char *) allocateMemory(strlen(QUESTION_PREFIX)+QUESTION_SUFIX_SIZE,sizeof(char));
 		
@@ -38,20 +38,19 @@ static void loadDeck(CARD ** deck, const CONTROLINT themeId, long int * lastAces
 	{	
 		do
 		{
-			readData(&question,sizeof(QUESTION),1,file);
-			areaShuffles[i] = question; //corrigir para ler direto no vetor
+			readData(&areaShuffles[i],sizeof(QUESTION),1,file);
+			//areaShuffles[i] = question;
 			if (feof(file))
 				fseek(file,sizeof(FILEINF),SEEK_SET);
 		}
-		while(question.id == 0);		
-		
+		while(areaShuffles[i].id == 0);			
 	}
 	*lastAcess = ftell(file);		
 	fclose(file);
 	
-	shuffleQuestions(areaShuffles,deckSize);
+	//shuffleQuestions(areaShuffles,deckSize);
 	for(i=0;i<deckSize;i++)
-		pushDeck(deck,areaShuffles[i]);		
+		pushDeck(deck,areaShuffles[i]);	
 	
 	free(fileName);
 	free(areaShuffles);
@@ -59,7 +58,8 @@ static void loadDeck(CARD ** deck, const CONTROLINT themeId, long int * lastAces
 
 CARD ** createDeck(void)
 {
-	CARD ** deck = (CARD **) allocateMemory(1,sizeof(CARD *));
+	CARD ** deck = (CARD **) allocateMemory(1,sizeof(CARD));
+	
 	*deck = NULL;
 	return deck;
 }
@@ -97,7 +97,7 @@ static CONTROLINT deckIsEmpty(CARD ** deck)
 static void killCard(CARD ** deck)
 {
 	CARD * aux;
-	if(deckIsEmpty)
+	if(deckIsEmpty(deck))
 		eventsHandling(REMOVAL_STACK_EMPTY);
 	else
 	{

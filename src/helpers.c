@@ -103,7 +103,8 @@ void swapQuestion(QUESTION * questionA, QUESTION * questionB)
 
 void shuffleQuestions(QUESTION * listQuestion, const CONTROLINT size)
 {
-	CONTROLINT i;
+	CONTROLINT i, aux;
+	QUESTION auxiliaryQuestion;
 	for(i=size-1; i>0 ; i--)
 		swapQuestion(&listQuestion[i],&listQuestion[randomNumber(0,i)]);
 }

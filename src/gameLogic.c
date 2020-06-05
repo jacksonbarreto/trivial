@@ -8,7 +8,10 @@ CONTROLINT startGame(void)
 	gameMode = getGameMode();
 	totalPlayers = getTotalPlayers();
 	players = login(totalPlayers);
+	
 	playRound(players,totalPlayers,gameMode);
+	
+	//QUem mata esse ponteiro para user criado pelo login?
 	
 	return SUCCESS;
 }
@@ -18,6 +21,18 @@ static CONTROLINT getGameMode(void)
 	CONTROLINT gameMode;
 	
 	gameMode = rendersGetGameMode();
+	
+	switch(gameMode)
+	{
+		case SMALL_MODE:
+			gameMode = SMALL_MODE_QUESTIONS;
+			break;
+		case MEDIUM_MODE:
+			gameMode = MEDIUM_MODE_QUESTIONS;
+			break;
+		case LARGE_MODE:
+			gameMode = LARGE_MODE_QUESTIONS;
+	}
 	
 	return gameMode;	
 }
@@ -39,6 +54,7 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 	THEME * listThemes;
 	
 	listThemes = instantiateThemes();
+	
 	bubbleSort(players, totalPlayers, INCREASING, ID_DATA);
 	
 	for(i=0; i < totalPlayers; i++)
@@ -61,7 +77,7 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 			mountedQuestion = originalQuestion;
 			shufflesAnswers(mountedQuestion.answers,MAX_RESPONSE_OPTIONS);
 			
-			choice = getAnswer(mountedQuestion);
+			choice = getAnswer(mountedQuestion, players[currentPlayer], gameMode); 
 			
 			result = isAnswerCorrect(choice,correctOption(originalQuestion,mountedQuestion));
 			
@@ -92,11 +108,11 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 	}while(REPEAT);
 }
 
-static CONTROLINT getAnswer(QUESTION mountedQuestion)
+static CONTROLINT getAnswer(QUESTION mountedQuestion, USER player, CONTROLINT gameMode)
 {
 	CONTROLINT choice;
 	
-	choice = rendersGetAnswer(mountedQuestion);
+	choice = rendersGetAnswer(mountedQuestion, player,gameMode);
 	
 	return choice-1; //retorna o indice do vetor onde está a resposta.
 }
@@ -109,7 +125,7 @@ static CONTROLINT getTheme(void)
 	getThemesName(themesName);
 	choice = rendersGetTheme(themesName,settings.totalThemes);
 	
-	return choice-1; //é o índice do vetor	
+	return (choice-1); //é o índice do vetor	
 }
 
 static THEME * instantiateThemes(void)
@@ -117,14 +133,15 @@ static THEME * instantiateThemes(void)
 	FILE * file = openFile(THEMES_FILE_NAME, BINARY_READING);
 	THEME * listThemes;
 	CONTROLINT i;
-	
 	listThemes = (THEME *) allocateMemory(settings.totalThemes, sizeof(THEME));
 	fseek(file,sizeof(FILEINF),SEEK_SET);
-	readData(&listThemes,sizeof(THEME),settings.totalThemes,file);
-	fclose(file);
+	
+	readData(listThemes,sizeof(THEME),settings.totalThemes,file);
+	fclose(file);	
+	
 	for(i=0;i<settings.totalThemes;i++)
 		listThemes[i].deck = createDeck();
-		
+			
 	return listThemes;
 }
 
@@ -161,7 +178,7 @@ static CONTROLINT isEndGame(const USER * playersList, const CONTROLINT currentPl
 
 static CONTROLINT isEndRound(const CONTROLINT currentPlayer, const CONTROLINT totalPlayers)
 {
-	return (currentPlayer == totalPlayers-1);
+	return (currentPlayer == totalPlayers);
 }
 
 static void restartRound(CONTROLINT * currentPlayer)
@@ -229,7 +246,7 @@ static CONTROLINT defineDeckSize(const CONTROLINT gameMode, const CONTROLINT tot
 	CONTROLINT deckSize;
 	CONTROLINT averageErrorInt = (CONTROLINT) roundInteger(averageErrorAnswer);
 	
-	deckSize = (gameMode * totalPlayers * averageErrorInt)/totalThemes;
+	deckSize = gameMode * totalPlayers * averageErrorInt * totalThemes;
 	
 	return deckSize;
 }

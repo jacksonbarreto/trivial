@@ -104,7 +104,7 @@ USER returnsLastInTheList(NODE ** topList)
 	}
 	else
 	{
-		eventsHandling(LIST_QUEUE);
+		eventsHandling(LIST_QUEUE); // desnecessário pois gera registro no prieiro uso
 		temporaryPlayer = createNullUser();
 	}	
 	

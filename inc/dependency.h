@@ -67,6 +67,7 @@
 #ifdef __DECK_HANDLER__
 	#include "crud.h"
 	#include "error.h"
+	#include "design.h" //apagar! debug
 #endif
 
 #ifdef __DESIGN_H__
