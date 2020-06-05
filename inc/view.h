@@ -14,7 +14,8 @@
 	void rendersGetUsername(char * username);
 	void rendersGetPassword(char * password);
 	void rendersResultQuestion(QUESTION mountedQuestion, CONTROLINT choice, CONTROLINT correct);
-	
+	void renderParabens(USER player);
+		
 	/*Register*/
 	void rendersGetNameForRegister(char * name);
 	void rendersGetUsernameForRegister(char * username);
@@ -39,7 +40,10 @@
 	/*Top 10*/
 	void rendersTopPlayers(NODE ** history);
 	void redersTop10FatalError(void);
+	void renderParabensTop(USER player);
 	
-	
+	/*Ecrãs estaticos*/
+	void renderInicio(void);
+	void renderCreditos(void);	
 	
 #endif

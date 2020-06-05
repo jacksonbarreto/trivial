@@ -6,6 +6,7 @@ int main(void)
 	CONTROLINT choice;
 	
 	boot();
+	renderInicio();
 	
 	/*
 	QUESTION question;
@@ -48,6 +49,6 @@ int main(void)
 	
 	
 	turnOff();
-		
+	renderCreditos();	
 	return EXIT_SUCCESS;
 }
