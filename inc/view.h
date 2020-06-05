@@ -24,6 +24,7 @@
 	CONTROLINT rendersPasswordsDoNotMatch(void);
 	CONTROLINT rendersInvalidNickname(void);
 	CONTROLINT rendersUsernameAlreadyExists(void);
+	void rendersDesistRegistering(void);
 	
 	/*Adm*/	
 	void rendersGetQuestionTitle(char * title);

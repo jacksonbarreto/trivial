@@ -11,7 +11,7 @@
 	THEME createNullTheme(void);
 	THEME themeExist(const CONTROLINT themeId);
 	THEME themeExist(const CONTROLINT themeId);
-	USER findUserByUsername(const char * username);
+	USER findUserByUsername(char * username);
 	CONTROLINT nicknameExists(char * nickname);
 	CONTROLINT usernameExists(char * username);
 	USER createNullUser(void);

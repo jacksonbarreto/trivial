@@ -316,6 +316,14 @@ CONTROLINT rendersUsernameAlreadyExists(void)
 }
 
 
+void rendersDesistRegistering(void)
+{	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("ALERTA","Você desistiu do seu registro de usuário. Deverá tentar se logar outra vez.","Pressione qualquer tecla para tentar logar novamente...",ERROR_BOX,INSTRUCTION_BOX);
+	wait();
+}
+
 /* ADM */
 
 void rendersGetQuestionTitle(char * title)

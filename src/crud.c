@@ -100,7 +100,7 @@ USER userIdExists(const CONTROLINT id)
 	return user;
 }
 */
-USER findUserByUsername(const char * username)
+USER findUserByUsername(char * username)
 {
 	FILE * file = openFile(USERS_FILE_NAME,BINARY_READING);
 	USER user;

@@ -30,36 +30,33 @@ USER * login(const CONTROLINT totLogin)
 			{
 				choice = rendersInvalidUsername(attempts);
 				if(choice == REGISTER_USER)
-					temporaryUser = registerNewUserDuringTheGame(); 				
+					temporaryUser = registerNewUserDuringTheGame();
+				else
+					rendersDesistRegistering();
 			}
 			
 		}while(temporaryUser.id == 0);
 		
-		if(choice == REGISTER_USER) // isso podia passar lá para dentro. do pegar username
+		if(choice != REGISTER_USER) 
 		{
-			//Inclui o usuário no players sem pedir senha	
-			players[i] = temporaryUser;
-			choice = 0;
-			continue;			
-		}
-		
-		attempts = 0;
-		do
-		{
-			attempts++;
-			if(attempts > MAXIMUM_LOGIN_ATTEMPTS)
+			attempts = 0;
+			do
 			{
-				rendersMaxAttempts();
-				free(players);
-				return NULL;
+				attempts++;
+				if(attempts > MAXIMUM_LOGIN_ATTEMPTS)
+				{
+					rendersMaxAttempts();
+					free(players);
+					return NULL;
+				}
+				if(attempts > 1)
+					rendersInvalidPassword(attempts);
+					
+				getPassword(password);
 			}
-			if(attempts > 1)
-				rendersInvalidPassword(attempts);
+			while(strcmp(temporaryUser.password,password) != 0);
 				
-			getPassword(password);
-		}
-		while(strcmp(temporaryUser.password,password) != 0);
-	
+		}		
 		players[i] = temporaryUser;	
 	}
 	
