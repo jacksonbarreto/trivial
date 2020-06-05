@@ -92,14 +92,14 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 					if(isTop(players[currentPlayer]))
 					{
 						insertTop(players[currentPlayer]);
-						//Imprime parabens vc é um top 10.
+						renderParabensTop(players[currentPlayer]);	
 					}
 						
 					insertHistory(players,totalPlayers);
 					deckControl(listThemes,settings.totalThemes,deckSize,GAME_FINISHED);
 					increasesGlobalRound(players,totalPlayers,&settings);
 					free(listThemes);
-					//imprime vítoria do jogador
+					renderParabens(players[currentPlayer]);
 					return SUCCESS; //termina tudo			
 				}	
 			}
