@@ -80,6 +80,7 @@
 	#include "helpers.h"
 	#include "history.h"
 	#include "top.h"
+	#include <unistd.h>
 #endif
 
 #ifdef __REGISTER_H__

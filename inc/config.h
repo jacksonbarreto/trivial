@@ -6,8 +6,7 @@
 	#include <string.h>
 	#include <locale.h>
 	#include <time.h>
-	#include <errno.h>
-	
+	#include <errno.h>	
 	
 	/*size and limit settings*/
 	#define MAX_NAME_SIZE 50+1
