@@ -18,15 +18,13 @@ void deckControl(THEME * theme,const CONTROLINT totalTheme, const CONTROLINT dec
 			break;
 		default:
 			eventsHandling(GAME_STATUS_UNIDENTIFIED);
-	}	
-	
+	}		
 }
 
 static void loadDeck(CARD ** deck, const CONTROLINT themeId, long int * lastAcess, const CONTROLINT deckSize)
 {	
 	FILE * file;
 	CONTROLINT i;
-	//QUESTION question;
 	QUESTION * areaShuffles = (QUESTION *) allocateMemory(deckSize,sizeof(QUESTION));
 	char * fileName = (char *) allocateMemory(strlen(QUESTION_PREFIX)+QUESTION_SUFIX_SIZE,sizeof(char));
 		
@@ -39,7 +37,6 @@ static void loadDeck(CARD ** deck, const CONTROLINT themeId, long int * lastAces
 		do
 		{
 			readData(&areaShuffles[i],sizeof(QUESTION),1,file);
-			//areaShuffles[i] = question;
 			if (feof(file))
 				fseek(file,sizeof(FILEINF),SEEK_SET);
 		}
@@ -48,7 +45,7 @@ static void loadDeck(CARD ** deck, const CONTROLINT themeId, long int * lastAces
 	*lastAcess = ftell(file);		
 	fclose(file);
 	
-	//shuffleQuestions(areaShuffles,deckSize);
+	shuffleQuestions(areaShuffles,deckSize);
 	for(i=0;i<deckSize;i++)
 		pushDeck(deck,areaShuffles[i]);	
 	

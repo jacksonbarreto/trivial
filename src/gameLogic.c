@@ -7,11 +7,9 @@ CONTROLINT startGame(void)
 	
 	gameMode = getGameMode();
 	totalPlayers = getTotalPlayers();
-	players = login(totalPlayers);
-	
-	playRound(players,totalPlayers,gameMode);
-	
-	//QUem mata esse ponteiro para user criado pelo login?
+	players = login(totalPlayers);	
+	playRound(players,totalPlayers,gameMode);	
+	free(players);
 	
 	return SUCCESS;
 }
@@ -90,6 +88,7 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 				players[currentPlayer].percentageCorrect = getPercentageCorrectAnswers(&players[currentPlayer]);
 				if(isEndGame(players,currentPlayer,gameMode))
 				{
+					renderParabens(players[currentPlayer]);
 					if(isTop(players[currentPlayer]))
 					{
 						insertTop(players[currentPlayer]);
@@ -100,7 +99,7 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 					deckControl(listThemes,settings.totalThemes,deckSize,GAME_FINISHED);
 					increasesGlobalRound(players,totalPlayers,&settings);
 					free(listThemes);
-					renderParabens(players[currentPlayer]);
+					
 					return SUCCESS; //termina tudo			
 				}	
 			}
