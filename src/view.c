@@ -272,7 +272,7 @@ CONTROLINT rendersFullRegister(USER temporaryUser)
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	progressBar(STANDARD_BOX,5,5,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);	
+	progressBar(STANDARD_BOX_SIZE,5,5,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
 	
 	sprintf(listaTempUser[0],"Nome: %s",temporaryUser.name);
 	sprintf(listaTempUser[1],"Username: %s",temporaryUser.username);

@@ -1,2 +1,0 @@
-6/ 6/2020 - 19:47:20 - Falha em [playRound()]. Não existem perguntas suficientes para inicializar o jogo.
-6/ 6/2020 - 20:33:20 - Falha em [playRound()]. Não existem perguntas suficientes para inicializar o jogo.
