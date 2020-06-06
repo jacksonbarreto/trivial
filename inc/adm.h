@@ -6,6 +6,7 @@
 	/*		ADMINISTRATOR		*/
 	void promoteUserToAdministrator(void);
 	void recoverPassword(void);
+	void changeName(USER * user);
 	
 	/*		INSERT QUESTION		*/
 	void insertQuestion(void);

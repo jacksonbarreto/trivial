@@ -40,6 +40,8 @@
 	void rendersAuccessfulAssignment(USER user);
 	void rendersGetUsernameForRecoverPassword(char * username);
 	void rendersRecoverPassword(USER user);
+	void rendersGetNameForChangeName(char * name, USER user);
+	void rendersSuccessfulNameChange(USER user);
 	
 	/*History*/
 	void rendersHistory(NODE ** history);

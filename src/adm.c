@@ -1,6 +1,6 @@
 #include "../inc/adm.h"
 
-/*		PROMOTE USER TO ADMINISTRATOR		*/
+/*		 ADMINISTRATOR		*/
 
 void promoteUserToAdministrator(void)
 {
@@ -55,6 +55,14 @@ void recoverPassword(void)
 	while(choice == TRY_AGAIN);	
 }
 
+void changeName(USER * user)
+{
+	char name[MAX_NAME_SIZE];
+	rendersGetNameForChangeName(name,*user);
+	strcpy(user->name,name);
+	updateUser(*user);
+	rendersSuccessfulNameChange;	
+}
 
 /*		INSERT QUESTION		*/
 

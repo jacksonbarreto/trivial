@@ -574,8 +574,42 @@ void rendersRecoverPassword(USER user)
 	
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
-	instructionBox("FALHA AO CARREGAR HISTÓRICO",message,"Pressione qualquer tecla para continuar.",ATTENTION_BOX,INSTRUCTION_BOX);
+	instructionBox("RECUPERAÇÃO DE SENHA",message,"Pressione qualquer tecla para continuar.",ATTENTION_BOX,INSTRUCTION_BOX);
 	wait();
+}
+
+void rendersGetNameForChangeName(char * name, USER user)
+{
+	
+	
+	char instruction[100];	
+	char preMessage[] = "O seu nome atual é: |%s|.";
+	char * message = allocateMemory(strlen(preMessage)+MAX_NAME_SIZE+MAX_USERNAME_SIZE,sizeof(char));
+	
+	sprintf(message,preMessage, user.name,user.username,user.password);
+	
+	sprintf(instruction,"Informe o seu NOVO nome com até %d letras.",MAX_NAME_SIZE-1);
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	//instructionBox("ALTERAÇÃO DE NOME",message,"Pressione qualquer tecla para continuar.",ATTENTION_BOX,INSTRUCTION_BOX);
+	simpleInstructionBox(message,ATTENTION_BOX);
+	
+	instructionBox("ALTERAÇÃO DE NOME",instruction,"Nome:",STANDARD_BOX,QUESTION_BOX);
+	positionCursor(2,29,STANDARD_BOX);
+	getString(MAX_NAME_SIZE-1,name);	
+}
+
+void rendersSuccessfulNameChange(USER user)
+{
+	char preMessage[] = "A alteração de nome foi realizada com sucesso! Agora o seu nome é:  %s - [username: %s].";
+	char * message = allocateMemory(strlen(preMessage)+MAX_NAME_SIZE+MAX_USERNAME_SIZE,sizeof(char));
+	sprintf(message,preMessage, user.name,user.username);
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("ALTERAÇÃO DE NOME",message,"Pressione qualquer tecla para continuar...",SUCCESS_BOX,INSTRUCTION_BOX);
+	wait();	
 }
 
 /*History*/

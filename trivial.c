@@ -51,7 +51,7 @@ int main(void)
 						switch(choice)
 						{
 							case EDIT_ACCOUNT:
-								
+								changeName(user);
 								break;
 							case DELETE_ACCOUNT:
 								
