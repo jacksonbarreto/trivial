@@ -47,6 +47,11 @@ CONTROLINT createQuestionId(void)
 	return settings.lastIdUsedForQuestion;
 }
 
+void reverseCreatedIDForQuestion(void)
+{
+	settings.lastIdUsedForQuestion--;
+}
+
 THEME themeExist(const CONTROLINT themeId)
 {
 	THEME theme;
@@ -205,7 +210,7 @@ void recordQuestion(QUESTION question, const CONTROLINT themeId)
 
 	file = openFile(fileName,BINARY_READING_PLUS);	
 	fseek(file,0L,SEEK_END);
-	
+	question.id = createQuestionId();
 	if(writeData(&question,sizeof(QUESTION),1,file) == SUCCESS)
 	{
 		rewind(file);
@@ -213,9 +218,14 @@ void recordQuestion(QUESTION question, const CONTROLINT themeId)
 		info.size++;
 		rewind(file);
 		writeData(&info,sizeof(FILEINF),1,file);
-	}	
+		saveSettings();		
+	}
+	else
+		reverseCreatedIDForQuestion;
+	
 	fclose(file);
 	free(fileName);
+	
 }
 
 void getThemesName(char ThemesName[][MAX_SIZE_THEME_NAME])

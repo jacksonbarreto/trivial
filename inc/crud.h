@@ -8,6 +8,7 @@
 	void reverseCreatedIDForUsers(void);
 	CONTROLINT createThemeId(void);
 	CONTROLINT createQuestionId(void);
+	void reverseCreatedIDForQuestion(void);
 	THEME createNullTheme(void);
 	THEME themeExist(const CONTROLINT themeId);
 	THEME themeExist(const CONTROLINT themeId);

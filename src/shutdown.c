@@ -20,7 +20,7 @@ static void quitHistoryList(void)
 	deleteQueue(historyPlayers);
 }
 
-static void saveSettings(void)
+void saveSettings(void)
 {
 	FILE * file = openFile(SETTING_FILE_NAME,BINARY_WRITING);
 	

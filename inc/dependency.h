@@ -53,6 +53,7 @@
 
 #ifdef __CRUD_H__
 	#include "helpers.h"
+	#include "shutdown.h"
 #endif
 
 #ifdef __ERROR_H__

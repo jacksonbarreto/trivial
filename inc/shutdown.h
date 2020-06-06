@@ -5,6 +5,6 @@
 	void turnOff();
 	static void quitTopList(void);
 	static void quitHistoryList(void);
-	static void saveSettings(void);
+	 void saveSettings(void);
 	
 #endif

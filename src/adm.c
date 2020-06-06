@@ -9,8 +9,9 @@ void insertQuestion(void)
 	
 	getThemesName(themesName);	
 	chosenTheme = rendersGetTheme(themesName,settings.totalThemes);	
-	question = getQuestion();	
-	recordQuestion(question,chosenTheme);	
+	question = getQuestion();
+	
+	recordQuestion(question,chosenTheme);
 }
 
 static QUESTION getQuestion(void)
