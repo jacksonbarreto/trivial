@@ -418,6 +418,8 @@ void progressBar(const CONTROLINT lineSize, const CONTROLINT totalSteps, const C
 			for(j=0;j<printings;j++)
 				putchar(' ');		
 		}
+		if(lineSize % totalSteps != 0)
+			putchar(' ');
 		applyColor(RESET_COLOR);
 		putchar('\n');
 	}	
