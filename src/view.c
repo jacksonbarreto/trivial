@@ -191,7 +191,7 @@ void renderParabens(USER player){
 void rendersGetNameForRegister(char * name)
 {
 	char message[100];
-	sprintf(message,"Informe o seu nome com até %d letras.",MAX_NAME_SIZE);
+	sprintf(message,"Informe o seu nome com até %d letras.",MAX_NAME_SIZE-1);
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
@@ -204,7 +204,7 @@ void rendersGetNameForRegister(char * name)
 void rendersGetUsernameForRegister(char * username)
 {
 	char message[150];
-	sprintf(message,"Informe o seu 'username' com até %d letras. Ele deve ser único e sera usado para se logar no sistema.",MAX_USER_NAME_SIZE);
+	sprintf(message,"Informe o seu 'username' com até %d letras. Ele deve ser único e sera usado para se logar no sistema.",MAX_USER_NAME_SIZE-1);
 	clearScreen();	
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
@@ -217,7 +217,7 @@ void rendersGetUsernameForRegister(char * username)
 void rendersGetNickname(char * nickname)
 {
 	char message[150];
-	sprintf(message,"Informe o seu 'nickname' com até %d letras. Ele deve ser único. É através dele que você será reconhecido por todos.",MAX_NICKNAME_SIZE);
+	sprintf(message,"Informe o seu 'nickname' com até %d letras. Ele deve ser único. É através dele que você será reconhecido por todos.",MAX_NICKNAME_SIZE-1);
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
@@ -257,8 +257,7 @@ CONTROLINT rendersFullRegister(USER temporaryUser)
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	progressBar(STANDARD_BOX,5,5,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
-	//Imprime os dados do usu?rio	
+	progressBar(STANDARD_BOX,5,5,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);	
 	
 	sprintf(listaTempUser[0],"Nome: %s",temporaryUser.name);
 	sprintf(listaTempUser[1],"Username: %s",temporaryUser.username);
