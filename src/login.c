@@ -2,7 +2,7 @@
 
 USER * login(const CONTROLINT totLogin)
 {
-	CONTROLINT i, choice, attempts;
+	CONTROLINT i, j, choice, attempts;
 	USER * players;
 	USER temporaryUser;
 	char username[MAX_USERNAME_SIZE];
@@ -34,7 +34,17 @@ USER * login(const CONTROLINT totLogin)
 				else
 					rendersDesistRegistering();
 			}
-			
+			else if(i>0 && totLogin > 1)
+			{
+				for(j=0;j<i;j++)
+				{
+					if(players[j].id == temporaryUser.id)
+					{
+						rendersLoggedUser();
+						temporaryUser.id = 0;
+					}
+				}
+			}
 		}while(temporaryUser.id == 0);
 		
 		if(choice != REGISTER_USER) 

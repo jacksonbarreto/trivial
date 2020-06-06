@@ -196,6 +196,14 @@ void rendersNotEnoughQuestions(void)
 	wait();
 }
 
+void rendersLoggedUser(void)
+{
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("LOGIN","Este usuário já está logado. Não é permitido um usuário jogar contra sí próprio.","Pressione qualquer tecla para tentar novamente...",ERROR_BOX,INSTRUCTION_BOX);
+	wait();
+}
+
 /*Register*/
 void rendersGetNameForRegister(char * name)
 {
@@ -855,12 +863,12 @@ void renderClosingScreen(void){
 	
 	char ta[8][100];
 	sprintf(ta[0],"Alunos:");
-	sprintf(ta[1],"Jackson Barreto nº 24031");
-	sprintf(ta[2],"Leonardo Lopez nº 18278");
+	sprintf(ta[1],"Jackson Júnior nº 24.031");
+	sprintf(ta[2],"Leonardo Lopez nº 18.278");
 	sprintf(ta[3],"Professores:");
-	sprintf(ta[4],"Pedro Coutinho");
-	sprintf(ta[5],"Estrela Cruz");
-	sprintf(ta[6],"Programação 1 - Jogo do Trivia (Adaptado)");
+	sprintf(ta[4],"Dr. Pedro Coutinho");
+	sprintf(ta[5],"Dr.ª Estrela Cruz");
+	sprintf(ta[6],"Programação I - Jogo do Trivial (Adaptado)");
 	sprintf(ta[7],"2019-2020");
     int jumpControlAtBottom = 0;
     const int someDelay = 500000;

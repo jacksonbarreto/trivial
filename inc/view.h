@@ -16,6 +16,7 @@
 	void rendersResultQuestion(QUESTION mountedQuestion, CONTROLINT choice, CONTROLINT correct, USER player, CONTROLINT gameMode);
 	void renderCongratulations(USER player);
 	void rendersNotEnoughQuestions(void);
+	void rendersLoggedUser(void);
 	
 	/*Register*/
 	void rendersGetNameForRegister(char * name);
