@@ -79,6 +79,7 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 			
 			choice = getAnswer(mountedQuestion, players[currentPlayer], gameMode); 
 			
+			increasesTotalQuestionsAnswered(&players[currentPlayer]);
 			result = isAnswerCorrect(choice,correctOption(originalQuestion,mountedQuestion));
 			
 			rendersResultQuestion(mountedQuestion, choice, correctOption(originalQuestion,mountedQuestion));
@@ -86,7 +87,7 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 			if(result)
 			{
 				punctuatePlayer(&players[currentPlayer],chosenTheme);
-				players[currentPlayer].percentageCorrect = getPercentageCorrectAnswers(&players[currentPlayer],gameMode);
+				players[currentPlayer].percentageCorrect = getPercentageCorrectAnswers(&players[currentPlayer]);
 				if(isEndGame(players,currentPlayer,gameMode))
 				{
 					if(isTop(players[currentPlayer]))
@@ -164,6 +165,11 @@ void punctuatePlayer(USER * player, CONTROLINT chosenTheme)
 	player->currentScore[chosenTheme]++;
 }
 
+void increasesTotalQuestionsAnswered(USER * player)
+{
+	player->totalAnswered++;
+}
+
 static CONTROLINT isEndGame(const USER * playersList, const CONTROLINT currentPlayer, const CONTROLINT gameMode)
 {
 	CONTROLINT i, status;
@@ -191,9 +197,18 @@ static void advanceRound(CONTROLINT * currentPlayer)
 	(*currentPlayer)++;
 }
 
-static float getPercentageCorrectAnswers(const USER * player, const CONTROLINT gameMode)
+static float sumCorrectAnswers(const USER * player)
 {
-	return ((float) gameMode * settings.totalThemes * 100) / player->totalAnswered;
+	CONTROLINT i, total;
+	
+	for(i=0, total=0;i < settings.totalThemes; i++)
+		total += player->currentScore[i];
+	return total;
+}
+
+static float getPercentageCorrectAnswers(const USER * player) 
+{
+	return (sumCorrectAnswers(player) / player->totalAnswered) * 100;
 }
 
 static void bootPlayer(USER * player)
@@ -256,18 +271,16 @@ static float averageWrongAnswersRound(USER * players, const CONTROLINT totalPlay
 	float average;
 	CONTROLINT i, j, wrongAnswers, currentScore;
 	
-	for(i=0,wrongAnswers=0;i<totalPlayers;i++)
+	for(i=0,currentScore=0,wrongAnswers=0;i<totalPlayers;i++)
 	{
-		for(j=0, currentScore=0;j<TOTAL_THEMES;j++)
-		{
-			currentScore += players[i].currentScore[j];
-		}
+		currentScore = sumCorrectAnswers(&players[i]);
 		wrongAnswers += (players[i].totalAnswered - currentScore);
 	}
 	average = wrongAnswers / (float) totalPlayers;
 	
 	return average;
 }
+
 
 static float averageWrongAnswersGlobal(float currentGlobalAverage, float roundAverage, CONTROLINT * totalRounds)
 {
