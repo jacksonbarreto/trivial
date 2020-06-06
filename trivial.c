@@ -54,7 +54,7 @@ int main(void)
 								changeName(user);
 								break;
 							case DELETE_ACCOUNT:
-								
+								choice = deleteAccount(user);
 								break;
 							case INSERT_QUESTION:
 								insertQuestion();

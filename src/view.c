@@ -612,6 +612,40 @@ void rendersSuccessfulNameChange(USER user)
 	wait();	
 }
 
+CONTROLINT rendersDeleteAccount(void)
+{
+	CONTROLINT choice;
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("ELIMINAR CONTA","Tem certeza que deseja ELIMINAR sua conta de usuário?  Esta ação não pode ser desfeita!","Pressione [1] para CONFIRMAR ou [2] para DESISTIR.",ATTENTION_BOX,INSTRUCTION_BOX);	
+	do
+	{
+		choice = getChoiceMenu();
+	}
+	while(!inRange(choice,1,2,CLOSED_RANGE) );
+	
+	return choice;
+}
+void rendersSuccessfulDeleteAccount(USER user)
+{
+	char preMessage[] = "A conta de %s foi apagada com sucesso! Agora o usuário [%s] não pode mais jogar ou acessar o sistema.";
+	char * message = allocateMemory(strlen(preMessage)+MAX_NAME_SIZE+MAX_USERNAME_SIZE,sizeof(char));
+	sprintf(message,preMessage, user.name,user.username);
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("ELIMINAR CONTA",message,"Pressione qualquer tecla para continuar...",SUCCESS_BOX,INSTRUCTION_BOX);
+	wait();	
+}
+
+void rendersErrorDeleteAccount(void)
+{
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("ELIMINAR CONTA","Você é um usuário ROOT não é possível eliminar esta conta","Pressione qualquer tecla para continuar...",ERROR_BOX,INSTRUCTION_BOX);
+	wait();	
+}
+
 /*History*/
 
 void rendersHistory(NODE ** history)

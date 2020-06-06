@@ -7,6 +7,7 @@
 	void promoteUserToAdministrator(void);
 	void recoverPassword(void);
 	void changeName(USER * user);
+	CONTROLINT deleteAccount(USER user);
 	
 	/*		INSERT QUESTION		*/
 	void insertQuestion(void);

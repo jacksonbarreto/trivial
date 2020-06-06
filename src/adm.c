@@ -64,6 +64,29 @@ void changeName(USER * user)
 	rendersSuccessfulNameChange;	
 }
 
+CONTROLINT deleteAccount(USER user)
+{
+	CONTROLINT choice;
+	
+	choice = rendersDeleteAccount();
+	if(choice == CONFIRM_DELETE_ACCOUNT)
+	{
+		if(user.id == 1)
+		{
+			rendersErrorDeleteAccount();
+		}
+		else
+		{
+			user.id = RESET;
+			updateUser(user);
+			rendersSuccessfulDeleteAccount(user);
+		}		
+		return BACK_TO_MAIN_MENU;
+	}
+	else
+		return COME_BACK;	
+}
+
 /*		INSERT QUESTION		*/
 
 void insertQuestion(void)

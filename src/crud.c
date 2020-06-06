@@ -135,7 +135,7 @@ void updateUser(USER user)
 	do
 	{
 		readData(&temporaryUser,sizeof(USER),1,file);
-		if(user.id ==  temporaryUser.id)
+		if(strcmp(user.nickname,temporaryUser.nickname) == 0 )
 		{
 			fseek(file,- (long) sizeof(USER),SEEK_CUR);
 			writeData(&user,sizeof(USER),1,file);

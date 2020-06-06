@@ -36,6 +36,7 @@
 	/*Adm settings*/
 	#define RECORD_QUESTION 2
 	#define ALLOCATED_POWERS 1
+	#define CONFIRM_DELETE_ACCOUNT 1
 	
 	/*login settings*/
 	#define INVALID_PASSWORD 1

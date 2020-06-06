@@ -42,6 +42,9 @@
 	void rendersRecoverPassword(USER user);
 	void rendersGetNameForChangeName(char * name, USER user);
 	void rendersSuccessfulNameChange(USER user);
+	CONTROLINT rendersDeleteAccount(void);
+	void rendersSuccessfulDeleteAccount(USER user);
+	void rendersErrorDeleteAccount(void);
 	
 	/*History*/
 	void rendersHistory(NODE ** history);
