@@ -8,6 +8,7 @@
 	void saveTopList(NODE ** topList, CONTROLINT topSize);
 	void removeEndList(NODE ** topList);
 	void deleteList(NODE ** topList);
+	CONTROLINT sizeList(NODE ** topList);
 	USER returnsTopPlayersOneByOne(NODE ** topList);
 	USER returnsLastInTheList(NODE ** topList);
 #endif

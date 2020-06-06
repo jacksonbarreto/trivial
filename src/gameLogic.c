@@ -226,7 +226,7 @@ static CONTROLINT isTop(USER player)
 {
 	USER temporaryPlayer = returnsLastInTheList(topPlayers);
 	
-	if(temporaryPlayer.id == 0 || player.percentageCorrect > temporaryPlayer.percentageCorrect)
+	if(player.percentageCorrect > temporaryPlayer.percentageCorrect || sizeList(topPlayers) < MAX_TOP_LIST)
 		return SUCCESS;
 	else
 		return FAILURE;

@@ -151,6 +151,22 @@ void deleteList(NODE ** topList)
 	}
 }
 
+CONTROLINT sizeList(NODE ** topList)
+{
+	if(topList == NULL)
+		eventsHandling(LIST_NOT_STARTED);
+		
+	NODE * aux = *topList;
+	CONTROLINT cont = 0;
+		
+	while(aux != NULL)
+	{
+		aux = aux->next;
+		cont++;
+	}
+	return cont;
+}
+
 USER returnsTopPlayersOneByOne(NODE ** topList)
 {
 	if(topList == NULL) 
