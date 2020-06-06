@@ -36,7 +36,6 @@
 	typedef struct _theme
 	{
 		CONTROLINT id;
-		CONTROLINT totalQuestions;
 		long int lastAcess;
 		char themeName[MAX_SIZE_THEME_NAME];
 		CARD ** deck;	
@@ -59,7 +58,7 @@
 		CONTROLINT totalUsers;
 		CONTROLINT totalRoundsGlobal;
 		CONTROLINT lastIdUsedForUser;
-		CONTROLINT lastIdUsedForThema; //apagar
+		CONTROLINT lastIdUsedForThema;
 		CONTROLINT lastIdUsedForQuestion;
 		float averageGlobalErrorAnswer;
 		float defragRate;

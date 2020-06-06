@@ -10,7 +10,7 @@
 	CONTROLINT createQuestionId(void);
 	void reverseCreatedIDForQuestion(void);
 	THEME createNullTheme(void);
-	THEME themeExist(const CONTROLINT themeId);
+	void updateTheme(THEME theme);
 	THEME themeExist(const CONTROLINT themeId);
 	USER findUserByUsername(char * username);
 	void updateUser(USER user);

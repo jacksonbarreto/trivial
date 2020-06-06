@@ -52,6 +52,29 @@ void reverseCreatedIDForQuestion(void)
 	settings.lastIdUsedForQuestion--;
 }
 
+void updateTheme(THEME theme)
+{
+	THEME auxiliaryTheme;
+	FILE * file;
+	
+	file = openFile(THEMES_FILE_NAME,BINARY_READING_PLUS);
+	
+	fseek(file,sizeof(FILEINF),SEEK_SET); 
+	do
+	{
+		readData(&auxiliaryTheme,sizeof(FILEINF),1,file);
+		if(auxiliaryTheme.id == theme.id)
+		{
+			fseek(file,- (long) sizeof(THEME),SEEK_CUR);
+			writeData(&theme,sizeof(FILEINF),1,file);
+			break;
+		}
+	}
+	while(!feof(file));
+	
+	fclose(file);	
+}
+
 THEME themeExist(const CONTROLINT themeId)
 {
 	THEME theme;
@@ -81,7 +104,7 @@ THEME createNullTheme(void)
 	
 	theme.deck = NULL;
 	theme.id = RESET;
-	theme.totalQuestions = RESET;
+	//theme.totalQuestions = RESET;
 	theme.lastAcess = 0L;
 	strcpy(theme.themeName,"NULL");
 	
@@ -244,8 +267,7 @@ void recordQuestion(QUESTION question, const CONTROLINT themeId)
 		reverseCreatedIDForQuestion;
 	
 	fclose(file);
-	free(fileName);
-	
+	free(fileName);	
 }
 
 void getThemesName(char ThemesName[][MAX_SIZE_THEME_NAME])

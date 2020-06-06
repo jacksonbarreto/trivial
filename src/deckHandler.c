@@ -14,7 +14,10 @@ void deckControl(THEME * theme,const CONTROLINT totalTheme, const CONTROLINT dec
 			break;
 		case GAME_FINISHED:
 			for(i=0;i<totalTheme;i++)
+			{								
 				killDeck(theme[i].deck);
+				updateTheme(theme[i]);
+			}				
 			break;
 		default:
 			eventsHandling(GAME_STATUS_UNIDENTIFIED);
