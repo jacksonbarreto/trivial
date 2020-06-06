@@ -88,11 +88,11 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 				players[currentPlayer].percentageCorrect = getPercentageCorrectAnswers(&players[currentPlayer]);
 				if(isEndGame(players,currentPlayer,gameMode))
 				{
-					renderParabens(players[currentPlayer]);
+					renderCongratulations(players[currentPlayer]);
 					if(isTop(players[currentPlayer]))
 					{
 						insertTop(players[currentPlayer]);
-						renderParabensTop(players[currentPlayer]);	
+						renderCongratulationsTop(players[currentPlayer]);	
 					}
 						
 					insertHistory(players,totalPlayers);

@@ -157,7 +157,7 @@ void rendersResultQuestion(QUESTION mountedQuestion, CONTROLINT choice, CONTROLI
 	wait();	
 }
 
-void renderParabens(USER player){	
+void renderCongratulations(USER player){	
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
@@ -184,7 +184,8 @@ void renderParabens(USER player){
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_SUCCESS, BAKGROUND_SUCCESS);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_SUCCESS, BAKGROUND_SUCCESS);	
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_SUCCESS, BAKGROUND_SUCCESS);
+	sleep(2);
 }
 
 /*Register*/
@@ -573,10 +574,9 @@ void rendersTopPlayers(NODE ** bestPlayers)
 	wait();
 }
 
-void renderParabensTop(USER player){
+void renderCongratulationsTop(USER player){
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	char dados[1][50];	
 	sprintf(dados[0],"%s",player.name);	
@@ -614,7 +614,8 @@ void renderParabensTop(USER player){
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);	
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
+	sleep(2);
 }
 
 /*Ecrãs estaticos*/
