@@ -161,9 +161,9 @@ void renderCongratulations(USER player){
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	char nome[2][50];
-	sprintf(nome[0]," |       |             %s",player.name);	
-	sprintf(nome[1],"  \\     /                  Você ganhou o jogo!");
+	char nome[MAX_NAME_SIZE+30];
+	sprintf(nome," |       |             %s",player.name);	
+	
 	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_SUCCESS, BAKGROUND_SUCCESS);	
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_LEFT, "  _______", TEXT_SUCCESS, BAKGROUND_SUCCESS);
@@ -172,9 +172,9 @@ void renderCongratulations(USER player){
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_LEFT, "(|  #1   |)       PARABÉNS!", TEXT_SUCCESS, BAKGROUND_SUCCESS);	
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_LEFT, nome[0], TEXT_SUCCESS, BAKGROUND_SUCCESS);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_LEFT, nome, TEXT_SUCCESS, BAKGROUND_SUCCESS);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_LEFT, nome[1] , TEXT_SUCCESS, BAKGROUND_SUCCESS);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_LEFT, "  \\     /                  Você ganhou o jogo!" , TEXT_SUCCESS, BAKGROUND_SUCCESS);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_LEFT, "   `---'", TEXT_SUCCESS, BAKGROUND_SUCCESS);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);

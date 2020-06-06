@@ -34,6 +34,9 @@ static void loadDeck(CARD ** deck, const CONTROLINT themeId, long int * lastAces
 	sprintf(fileName,"%s%d.dat",QUESTION_PREFIX,themeId);	
 	file = openFile(fileName,BINARY_READING);
 	
+	if(*lastAcess == 0L)
+		*lastAcess = (long) sizeof(FILEINF);
+	
 	fseek(file,*lastAcess,SEEK_SET);	
 	for(i=0;i<deckSize;i++)
 	{	

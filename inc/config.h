@@ -21,7 +21,7 @@
 	#define MAX_TOP_LIST 10
 	#define MAX_HISTORY_LIST 15
 	#define TOTAL_THEMES 4
-	#define MINIMUM_QUESTIONS 20
+	#define MINIMUM_QUESTIONS 10
 	
 	/*definition of controllers*/
 	#define SUCCESS 1
