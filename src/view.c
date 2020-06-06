@@ -546,7 +546,7 @@ void rendersTopPlayers(NODE ** bestPlayers)
 	if(settings.topSize > 0)
 	{
 		
-		for(i=0;i<settings.historySize;i++)
+		for(i=0;i<settings.topSize;i++)
 		{
 			temporaryUser = returnsTopPlayersOneByOne(bestPlayers);	
 			sprintf(userLine,templates,i+1,temporaryUser.nickname,temporaryUser.percentageCorrect);				

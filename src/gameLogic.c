@@ -260,7 +260,7 @@ static CONTROLINT defineDeckSize(const CONTROLINT gameMode, const CONTROLINT tot
 	CONTROLINT deckSize;
 	CONTROLINT averageErrorInt = (CONTROLINT) roundInteger(averageErrorAnswer);
 	
-	deckSize = gameMode * totalPlayers * averageErrorInt * totalThemes;
+	deckSize = gameMode * totalPlayers * averageErrorInt;
 	
 	return deckSize;
 }
