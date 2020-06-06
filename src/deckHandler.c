@@ -11,14 +11,14 @@ void deckControl(THEME * theme,const CONTROLINT totalTheme, const CONTROLINT dec
 			for(i=0;i<totalTheme;i++)
 				if(deckIsEmpty(theme[i].deck))
 					loadDeck(theme[i].deck, theme[i].id,&theme[i].lastAcess, deckSize);			
-			break;
+		break;
 		case GAME_FINISHED:
 			for(i=0;i<totalTheme;i++)
-			{								
-				killDeck(theme[i].deck);
-				updateTheme(theme[i]);
+			{	
+				updateTheme(theme[i]);							
+				killDeck(theme[i].deck);				
 			}				
-			break;
+		break;
 		default:
 			eventsHandling(GAME_STATUS_UNIDENTIFIED);
 	}		

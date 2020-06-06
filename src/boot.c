@@ -151,6 +151,7 @@ static void createDefaultThemes(THEME theme[TOTAL_THEMES])
 		theme[i] = createNullTheme();
 		theme[i].id = i+1;
 		strcpy(theme[i].themeName,names[i]);
+		theme[i].lastAcess = (long) sizeof(FILEINF);
 	}
 
 }

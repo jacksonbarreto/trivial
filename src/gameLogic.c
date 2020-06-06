@@ -71,10 +71,11 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 	{
 		if(isEndRound(currentPlayer,totalPlayers))	
 			restartRound(&currentPlayer);
-		deckControl(listThemes,settings.totalThemes,deckSize,GAME_STARTED);
+		
 		
 		do
 		{
+			deckControl(listThemes,settings.totalThemes,deckSize,GAME_STARTED);
 			chosenTheme = getTheme(players[currentPlayer],gameMode);
 			
 			originalQuestion = popDeck(listThemes[chosenTheme].deck);

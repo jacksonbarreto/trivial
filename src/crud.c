@@ -62,11 +62,11 @@ void updateTheme(THEME theme)
 	fseek(file,sizeof(FILEINF),SEEK_SET); 
 	do
 	{
-		readData(&auxiliaryTheme,sizeof(FILEINF),1,file);
+		readData(&auxiliaryTheme,sizeof(THEME),1,file);
 		if(auxiliaryTheme.id == theme.id)
 		{
 			fseek(file,- (long) sizeof(THEME),SEEK_CUR);
-			writeData(&theme,sizeof(FILEINF),1,file);
+			writeData(&theme,sizeof(THEME),1,file);
 			break;
 		}
 	}
