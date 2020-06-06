@@ -7,13 +7,13 @@
 	CONTROLINT rendersGetGameMode(void);
 	CONTROLINT rendersGetTotalPlayers(void);
 	CONTROLINT rendersInvalidUsername(CONTROLINT attempts);
-	CONTROLINT rendersGetTheme(char themesName[][MAX_SIZE_THEME_NAME],const CONTROLINT totalThemes);
+	CONTROLINT rendersGetThemeForPlaying(char themesName[][MAX_SIZE_THEME_NAME],const CONTROLINT totalThemes, USER player, CONTROLINT gameMode);
 	CONTROLINT rendersGetAnswer(QUESTION mountedQuestion, USER player, CONTROLINT gameMode);
 	void rendersInvalidPassword(CONTROLINT attempts);
 	void rendersMaxAttempts(void);
 	void rendersGetUsername(char * username);
 	void rendersGetPassword(char * password);
-	void rendersResultQuestion(QUESTION mountedQuestion, CONTROLINT choice, CONTROLINT correct);
+	void rendersResultQuestion(QUESTION mountedQuestion, CONTROLINT choice, CONTROLINT correct, USER player, CONTROLINT gameMode);
 	void renderParabens(USER player);
 		
 	/*Register*/
@@ -28,6 +28,7 @@
 	void rendersDesistRegistering(void);
 	
 	/*Adm*/	
+	CONTROLINT rendersGetTheme(char themesName[][MAX_SIZE_THEME_NAME],const CONTROLINT totalThemes);
 	void rendersGetQuestionTitle(char * title);
 	void rendersGetQuestionRightAnswer(char * correctAnswer);
 	void rendersGetQuestionAnswer(char * answer, CONTROLINT progressBarPosition);

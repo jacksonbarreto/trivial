@@ -388,10 +388,9 @@ void placarBox(USER player, CONTROLINT gameMode)
 		name[j] = '\0';
 	}
 	
-	sprintf(line2,"%s                    %d/%d                %d/%d                   %d/%d                %d/%d",name,player.currentScore[0],gameMode,player.currentScore[1],gameMode,player.currentScore[2],gameMode,player.currentScore[3],gameMode);
+	sprintf(line2," %s                     %d/%d                   %d/%d                      %d/%d                   %d/%d",name,player.currentScore[0],gameMode,player.currentScore[1],gameMode,player.currentScore[2],gameMode,player.currentScore[3],gameMode);
 	setColor(textColor,backgroundColor,PLACAR_BOX);	
-	
-	
+		
 	alignmentPadding(PLACAR_BOX_SIZE,ALIGN_CENTER);
 	emptyLine(' ',PLACAR_BOX_SIZE,textColor, backgroundColor);
 	

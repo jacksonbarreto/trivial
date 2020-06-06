@@ -69,7 +69,7 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 		
 		do
 		{
-			chosenTheme = getTheme();
+			chosenTheme = getTheme(players[currentPlayer],gameMode);
 			
 			originalQuestion = popDeck(listThemes[chosenTheme].deck);
 			mountedQuestion = originalQuestion;
@@ -80,7 +80,7 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 			increasesTotalQuestionsAnswered(&players[currentPlayer]);
 			result = isAnswerCorrect(choice,correctOption(originalQuestion,mountedQuestion));
 			
-			rendersResultQuestion(mountedQuestion, choice, correctOption(originalQuestion,mountedQuestion));
+			rendersResultQuestion(mountedQuestion, choice, correctOption(originalQuestion,mountedQuestion),players[currentPlayer], gameMode);
 			
 			if(result)
 			{
@@ -117,13 +117,13 @@ static CONTROLINT getAnswer(QUESTION mountedQuestion, USER player, CONTROLINT ga
 	return choice-1; //retorna o indice do vetor onde está a resposta.
 }
 
-static CONTROLINT getTheme(void)
+static CONTROLINT getTheme(USER player, CONTROLINT gameMode)
 {
 	CONTROLINT choice;
 	char themesName[settings.totalThemes][MAX_SIZE_THEME_NAME];
 	
 	getThemesName(themesName);
-	choice = rendersGetTheme(themesName,settings.totalThemes);
+	choice = rendersGetThemeForPlaying(themesName,settings.totalThemes,player,gameMode);
 	
 	return (choice-1); //é o índice do vetor	
 }

@@ -104,7 +104,7 @@ void rendersGetPassword(char * password)
 	catchPassword(password,MAX_PASSWD_SIZE);
 }
 
-CONTROLINT rendersGetTheme(char themesName[][MAX_SIZE_THEME_NAME],const CONTROLINT totalThemes)
+CONTROLINT rendersGetThemeForPlaying(char themesName[][MAX_SIZE_THEME_NAME],const CONTROLINT totalThemes, USER player, CONTROLINT gameMode)
 {
 	CONTROLINT i, choice;
 	char listaThemes[totalThemes][MAX_OPTION_MENU_SIZE];
@@ -113,14 +113,14 @@ CONTROLINT rendersGetTheme(char themesName[][MAX_SIZE_THEME_NAME],const CONTROLI
 		sprintf(listaThemes[i],"%d - %s",i+1,themesName[i]);
 	
 	clearScreen();
+	placarBox(player, gameMode);
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	menuBox("TEMAS",listaThemes,totalThemes);
 	do
 	{
 		choice = getChoiceMenu();
 	}
-	while(!inRange(choice,1,totalThemes,CLOSED_RANGE));
-	
+	while(!inRange(choice,1,totalThemes,CLOSED_RANGE));	
 	
 	return choice;
 }
@@ -145,15 +145,15 @@ CONTROLINT rendersGetAnswer(QUESTION mountedQuestion, USER player, CONTROLINT ga
 	return choice;
 }
 
-void rendersResultQuestion(QUESTION mountedQuestion, CONTROLINT choice, CONTROLINT correct)
+void rendersResultQuestion(QUESTION mountedQuestion, CONTROLINT choice, CONTROLINT correct, USER player, CONTROLINT gameMode)
 {
 	clearScreen();
+	placarBox(player, gameMode);
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	
 	cardFrameContrast(mountedQuestion.title,mountedQuestion.answers,correct,choice);
 	putchar('\n');
 	simpleInstructionBox("Pressione qualquer tecla para continar...",STANDARD_BOX);
-
 	wait();	
 }
 
@@ -356,6 +356,28 @@ void rendersDesistRegistering(void)
 }
 
 /* ADM */
+
+
+CONTROLINT rendersGetTheme(char themesName[][MAX_SIZE_THEME_NAME],const CONTROLINT totalThemes)
+{
+	CONTROLINT i, choice;
+	char listaThemes[totalThemes][MAX_OPTION_MENU_SIZE];
+	
+	for(i=0;i<settings.totalThemes;i++)
+		sprintf(listaThemes[i],"%d - %s",i+1,themesName[i]);
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	menuBox("TEMAS",listaThemes,totalThemes);
+	do
+	{
+		choice = getChoiceMenu();
+	}
+	while(!inRange(choice,1,totalThemes,CLOSED_RANGE));
+	
+	
+	return choice;
+}
 
 void rendersGetQuestionTitle(char * title)
 {		
