@@ -36,9 +36,6 @@ void cardFrameContrast(char * questionTitle, char answers[MAX_RESPONSE_OPTIONS][
 	char answerTemplate[] = "%i - %s";
 	char textColor[STRING_COLOR_SIZE], backgroundColor[STRING_COLOR_SIZE];
 	
-	correctOption--;
-	choice--;
-	
 	/*header*/
 	alignmentPadding(CARD_BOX_SIZE,ALIGN_CENTER);
 	emptyLine(' ',CARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
