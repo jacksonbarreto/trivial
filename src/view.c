@@ -161,8 +161,6 @@ void renderCongratulations(USER player){
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	progressBar(STANDARD_BOX,5,5,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	char nome[2][50];
 	sprintf(nome[0]," |       |             %s",player.name);	
 	sprintf(nome[1],"  \\     /                  Você ganhou o jogo!");
