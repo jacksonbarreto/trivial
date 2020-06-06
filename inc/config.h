@@ -117,13 +117,6 @@
 	#include "structs.h"
 	
 	/*global variables*/
-	
-		
-	
-	
-		/*round management*/
-		
-		GAMEPLAY gameRound;
 		
 		/*configuration variables*/
 		SETTINGS settings;

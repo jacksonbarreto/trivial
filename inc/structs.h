@@ -21,7 +21,6 @@
 	typedef struct _question
 	{
 		CONTROLINT id;
-		//CONTROLINT used; //apagar
 		char title[MAX_TITLE_SIZE];		
 		char answers[MAX_RESPONSE_OPTIONS][MAX_ANSWER_SIZE];		
 	}
@@ -51,14 +50,7 @@
 		long int lastAcess;
 	}
 	FILEINF;
-	/*
-	typedef struct _listTheme
-	{
-		THEME theme;
-		CARD ** deck;
-	}
-	LISTTHEMES;
-	*/
+
 	typedef struct _settings
 	{
 		CONTROLINT topSize;
@@ -74,14 +66,6 @@
 	}
 	SETTINGS;
 
-	typedef struct _gameplayer
-	{
-		CONTROLINT currentPlayer;	
-		CONTROLINT gameMode;
-		CONTROLINT totalPlayers;
-	}
-	GAMEPLAY;
-	
 	typedef struct _node
 	{
 		USER info;

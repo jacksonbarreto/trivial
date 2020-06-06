@@ -4,10 +4,7 @@ void turnOff()
 {
 	saveSettings();
 	quitTopList();
-	quitHistoryList();
-	free(topPlayers);  //conferir se é vetor ou lista
-	free(historyPlayers); //conferir se é vetor ou lista
-	
+	quitHistoryList();	
 }
 
 static void quitTopList(void)
