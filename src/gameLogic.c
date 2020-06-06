@@ -51,6 +51,12 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 	QUESTION originalQuestion, mountedQuestion;
 	THEME * listThemes;
 	
+	if(!thereAreEnoughQuestions())
+	{
+		rendersNotEnoughQuestions();
+		eventsHandling(FEW_QUESTIONS);
+		return FAILURE;
+	}
 	listThemes = instantiateThemes();
 	
 	bubbleSort(players, totalPlayers, INCREASING, ID_DATA);
@@ -100,7 +106,7 @@ static CONTROLINT playRound(USER * players,const CONTROLINT totalPlayers, const 
 					increasesGlobalRound(players,totalPlayers,&settings);
 					free(listThemes);
 					
-					return SUCCESS; //termina tudo			
+					return SUCCESS;			
 				}	
 			}
 		}while(result);
@@ -302,4 +308,25 @@ void resetCurrentScore(USER * user)
 	
 	for(i=0;i<TOTAL_THEMES;i++)
 		user->currentScore[i] = RESET;
+}
+
+CONTROLINT thereAreEnoughQuestions(void)
+{
+	FILE * file;
+	FILEINF info;
+	CONTROLINT i, status;	
+	char * fileName = (char *) allocateMemory(strlen(QUESTION_PREFIX)+QUESTION_SUFIX_SIZE,sizeof(char));
+	
+	for(i=0,status=0;i<TOTAL_THEMES;i++)
+	{
+		sprintf(fileName,"%s%d.dat",QUESTION_PREFIX,i+1);
+		file = openFile(fileName,BINARY_READING);
+		readData(&info,sizeof(FILEINF),1,file);
+		if(info.size >= MINIMUM_QUESTIONS)
+			status++;
+		fclose(file);
+	}	
+	free(fileName);
+	
+	return (status == TOTAL_THEMES);
 }

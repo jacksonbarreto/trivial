@@ -50,6 +50,9 @@ void eventsHandling(CONTROLINT event)
 		case LIST_QUEUE:
 			fprintf(logs,"%s - Falha em [top.h]. Tentativa de uso de LISTA vazia.\n", formattedDateTime());
 			break;
+		case FEW_QUESTIONS:
+			fprintf(logs,"%s - Falha em [playRound()]. Não existem perguntas suficientes para inicializar o jogo.\n", formattedDateTime());
+			break;
 		default:
 			fprintf(logs,"%s - Evento desconhecido\n", formattedDateTime());
 	}

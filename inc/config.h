@@ -21,6 +21,7 @@
 	#define MAX_TOP_LIST 10
 	#define MAX_HISTORY_LIST 15
 	#define TOTAL_THEMES 4
+	#define MINIMUM_QUESTIONS 20
 	
 	/*definition of controllers*/
 	#define SUCCESS 1
@@ -83,6 +84,7 @@
 	#define QUEUE_NOT_STARTED 9
 	#define LIST_NOT_STARTED 10
 	#define LIST_QUEUE 11
+	#define FEW_QUESTIONS 12
 	
 	
 	

@@ -188,6 +188,14 @@ void renderCongratulations(USER player){
 	sleep(2);
 }
 
+void rendersNotEnoughQuestions(void)
+{
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("NÃO É POSSÍVEL INICIAR O JOGO","Não existem perguntas suficientes para iniciar o jogo. Entre em contato com o administrador e solicite a resolução deste problema.","Pressione qualquer tecla para continuar...",ERROR_BOX,INSTRUCTION_BOX);
+	wait();
+}
+
 /*Register*/
 void rendersGetNameForRegister(char * name)
 {
@@ -359,7 +367,7 @@ void renderSuccessCreateUser(void)
 {
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
-	instructionBox("CADASTRO DE USUÁRIO","Uilizador cadastrado com sucesso.","Pressione qualquer tecla para tentar novamente...",SUCCESS_BOX,INSTRUCTION_BOX);
+	instructionBox("CADASTRO DE USUÁRIO","Uilizador cadastrado com sucesso.","Pressione qualquer tecla para continuar...",SUCCESS_BOX,INSTRUCTION_BOX);
 	wait();
 }
 
@@ -903,18 +911,8 @@ void renderCreditos(void){
         usleep(someDelay);
     }	
 }
-void renderInicio(void){
-/***
- *     ______                                          ___      
- *    /\__  _\          __              __            /\_ \     
- *    \/_/\ \/   _ __  /\_\    __  __  /\_\      __   \//\ \    
- *       \ \ \  /\`'__\\/\ \  /\ \/\ \ \/\ \   /'__`\   \ \ \   
- *        \ \ \ \ \ \/  \ \ \ \ \ \_/ | \ \ \ /\ \_\.\   \_\ \_ .
- *         \ \_\ \ \_\   \ \_\ \ \___/   \ \_\\ \__/.\_\ /\____\.
- *          \/_/  \/_/    \/_/  \/__/     \/_/ \/__/\/_/ \/____/
- *                                                                
- *                                                                
- */
+void renderInicio(void)
+{
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);

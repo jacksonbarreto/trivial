@@ -15,7 +15,8 @@
 	void rendersGetPassword(char * password);
 	void rendersResultQuestion(QUESTION mountedQuestion, CONTROLINT choice, CONTROLINT correct, USER player, CONTROLINT gameMode);
 	void renderCongratulations(USER player);
-		
+	void rendersNotEnoughQuestions(void);
+	
 	/*Register*/
 	void rendersGetNameForRegister(char * name);
 	void rendersGetUsernameForRegister(char * username);

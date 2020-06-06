@@ -28,4 +28,5 @@
 	static float averageWrongAnswersGlobal(float currentGlobalAverage, float roundAverage, CONTROLINT * totalRounds);
 	static void increasesGlobalRound(USER * players, const CONTROLINT totalPlayers, SETTINGS * settings);
 	static float sumCorrectAnswers(const USER * player);
+	CONTROLINT thereAreEnoughQuestions(void);
 #endif
