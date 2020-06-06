@@ -5,7 +5,7 @@ USER * login(const CONTROLINT totLogin)
 	CONTROLINT i, choice, attempts;
 	USER * players;
 	USER temporaryUser;
-	char username[MAX_USER_NAME_SIZE];
+	char username[MAX_USERNAME_SIZE];
 	char password[MAX_PASSWD_SIZE];
 	
 	players = (USER *) allocateMemory(totLogin,sizeof(USER));

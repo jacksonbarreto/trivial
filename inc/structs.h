@@ -11,7 +11,7 @@
 		CONTROLINT totalAnswered;
 		CONTROLINT userType;
 		float percentageCorrect;
-		char username[MAX_USER_NAME_SIZE];
+		char username[MAX_USERNAME_SIZE];
 		char password[MAX_PASSWD_SIZE];
 		char name[MAX_NAME_SIZE];
 		char nickname[MAX_NICKNAME_SIZE];

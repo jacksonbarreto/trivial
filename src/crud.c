@@ -126,6 +126,26 @@ USER findUserByUsername(char * username)
 	return user;
 }
 
+void updateUser(USER user)
+{
+	USER temporaryUser;
+	FILE * file = openFile(USERS_FILE_NAME,BINARY_READING_PLUS);
+	
+	fseek(file,sizeof(FILEINF),SEEK_SET);
+	do
+	{
+		readData(&temporaryUser,sizeof(USER),1,file);
+		if(user.id ==  temporaryUser.id)
+		{
+			fseek(file,- (long) sizeof(USER),SEEK_CUR);
+			writeData(&user,sizeof(USER),1,file);
+			break;						
+		}			
+	}
+	while(!feof(file));
+	fclose(file);
+}
+
 CONTROLINT nicknameExists(char * nickname)
 {
 	FILE * file = openFile(USERS_FILE_NAME,BINARY_READING);

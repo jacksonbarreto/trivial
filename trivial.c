@@ -4,6 +4,7 @@
 int main(void) 
 {	
 	CONTROLINT choice;
+	USER * user;
 	
 	boot();
 	renderInicio();
@@ -30,19 +31,48 @@ int main(void)
 		{
 			case PLAY:
 				startGame();
-				break;
+			break;
 			case NEW_USER:
 				registerNewUser();
-				break;
+			break;
 			case TOP_10:
 				listBestPlayers();
-				break;
+			break;
 			case LATEST_PLAYERS:
 				lastPlayers();
-				break;
+			break;
 			case MY_ACCOUNT:
-				insertQuestion();
-				break;
+				user = login(1);
+				if(user->id != 0)
+				{
+					do
+					{
+						choice = rendersAdmMenu(*user);
+						switch(choice)
+						{
+							case EDIT_ACCOUNT:
+								
+								break;
+							case DELETE_ACCOUNT:
+								
+								break;
+							case INSERT_QUESTION:
+								insertQuestion();
+								break;
+							case CREATE_ADMINISTRATOR:
+								promoteUserToAdministrator();
+								break;
+							case RECOVER_PASSWORD:
+								
+								break;
+							case EXIT:
+								choice = BACK_TO_MAIN_MENU;
+						}
+					}
+					while(choice != BACK_TO_MAIN_MENU);					
+				}
+				free(user);
+			break;
 		}
 	}
 	while(choice != EXIT);

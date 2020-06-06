@@ -13,6 +13,7 @@
 	THEME themeExist(const CONTROLINT themeId);
 	THEME themeExist(const CONTROLINT themeId);
 	USER findUserByUsername(char * username);
+	void updateUser(USER user);
 	CONTROLINT nicknameExists(char * nickname);
 	CONTROLINT usernameExists(char * username);
 	USER createNullUser(void);

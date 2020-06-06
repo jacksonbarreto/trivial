@@ -1,5 +1,42 @@
 #include "../inc/adm.h"
 
+/*		PROMOTE USER TO ADMINISTRATOR		*/
+
+void promoteUserToAdministrator(void)
+{
+	char username[MAX_USERNAME_SIZE];
+	USER temporaryUser;
+	CONTROLINT choice;	
+	
+	do
+	{
+		rendersGetUsernameForAdm(username);
+		if(usernameExists(username) == SUCCESS)
+		{
+			temporaryUser = findUserByUsername(username);
+			choice = rendersFullRegisterForAdm(temporaryUser);
+			if(choice == ALLOCATED_POWERS);
+			{
+				temporaryUser.userType = ADMIN_USER;
+				updateUser(temporaryUser);
+				rendersAuccessfulAssignment(temporaryUser);
+			}
+				//se nao volta para menur anterior
+		}
+		else
+		{
+			choice = rendersInvalidUsernameForAdm();
+		}
+		
+	}	
+	while(choice == TRY_AGAIN);
+	//volta para o menu anterior
+		
+}
+
+
+
+/*		INSERT QUESTION		*/
 
 void insertQuestion(void)
 {

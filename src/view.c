@@ -92,7 +92,7 @@ void rendersGetUsername(char * username)
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	instructionBox("LOGIN","Informe o seu nome de usuário.","Username:",STANDARD_BOX,QUESTION_BOX);
 	positionCursor(2,34,STANDARD_BOX);
-	getString(MAX_USER_NAME_SIZE,username);
+	getString(MAX_USERNAME_SIZE,username);
 }
 
 void rendersGetPassword(char * password)
@@ -205,14 +205,14 @@ void rendersGetNameForRegister(char * name)
 void rendersGetUsernameForRegister(char * username)
 {
 	char message[150];
-	sprintf(message,"Informe o seu 'username' com até %d letras. Ele deve ser único e sera usado para se logar no sistema.",MAX_USER_NAME_SIZE-1);
+	sprintf(message,"Informe o seu 'username' com até %d letras. Ele deve ser único e sera usado para se logar no sistema.",MAX_USERNAME_SIZE-1);
 	clearScreen();	
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	progressBar(STANDARD_BOX_SIZE,5,2,BAKGROUND_COMPLETED,BAKGROUND_NOT_COMPLETED);
 	instructionBox("CADASTRO DE USUÁRIO",message,"Username:",STANDARD_BOX,QUESTION_BOX);
 	positionCursor(2,34,STANDARD_BOX);
-	getString(MAX_USER_NAME_SIZE-1,username);	
+	getString(MAX_USERNAME_SIZE-1,username);	
 }
 
 void rendersGetNickname(char * nickname)
@@ -357,6 +357,35 @@ void rendersDesistRegistering(void)
 
 /* ADM */
 
+CONTROLINT rendersAdmMenu(USER user)
+{
+	CONTROLINT choice;
+	char userMenu[][MAX_OPTION_MENU_SIZE]={"1 - EDITAR NOME","2 - DELETAR CONTA", "0 - VOLTAR"};
+	char fullMenu[][MAX_OPTION_MENU_SIZE]={"1 - EDITAR NOME","2 - DELETAR CONTA", "3 - INSERIR PERGUNTA", "4 - ATRIBUIR PODERES DE ADMINISTRADOR", "5 - RECUPERAR SENHA DE JOGADORES", "0 - VOLTAR"};
+	
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	if(user.userType == PLAYER_USER)
+	{
+		menuBox("MINHA CONTA",userMenu,3);
+		do
+		{
+			choice = getChoiceMenu();
+		}
+		while(!inRange(choice,0,2,CLOSED_RANGE));
+	}		
+	else
+	{
+		menuBox("MENU ADIMINISTRATIVO",fullMenu,6);
+		do
+		{
+			choice = getChoiceMenu();
+		}
+		while(!inRange(choice,0,5,CLOSED_RANGE));
+	}	
+	return choice;
+}
 
 CONTROLINT rendersGetTheme(char themesName[][MAX_SIZE_THEME_NAME],const CONTROLINT totalThemes)
 {
@@ -434,7 +463,97 @@ CONTROLINT rendersConfirmationQuestion(QUESTION question)
 	return choice;
 }
 
+void rendersGetUsernameForAdm(char * username)
+{
+	char message[] = "Informe o seu 'username' do usuário ao qual deseja atribuir poderes de administrador.";
+	
+	clearScreen();	
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("ATRIBUIÇÃO DE SUPER PODERES",message,"Username:",STANDARD_BOX,QUESTION_BOX);
+	positionCursor(2,34,STANDARD_BOX);
+	getString(MAX_USERNAME_SIZE-1,username);	
+}
 
+CONTROLINT rendersInvalidUsernameForAdm(void)
+{
+	CONTROLINT choice;
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("USERNAME NÃO ENCONTRADO","O 'username' informado não existe. Porvavelmente cometeu um erro de digitação ou o usuário não está cadastrado.","Pressione [1] para tentar novamente ou [2] para desistir.",ERROR_BOX,INSTRUCTION_BOX);
+	do
+	{
+		choice = getChoiceMenu();
+	}
+	while(!inRange(choice,REGISTER_USER,2,CLOSED_RANGE));
+	
+	return choice;
+}
+
+
+CONTROLINT rendersFullRegisterForAdm(USER temporaryUser)
+{
+	CONTROLINT choice;
+	char listaTempUser[3][100];
+	char title[100] = "Valide a informação do cadastro.";
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	
+	
+	sprintf(listaTempUser[0],"Nome: %s",temporaryUser.name);
+	sprintf(listaTempUser[1],"Username: %s",temporaryUser.username);
+	sprintf(listaTempUser[2],"Nickname: %s",temporaryUser.nickname);
+	
+	/*header*/
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);	
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_CENTER,"INFORMAÇÕES DO USUÁRIO", TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	bottomLine(' ','*',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);	
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
+	
+	/*user information*/
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_LEFT, listaTempUser[0], TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_LEFT,listaTempUser[1], TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_LEFT,listaTempUser[2], TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
+	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
+	putchar('\n');	
+
+	
+	instructionBox("ATRIBUIÇÃO DE SUPER PODERES","Tem certeza que deseja atribuir super poderes a este usuário?  Esta ação não pode ser desfeita!","Pressione [1] para CONFIRMAR ou [2] para DESISTIR.",ATTENTION_BOX,INSTRUCTION_BOX);	
+	do
+	{
+		choice = getChoiceMenu();
+	}
+	while(!inRange(choice,1,2,CLOSED_RANGE) );
+	
+	return choice;
+}
+
+void rendersAuccessfulAssignment(USER user)
+{
+	char preMessage[] = "Atibuição realizada com sucesso! Agora o usuário de nome %s - [username: %s] - é um ADMINISTRADOR.";
+	char * message = allocateMemory(strlen(preMessage)+MAX_NAME_SIZE+MAX_USERNAME_SIZE,sizeof(char));
+	sprintf(message,preMessage, user.name,user.username);
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("ATRIBUIÇÃO DE SUPER PODERES",message,"Pressione qualquer tecla para continuar...",SUCCESS_BOX,INSTRUCTION_BOX);
+	wait();	
+}
 
 /*History*/
 

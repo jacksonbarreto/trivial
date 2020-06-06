@@ -12,7 +12,7 @@
 	#define MAX_NAME_SIZE 50+1
 	#define MAX_OPTION_MENU_SIZE 50
 	#define TOTAL_OPTION_MAIN_MENU 6
-	#define MAX_USER_NAME_SIZE 25+1
+	#define MAX_USERNAME_SIZE 25+1
 	#define MAX_PASSWD_SIZE 5+1
 	#define MAX_TITLE_SIZE 120+1
 	#define MAX_ANSWER_SIZE 80+1
@@ -31,9 +31,11 @@
 	#define NOT_FOUND -1
 	#define OPEN_RANGE 0
 	#define CLOSED_RANGE 1
+	#define TRY_AGAIN 1
 	
 	/*Adm settings*/
 	#define RECORD_QUESTION 2
+	#define ALLOCATED_POWERS 1
 	
 	/*login settings*/
 	#define INVALID_PASSWORD 1
@@ -108,6 +110,16 @@
 		#define TOP_10 3
 		#define LATEST_PLAYERS 4
 		#define MY_ACCOUNT 5
+		
+		/*User menu*/
+		#define EDIT_ACCOUNT 1
+		#define DELETE_ACCOUNT 2
+		#define COME_BACK 0
+		/*Adm menu*/
+		#define INSERT_QUESTION 3
+		#define CREATE_ADMINISTRATOR 4
+		#define RECOVER_PASSWORD 5
+		#define BACK_TO_MAIN_MENU 99
 		
 		/*game mode*/
 		#define SMALL_MODE 1

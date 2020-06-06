@@ -28,11 +28,16 @@
 	void rendersDesistRegistering(void);
 	
 	/*Adm*/	
+	CONTROLINT rendersAdmMenu(USER user);
 	CONTROLINT rendersGetTheme(char themesName[][MAX_SIZE_THEME_NAME],const CONTROLINT totalThemes);
 	void rendersGetQuestionTitle(char * title);
 	void rendersGetQuestionRightAnswer(char * correctAnswer);
 	void rendersGetQuestionAnswer(char * answer, CONTROLINT progressBarPosition);
 	CONTROLINT rendersConfirmationQuestion(QUESTION question);
+	void rendersGetUsernameForAdm(char * username);
+	CONTROLINT rendersInvalidUsernameForAdm(void);
+	CONTROLINT rendersFullRegisterForAdm(USER temporaryUser);
+	void rendersAuccessfulAssignment(USER user);
 	
 	/*History*/
 	void rendersHistory(NODE ** history);

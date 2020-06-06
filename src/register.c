@@ -20,7 +20,7 @@ static USER registerUser(void)
 	USER temporaryUser;
 	CONTROLINT choice, status;
 	char name[MAX_NAME_SIZE];
-	char username[MAX_USER_NAME_SIZE];
+	char username[MAX_USERNAME_SIZE];
 	char nickname[MAX_NICKNAME_SIZE];
 	char password[MAX_PASSWD_SIZE];
 	char temporaryPassword[MAX_PASSWD_SIZE];
