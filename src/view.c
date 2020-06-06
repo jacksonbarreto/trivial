@@ -355,6 +355,14 @@ void rendersDesistRegistering(void)
 	wait();
 }
 
+void renderSuccessCreateUser(void)
+{
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("CADASTRO DE USUÁRIO","Uilizador cadastrado com sucesso.","Pressione qualquer tecla para tentar novamente...",SUCCESS_BOX,INSTRUCTION_BOX);
+	wait();
+}
+
 /* ADM */
 
 CONTROLINT rendersAdmMenu(USER user)

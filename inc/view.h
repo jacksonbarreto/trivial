@@ -26,6 +26,7 @@
 	CONTROLINT rendersInvalidNickname(void);
 	CONTROLINT rendersUsernameAlreadyExists(void);
 	void rendersDesistRegistering(void);
+	void renderSuccessCreateUser(void);
 	
 	/*Adm*/	
 	CONTROLINT rendersAdmMenu(USER user);
