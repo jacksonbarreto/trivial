@@ -7,7 +7,7 @@ int main(void)
 	USER * user;
 	
 	boot();
-	renderInicio();
+	renderOpeningScreen();
 	
 	/*
 	QUESTION question;
@@ -54,7 +54,7 @@ int main(void)
 								changeName(user);
 								break;
 							case DELETE_ACCOUNT:
-								choice = deleteAccount(user);
+								choice = deleteAccount(*user);
 								break;
 							case INSERT_QUESTION:
 								insertQuestion();
@@ -79,6 +79,6 @@ int main(void)
 	
 	
 	turnOff();
-	renderCreditos();	
+	renderClosingScreen();	
 	return EXIT_SUCCESS;
 }

@@ -58,7 +58,7 @@
 	void renderCongratulationsTop(USER player);
 	
 	/*Ecrãs estaticos*/
-	void renderInicio(void);
-	void renderCreditos(void);	
+	void renderOpeningScreen(void);
+	void renderClosingScreen(void);	
 	
 #endif

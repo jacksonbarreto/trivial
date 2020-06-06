@@ -848,7 +848,7 @@ void renderCongratulationsTop(USER player){
 }
 
 /*Ecrãs estaticos*/
-void renderCreditos(void){
+void renderClosingScreen(void){
 	clearScreen();
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
@@ -911,40 +911,33 @@ void renderCreditos(void){
         usleep(someDelay);
     }	
 }
-void renderInicio(void)
+void renderOpeningScreen(void)
 {
 	clearScreen();
-	verticalPadding(VERTICAL_PADDING_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_CENTER, "     ______                                          ___      ", TEXT_STANDARD, BAKGROUND_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_CENTER, "    /\\__  _\\          __              __            /\\_ \\     ", TEXT_STANDARD, BAKGROUND_STANDARD);	
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_CENTER, "    \\/_/\\ \\/   _ __  /\\_\\    __  __  /\\_\\      __   \\//\\ \\    ", TEXT_STANDARD, BAKGROUND_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_CENTER, "      \\ \\ \\  /\\`'__\\\\/\\ \\  /\\ \\/\\ \\ \\/\\ \\   /'__`\\   \\ \\ \\   ", TEXT_STANDARD, BAKGROUND_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_CENTER, "        \\ \\ \\ \\ \\ \\/  \\ \\ \\ \\ \\ \\_/ | \\ \\ \\ /\\ \\_\\.\\   \\_\\ \\_ ", TEXT_STANDARD, BAKGROUND_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_CENTER, "         \\ \\_\\ \\ \\_\\   \\ \\_\\ \\ \\___/   \\ \\_\\\\ \\__/.\\_\\ /\\____\\ ", TEXT_STANDARD, BAKGROUND_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,STANDARD_BOX_SIZE,ALIGN_CENTER, "          \\/_/  \\/_/    \\/_/  \\/__/     \\/_/ \\/__/\\/_/ \\/____/", TEXT_STANDARD, BAKGROUND_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);
-	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
-	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD, BAKGROUND_STANDARD);	
+	int i=0;
+	for(i=0; i <= 11;i++)
+	{
+		alignmentPadding(SIZE_OPENING_SCREEN,ALIGN_CENTER);
+		emptyLine(' ',SIZE_OPENING_SCREEN,TEXT_STANDARD, BAKGROUND_STANDARD);
+	}	
+	alignmentPadding(SIZE_OPENING_SCREEN,ALIGN_CENTER);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,SIZE_OPENING_SCREEN,ALIGN_CENTER, "     ______                                          ___      ", TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(SIZE_OPENING_SCREEN,ALIGN_CENTER);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,SIZE_OPENING_SCREEN,ALIGN_CENTER, "    /\\__  _\\          __              __            /\\_ \\     ", TEXT_STANDARD, BAKGROUND_STANDARD);	
+	alignmentPadding(SIZE_OPENING_SCREEN,ALIGN_CENTER);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,SIZE_OPENING_SCREEN,ALIGN_CENTER, "    \\/_/\\ \\/   _ __  /\\_\\    __  __  /\\_\\      __   \\//\\ \\    ", TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(SIZE_OPENING_SCREEN,ALIGN_CENTER);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,SIZE_OPENING_SCREEN,ALIGN_CENTER, "      \\ \\ \\  /\\`'__\\\\/\\ \\  /\\ \\/\\ \\ \\/\\ \\   /'__`\\   \\ \\ \\   ", TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(SIZE_OPENING_SCREEN,ALIGN_CENTER);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,SIZE_OPENING_SCREEN,ALIGN_CENTER, "        \\ \\ \\ \\ \\ \\/  \\ \\ \\ \\ \\ \\_/ | \\ \\ \\ /\\ \\_\\.\\   \\_\\ \\_ ", TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(SIZE_OPENING_SCREEN,ALIGN_CENTER);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,SIZE_OPENING_SCREEN,ALIGN_CENTER, "         \\ \\_\\ \\ \\_\\   \\ \\_\\ \\ \\___/   \\ \\_\\\\ \\__/.\\_\\ /\\____\\ ", TEXT_STANDARD, BAKGROUND_STANDARD);
+	alignmentPadding(SIZE_OPENING_SCREEN,ALIGN_CENTER);
+	lineBuilder(' ',' ',' ',PADDING_INTERNAL,PADDING_NULL,SIZE_OPENING_SCREEN,ALIGN_CENTER, "          \\/_/  \\/_/    \\/_/  \\/__/     \\/_/ \\/__/\\/_/ \\/____/", TEXT_STANDARD, BAKGROUND_STANDARD);
+	for(i=0; i < 11;i++)
+	{
+		alignmentPadding(SIZE_OPENING_SCREEN,ALIGN_CENTER);
+		emptyLine(' ',SIZE_OPENING_SCREEN,TEXT_STANDARD, BAKGROUND_STANDARD);
+	}	
 	sleep(2);
-	
 }
