@@ -465,11 +465,22 @@ CONTROLINT rendersConfirmationQuestion(QUESTION question)
 
 void rendersGetUsernameForAdm(char * username)
 {
-	char message[] = "Informe o seu 'username' do usuário ao qual deseja atribuir poderes de administrador.";
+	char message[] = "Informe o 'username' do usuário ao qual deseja atribuir poderes de administrador.";
 	
 	clearScreen();	
 	verticalPadding(VERTICAL_PADDING_STANDARD);
 	instructionBox("ATRIBUIÇÃO DE SUPER PODERES",message,"Username:",STANDARD_BOX,QUESTION_BOX);
+	positionCursor(2,34,STANDARD_BOX);
+	getString(MAX_USERNAME_SIZE-1,username);	
+}
+
+void rendersGetUsernameForRecoverPassword(char * username)
+{
+	char message[] = "Informe o 'username' do usuário ao qual deseja recuperar a senha. Lembre-se da responsabilidade e princípios éticos inerente a ser um administrador.";
+	
+	clearScreen();	
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("RECUPERAÇÃO DE SENHA",message,"Username:",STANDARD_BOX,QUESTION_BOX);
 	positionCursor(2,34,STANDARD_BOX);
 	getString(MAX_USERNAME_SIZE-1,username);	
 }
@@ -555,6 +566,18 @@ void rendersAuccessfulAssignment(USER user)
 	wait();	
 }
 
+void rendersRecoverPassword(USER user)
+{
+	char preMessage[] = "O usuário de nome %s - [username: %s] - tem a SENHA: |%s|.";
+	char * message = allocateMemory(strlen(preMessage)+MAX_NAME_SIZE+MAX_USERNAME_SIZE,sizeof(char));
+	sprintf(message,preMessage, user.name,user.username,user.password);
+	
+	clearScreen();
+	verticalPadding(VERTICAL_PADDING_STANDARD);
+	instructionBox("FALHA AO CARREGAR HISTÓRICO",message,"Pressione qualquer tecla para continuar.",ATTENTION_BOX,INSTRUCTION_BOX);
+	wait();
+}
+
 /*History*/
 
 void rendersHistory(NODE ** history)
@@ -615,6 +638,8 @@ void rendersHistory(NODE ** history)
 	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
 	wait();
 }
+
+
 
 void redersHistoryFatalError(void)
 

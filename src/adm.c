@@ -34,6 +34,26 @@ void promoteUserToAdministrator(void)
 		
 }
 
+void recoverPassword(void)
+{
+	char username[MAX_USERNAME_SIZE];
+	USER temporaryUser;	
+	CONTROLINT choice;
+	
+	do
+	{
+		rendersGetUsernameForRecoverPassword(username);
+		if(usernameExists(username) == SUCCESS)
+		{
+			temporaryUser = findUserByUsername(username);			
+			rendersRecoverPassword(temporaryUser);
+			break;			
+		}
+		else
+			choice = rendersInvalidUsernameForAdm();	
+	}	
+	while(choice == TRY_AGAIN);	
+}
 
 
 /*		INSERT QUESTION		*/

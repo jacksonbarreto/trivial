@@ -3,9 +3,9 @@
 	#include "config.h"
 	
 	
-	/*		PROMOTE USER TO ADMINISTRATOR		*/
+	/*		ADMINISTRATOR		*/
 	void promoteUserToAdministrator(void);
-	
+	void recoverPassword(void);
 	
 	/*		INSERT QUESTION		*/
 	void insertQuestion(void);

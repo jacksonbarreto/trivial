@@ -63,7 +63,7 @@ int main(void)
 								promoteUserToAdministrator();
 								break;
 							case RECOVER_PASSWORD:
-								
+								recoverPassword();
 								break;
 							case EXIT:
 								choice = BACK_TO_MAIN_MENU;

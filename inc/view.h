@@ -38,6 +38,8 @@
 	CONTROLINT rendersInvalidUsernameForAdm(void);
 	CONTROLINT rendersFullRegisterForAdm(USER temporaryUser);
 	void rendersAuccessfulAssignment(USER user);
+	void rendersGetUsernameForRecoverPassword(char * username);
+	void rendersRecoverPassword(USER user);
 	
 	/*History*/
 	void rendersHistory(NODE ** history);
