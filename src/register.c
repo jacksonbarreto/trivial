@@ -5,7 +5,10 @@ USER registerNewUserDuringTheGame(void)
 	USER temporaryUser;
 	temporaryUser = registerUser();
 	insertUser(temporaryUser);
-	renderSuccessCreateUser();
+	if(temporaryUser.id != 0)
+		renderSuccessCreateUser();
+	else
+		rendersDesistRegistering();
 	return 	temporaryUser;
 }
 
@@ -14,7 +17,10 @@ void registerNewUser(void)
 	USER temporaryUser;
 	temporaryUser = registerUser();
 	insertUser(temporaryUser);
-	renderSuccessCreateUser();
+	if(temporaryUser.id != 0)
+		renderSuccessCreateUser();
+	else
+		rendersDesistRegistering();
 }
 
 static USER registerUser(void)

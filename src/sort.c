@@ -64,7 +64,7 @@ static void switchPosition(USER *list, int index)
 
 static int sortIncreasingString(USER *list, int index)
 {	
-	if(strcmp(list[index].name,list[index+1].name) > 0)
+	if(stricmp(list[index].name,list[index+1].name) > 0)
 	{
 		switchPosition(list, index);
 		return CHANGED;
@@ -94,7 +94,7 @@ static int sortIcreasingById(USER *list, int index)
 
 static int sortDecreasingString(USER *list, int index)
 {	
-	if(strcmp(list[index].name,list[index+1].name) < 0)
+	if(stricmp(list[index].name,list[index+1].name) < 0)
 	{
 		switchPosition(list, index);
 		return CHANGED;

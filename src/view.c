@@ -673,7 +673,7 @@ void rendersErrorDeleteAccount(void)
 void rendersHistory(NODE ** history)
 {
 	char messageEmptyList[] = "Infelizmente nenhum jogador ainda se aventurou no fantástico mundo do TRIVIAL. Que tal você começar esta proeza!?";
-	char * userLine = (char * ) allocateMemory(MAX_NICKNAME_SIZE+10,sizeof(char));
+	char * userLine = (char * ) allocateMemory(MAX_NICKNAME_SIZE+MAX_NAME_SIZE+10,sizeof(char));
 	//USER temporaryUser; //apagar casou use o vetor de users
 	USER * playerList = (USER *) allocateMemory(settings.historySize,sizeof(USER)); //para listagem ordenada
 	CONTROLINT i;
@@ -701,7 +701,7 @@ void rendersHistory(NODE ** history)
 		{
 			
 			historyForPrint(historyPlayers,playerList,settings.historySize);
-			sprintf(userLine,"%d - %s",i+1,playerList[i].nickname);	
+			sprintf(userLine,"%d - %s [nickname: %s]",i+1,playerList[i].name,playerList[i].nickname);	
 			/*
 			temporaryUser = returnsLastPlayersOneByOne(history);	
 			sprintf(userLine,"%d - %s",i+1,temporaryUser.nickname);	

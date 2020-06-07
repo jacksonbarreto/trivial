@@ -31,8 +31,6 @@ USER * login(const CONTROLINT totLogin)
 				choice = rendersInvalidUsername(attempts);
 				if(choice == REGISTER_USER)
 					temporaryUser = registerNewUserDuringTheGame();
-				else
-					rendersDesistRegistering();
 			}
 			else if(i>0 && totLogin > 1)
 			{
