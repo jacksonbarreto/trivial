@@ -42,7 +42,7 @@ void insertInOrder(NODE ** topList, USER info)
 		{
 			current = *topList;
 			previous = NULL;
-			while(current != NULL && current->info.percentageCorrect < info.percentageCorrect)
+			while(current != NULL && current->info.percentageCorrect > info.percentageCorrect)
 			{
 				previous = current;
 				current = current->next;
@@ -166,27 +166,26 @@ CONTROLINT sizeList(NODE ** topList)
 	}
 	return cont;
 }
-
-USER returnsTopPlayersOneByOne(NODE ** topList)
+void returnsTopPlayers(NODE ** topList, USER * players)
 {
 	if(topList == NULL) 
 		eventsHandling(LIST_NOT_STARTED);
 	
-	static NODE * aux = NULL;
-	USER temporaryPlayer;
+	NODE * aux ;
+	CONTROLINT i, size= sizeList(topList);
 	
 	if(*topList != NULL)	
-	{
-		if(aux == NULL)	
-			aux = *topList;
-	
-		temporaryPlayer = aux->info;
-		aux = aux->next;			
+	{		
+		aux = *topList;	
+		for(i=0;i<size;i++)
+		{
+			players[i] = aux->info;
+			aux = aux->next;
+		}		
 	}
 	else
 	{
 		eventsHandling(LIST_QUEUE);
-		temporaryPlayer = createNullUser(); //tratar esse retorno
 	}		
-	return temporaryPlayer;			
+		
 }

@@ -136,9 +136,10 @@
 		/*configuration variables*/
 		SETTINGS settings;
 		
-		char keyboard[BUFSIZ];
-		NODE ** topPlayers;
-		NODE ** historyPlayers;
+	char keyboard[BUFSIZ];
+		
+	NODE ** topPlayers;
+	NODE ** historyPlayers;
 	
 #endif
 

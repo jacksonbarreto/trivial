@@ -760,8 +760,8 @@ void rendersTopPlayers(NODE ** bestPlayers)
 {
 	char messageEmptyList[] = "Infelizmente nenhum jogador ainda se aventurou no fantástico mundo do TRIVIAL. Que tal você começar esta proeza!?";
 	char templates[] = "%dº - %s  com %2.f %% de acertos";
-	char * userLine = (char * ) allocateMemory(MAX_NICKNAME_SIZE+strlen(templates)+2,sizeof(char));
-	USER temporaryUser;
+	char * userLine = (char * ) allocateMemory(MAX_NICKNAME_SIZE+strlen(templates)+10,sizeof(char));
+	USER * temporaryUser = (USER *) allocateMemory(sizeList(bestPlayers),sizeof(USER));
 	CONTROLINT i;
 	
 	clearScreen();
@@ -782,11 +782,10 @@ void rendersTopPlayers(NODE ** bestPlayers)
 	/*content*/
 	if(settings.topSize > 0)
 	{
-		
-		for(i=0;i<settings.topSize;i++)
-		{
-			temporaryUser = returnsTopPlayersOneByOne(bestPlayers);	
-			sprintf(userLine,templates,i+1,temporaryUser.nickname,temporaryUser.percentageCorrect);				
+		returnsTopPlayers(bestPlayers,temporaryUser);
+		for(i=0;i<sizeList(bestPlayers);i++)
+		{	
+			sprintf(userLine,templates,i+1,temporaryUser[i].nickname,temporaryUser[i].percentageCorrect);				
 			alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 			lineTitle(' ',' ',STANDARD_BOX_SIZE,ALIGN_LEFT,userLine,TEXT_STANDARD,BAKGROUND_STANDARD);
 		}		
@@ -808,6 +807,8 @@ void rendersTopPlayers(NODE ** bestPlayers)
 	alignmentPadding(STANDARD_BOX_SIZE,ALIGN_CENTER);
 	emptyLine(' ',STANDARD_BOX_SIZE,TEXT_STANDARD,BAKGROUND_STANDARD);
 	wait();
+	free(userLine);
+	free(temporaryUser);	
 }
 
 void renderCongratulationsTop(USER player){

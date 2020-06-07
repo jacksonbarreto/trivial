@@ -8,22 +8,6 @@ int main(void)
 	
 	boot();
 	renderOpeningScreen();
-	
-	/*
-	QUESTION question;
-	
-	FILE * file = openFile("db/themeQuestions1.dat",BINARY_READING);
-	
-	fseek(file,sizeof(FILEINF),SEEK_SET);
-	do
-	{
-		readData(&question,sizeof(QUESTION),1,file);
-		cardFrame(question.title,question.answers); 
-		system("pause");
-	}
-	while(!feof(file));
-	*/
-	
 	do
 	{
 		choice = rendersMainMenu();

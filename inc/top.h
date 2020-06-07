@@ -9,6 +9,6 @@
 	void removeEndList(NODE ** topList);
 	void deleteList(NODE ** topList);
 	CONTROLINT sizeList(NODE ** topList);
-	USER returnsTopPlayersOneByOne(NODE ** topList);
+	void returnsTopPlayers(NODE ** topList, USER * players);
 	USER returnsLastInTheList(NODE ** topList);
 #endif
