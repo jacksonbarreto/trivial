@@ -15,3 +15,7 @@
 * [Linkedin](https://www.linkedin.com/in/leonardo-lopez-45858b117/)
 
 ## Project description
+
+### Apresentação em Vídeo
+
+[![tumbview](http://img.youtube.com/vi/coSoraxrD3E/0.jpg)](http://www.youtube.com/watch?v=coSoraxrD3E "Apresentação em Vídeo")
